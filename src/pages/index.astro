@@ -100,22 +100,84 @@ import disc from "../assets/discord.svg";
       <div class='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8'>
         {
           [
-            { name: "Astro.js", value: 70 },
-            { name: "Next.js", value: 80 },
-            { name: "React", value: 88 },
-            { name: "HTML", value: 80 },
-            { name: "JavaScript", value: 60 },
-            { name: "TypeScript", value: 60 },
-            { name: "CSS", value: 70 },
-            { name: "TailwindCSS", value: 70 },
-
-            { name: "Angular", value: 50 },
-            { name: "C#", value: 50 },
-            { name: "Nest.js", value: 60 },
-            { name: "Node.js", value: 60 },
+            {
+              name: "Astro.js",
+              value: 70,
+              url: "https://icon.icepanel.io/Technology/png-shadow-512/Astro.png",
+            },
+            {
+              name: "Next.js",
+              value: 80,
+              url: "https://icon.icepanel.io/Technology/png-shadow-512/Next.js.png",
+            },
+            {
+              name: "React",
+              value: 88,
+              url: "https://icon.icepanel.io/Technology/png-shadow-512/React.png",
+            },
+            {
+              name: "HTML",
+              value: 80,
+              url: "https://icon.icepanel.io/Technology/svg/HTML5.svg",
+            },
+            {
+              name: "JavaScript",
+              value: 60,
+              url: "https://icon.icepanel.io/Technology/svg/JavaScript.svg",
+            },
+            {
+              name: "TypeScript",
+              value: 60,
+              url: "https://icon.icepanel.io/Technology/svg/TypeScript.svg",
+            },
+            {
+              name: "CSS",
+              value: 70,
+              url: "https://icon.icepanel.io/Technology/svg/CSS3.svg",
+            },
+            {
+              name: "TailwindCSS",
+              value: 70,
+              url: "https://icon.icepanel.io/Technology/svg/Tailwind-CSS.svg",
+            },
+            {
+              name: "Firebase",
+              value: 70,
+              url: "https://icon.icepanel.io/Technology/svg/Firebase.svg",
+            },
+            {
+              name: "AWS",
+              value: 40,
+              url: "https://icon.icepanel.io/Technology/png-shadow-512/AWS.png",
+            },
+            {
+              name: "Angular",
+              value: 50,
+              url: "https://icon.icepanel.io/Technology/svg/AngularJS.svg",
+            },
+            {
+              name: "C#",
+              value: 50,
+              url: "https://icon.icepanel.io/Technology/svg/C%23-%28CSharp%29.svg",
+            },
+            {
+              name: "Nest.js",
+              value: 60,
+              url: "https://icon.icepanel.io/Technology/svg/Nest.js.svg",
+            },
+            {
+              name: "Node.js",
+              value: 60,
+              url: "https://icon.icepanel.io/Technology/svg/Node.js.svg",
+            },
           ].map((skill, index) => (
             <div class='bg-white p-6 rounded-lg shadow-md text-center'>
-              <h3 class='font-bold mb-2'>{skill.name}</h3>
+              <div class='flex flex-row items-center justify-center gap-5 my-1 md:h-10'>
+                <h3 class='font-bold mb-2 text-xl text-center hover:underline'>
+                  {skill.name}
+                </h3>
+                <img src={skill.url} alt='logo' class='w-8 h-9 flex md:pb-1' />
+              </div>
               <div class='w-full bg-gray-200 rounded-full h-2.5'>
                 <div
                   class='bg-blue-600 h-2.5 rounded-full'
