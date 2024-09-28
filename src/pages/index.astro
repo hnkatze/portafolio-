@@ -3,10 +3,11 @@ import Layout from "../layouts/Layout.astro";
 import meb from "../../public/tshirtw.png";
 import { Image } from "astro:assets";
 import linkedin from "../assets/linkedin.svg";
-import disc from "../assets/discord.svg";
+import "../css/switch.css";
+import Skills from "../components/Skills";
 ---
 
-<Layout title='Welcome to Astro.'>
+<Layout title='Portafolio Camilo'>
   <section
     class='lg:h-96 w-full flex flex-col bg-gradient-to-r from-blue-500 to-purple-600 shadow-xl'
     title='Presentacion'>
@@ -16,7 +17,7 @@ import disc from "../assets/discord.svg";
         <h1 class='text-4xl lg:text-6xl font-bold mt-10'>
           Hola, soy Camilo Henriquez
         </h1>
-        <p class='text-xl lg:text-3xl font-normal mt-10'>
+        <p class='text-xl lg:text-3xl font-normal mx-4 md:mx-0 mt-10'>
           Desarrollador Full Stack apasionado por crear soluciones creativas y
           sobre todo innovadoras
         </p>
@@ -32,11 +33,11 @@ import disc from "../assets/discord.svg";
       />
     </div>
     <div
-      class='w-full flex flex-col lg:flex-row justify-center gap-4 items-center text-white mt-5 lg:mt-0'>
+      class='w-full flex flex-col lg:flex-row justify-center gap-3 items-center text-white mt-5 pb-3 lg:mt-0'>
       <a
         href='https://github.com/hnkatze'
         title='Visita mi perfil de GitHub'
-        class='flex flex-row justify-center items-center gap-2 mb-5 lg:mb-0'>
+        class='flex flex-row justify-center items-center gap-2 lg:mb-0'>
         <svg
           class='w-8 h-8'
           viewBox='0 0 512 512'
@@ -80,11 +81,10 @@ import disc from "../assets/discord.svg";
           fill='currentColor'
           viewBox='0 0 512 512'>
           <g>
-            <!-- Aquí va el path principal del ícono de Discord -->
             <path
               d='M 511.5,310.5 C 511.5,330.167 511.5,349.833 511.5,369.5C 510.795,375.045 509.961,380.712 509,386.5C 470.043,415.396 427.209,437.063 380.5,451.5C 378.851,450.352 377.351,449.019 376,447.5C 367.039,434.526 358.872,421.026 351.5,407C 352.047,406.075 352.713,405.242 353.5,404.5C 367.015,399.409 380.015,393.242 392.5,386C 393.451,385.282 393.617,384.449 393,383.5C 390.305,381.306 387.472,379.306 384.5,377.5C 298.515,416.165 212.515,416.165 126.5,377.5C 123.528,379.306 120.695,381.306 118,383.5C 117.383,384.449 117.549,385.282 118.5,386C 131.236,393.536 144.569,399.702 158.5,404.5C 157.192,410.126 155.025,415.459 152,420.5C 145.807,431.568 138.64,441.902 130.5,451.5C 83.7907,437.063 40.9574,415.396 2,386.5C 0.989351,381.064 0.156017,375.73 -0.5,370.5C -0.5,350.5 -0.5,330.5 -0.5,310.5C 5.8552,230.765 31.8552,158.099 77.5,92.5C 111.077,77.0215 146.077,66.0215 182.5,59.5C 183.478,59.9767 184.311,60.6433 185,61.5C 189.277,70.3897 193.777,79.0564 198.5,87.5C 236.492,80.9636 274.492,80.9636 312.5,87.5C 317.223,79.0564 321.723,70.3897 326,61.5C 326.689,60.6433 327.522,59.9767 328.5,59.5C 364.923,66.0215 399.923,77.0215 433.5,92.5C 479.134,158.065 505.134,230.731 511.5,310.5 Z'>
             </path>
-            <!-- Definimos los ojos transparentes -->
+
             <circle cx='167.5' cy='223.5' r='50' fill='#7b7f78'></circle>
             <circle cx='338.5' cy='223.5' r='50' fill='#7b7f78'></circle>
           </g>
@@ -94,100 +94,5 @@ import disc from "../assets/discord.svg";
       </a>
     </div>
   </section>
-  <section id='habilidades' class='py-20'>
-    <div class='container mx-auto px-6'>
-      <h2 class='text-3xl font-bold text-center mb-12'>Mis Habilidades</h2>
-      <div class='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8'>
-        {
-          [
-            {
-              name: "Astro.js",
-              value: 70,
-              url: "https://icon.icepanel.io/Technology/png-shadow-512/Astro.png",
-            },
-            {
-              name: "Next.js",
-              value: 80,
-              url: "https://icon.icepanel.io/Technology/png-shadow-512/Next.js.png",
-            },
-            {
-              name: "React",
-              value: 88,
-              url: "https://icon.icepanel.io/Technology/png-shadow-512/React.png",
-            },
-            {
-              name: "HTML",
-              value: 80,
-              url: "https://icon.icepanel.io/Technology/svg/HTML5.svg",
-            },
-            {
-              name: "JavaScript",
-              value: 60,
-              url: "https://icon.icepanel.io/Technology/svg/JavaScript.svg",
-            },
-            {
-              name: "TypeScript",
-              value: 60,
-              url: "https://icon.icepanel.io/Technology/svg/TypeScript.svg",
-            },
-            {
-              name: "CSS",
-              value: 70,
-              url: "https://icon.icepanel.io/Technology/svg/CSS3.svg",
-            },
-            {
-              name: "TailwindCSS",
-              value: 70,
-              url: "https://icon.icepanel.io/Technology/svg/Tailwind-CSS.svg",
-            },
-            {
-              name: "Firebase",
-              value: 70,
-              url: "https://icon.icepanel.io/Technology/svg/Firebase.svg",
-            },
-            {
-              name: "AWS",
-              value: 40,
-              url: "https://icon.icepanel.io/Technology/png-shadow-512/AWS.png",
-            },
-            {
-              name: "Angular",
-              value: 50,
-              url: "https://icon.icepanel.io/Technology/svg/AngularJS.svg",
-            },
-            {
-              name: "C#",
-              value: 50,
-              url: "https://icon.icepanel.io/Technology/svg/C%23-%28CSharp%29.svg",
-            },
-            {
-              name: "Nest.js",
-              value: 60,
-              url: "https://icon.icepanel.io/Technology/svg/Nest.js.svg",
-            },
-            {
-              name: "Node.js",
-              value: 60,
-              url: "https://icon.icepanel.io/Technology/svg/Node.js.svg",
-            },
-          ].map((skill, index) => (
-            <div class='bg-white p-6 rounded-lg shadow-md text-center'>
-              <div class='flex flex-row items-center justify-center gap-3 my-1 md:h-10'>
-                <h3 class='font-bold mb-2 text-lg text-center hover:underline'>
-                  {skill.name}
-                </h3>
-                <img src={skill.url} alt='logo' class='w-8 h-9 flex md:pb-1' />
-              </div>
-              <div class='w-full bg-gray-200 rounded-full h-2.5'>
-                <div
-                  class='bg-blue-600 h-2.5 rounded-full'
-                  style={{ width: `${skill.value}%` }}
-                />
-              </div>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+  <Skills client:visible />
 </Layout>
