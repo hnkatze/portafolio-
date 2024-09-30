@@ -3,8 +3,11 @@ import Layout from "../layouts/Layout.astro";
 import meb from "../../public/tshirtw.png";
 import { Image } from "astro:assets";
 import linkedin from "../assets/linkedin.svg";
-import "../css/switch.css";
-import Skills from "../components/Skills";
+import "../styles/switch.css";
+import "../styles/global.css";
+import CardProject from "@/components/CardProject.astro";
+import Skills from "@/components/Skills";
+import { projects } from "@/libs/utils";
 ---
 
 <Layout title='Portafolio Camilo'>
@@ -19,7 +22,7 @@ import Skills from "../components/Skills";
         </h1>
         <p class='text-xl lg:text-3xl font-normal mx-4 md:mx-0 mt-10'>
           Desarrollador Full Stack apasionado por crear soluciones creativas y
-          sobre todo innovadoras
+          sobre todo innovadoras.
         </p>
       </div>
 
@@ -94,5 +97,27 @@ import Skills from "../components/Skills";
       </a>
     </div>
   </section>
-  <Skills client:visible />
+  <Skills client:only />
+  <section
+    title='Proyectos'
+    class='w-full flex flex-col items-center justify-center py-8'>
+    <h2 class='text-4xl font-bold text-center text-gray-800 my-10'>
+      Proyectos Destacados
+    </h2>
+    <div
+      class='w-11/12 gap-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 justify-items-center'>
+      {
+        projects.map((items) => (
+          <CardProject
+            title={items.title}
+            description={items.description}
+            images={items.images}
+            technologies={items.technologies}
+            projectUrl={items.projectUrl}
+            repoUrl={items.repoUrl}
+          />
+        ))
+      }
+    </div>
+  </section>
 </Layout>

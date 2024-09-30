@@ -1,118 +1,28 @@
 import { useState } from "react";
-import "../css/switch.css";
+import "../styles/switch.css";
 import { AnimatePresence, motion } from "framer-motion";
+import { favo, skills } from "../libs/utils";
 
 export default function Skills() {
   const [isCheck, setIsCheck] = useState(false);
 
-  const skills = [
-    {
-      name: "Astro.js",
-      value: 70,
-      url: "https://icon.icepanel.io/Technology/png-shadow-512/Astro.png",
-    },
-    {
-      name: "Next.js",
-      value: 80,
-      url: "https://icon.icepanel.io/Technology/png-shadow-512/Next.js.png",
-    },
-    {
-      name: "React",
-      value: 88,
-      url: "https://icon.icepanel.io/Technology/png-shadow-512/React.png",
-    },
-    {
-      name: "HTML",
-      value: 80,
-      url: "https://icon.icepanel.io/Technology/svg/HTML5.svg",
-    },
-    {
-      name: "JavaScript",
-      value: 60,
-      url: "https://icon.icepanel.io/Technology/svg/JavaScript.svg",
-    },
-    {
-      name: "TypeScript",
-      value: 60,
-      url: "https://icon.icepanel.io/Technology/svg/TypeScript.svg",
-    },
-    {
-      name: "CSS",
-      value: 70,
-      url: "https://icon.icepanel.io/Technology/svg/CSS3.svg",
-    },
-    {
-      name: "Tailwind",
-      value: 70,
-      url: "https://icon.icepanel.io/Technology/svg/Tailwind-CSS.svg",
-    },
-    {
-      name: "Firebase",
-      value: 70,
-      url: "https://icon.icepanel.io/Technology/svg/Firebase.svg",
-    },
-    {
-      name: "AWS",
-      value: 40,
-      url: "https://icon.icepanel.io/Technology/png-shadow-512/AWS.png",
-    },
-    {
-      name: "Angular",
-      value: 50,
-      url: "https://icon.icepanel.io/Technology/svg/AngularJS.svg",
-    },
-    {
-      name: "C#",
-      value: 50,
-      url: "https://icon.icepanel.io/Technology/svg/C%23-%28CSharp%29.svg",
-    },
-    {
-      name: "Nest.js",
-      value: 60,
-      url: "https://icon.icepanel.io/Technology/svg/Nest.js.svg",
-    },
-  ];
-  const favo = [
-    {
-      name: "Astro.js",
-      value: 70,
-      url: "https://icon.icepanel.io/Technology/png-shadow-512/Astro.png",
-    },
-    {
-      name: "Next.js",
-      value: 80,
-      url: "https://icon.icepanel.io/Technology/png-shadow-512/Next.js.png",
-    },
-    {
-      name: "TypeScript",
-      value: 60,
-      url: "https://icon.icepanel.io/Technology/svg/TypeScript.svg",
-    },
-    {
-      name: "Tailwind",
-      value: 70,
-      url: "https://icon.icepanel.io/Technology/svg/Tailwind-CSS.svg",
-    },
-    {
-      name: "Firebase",
-      value: 70,
-      url: "https://icon.icepanel.io/Technology/svg/Firebase.svg",
-    },
-  ];
-  const see = "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8";
-  const hide = "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 hidden";
   const handleSwitch = () => {
     setIsCheck(!isCheck);
   };
   const containerVariants = {
+    hidden: { opacity: 0, y: 100 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    exit: { opacity: 0, y: -50, transition: { duration: 0.5 } },
+  };
+  const containerVariantsMainAxis = {
     hidden: { opacity: 0, x: 100 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
     exit: { opacity: 0, x: -100, transition: { duration: 0.5 } },
   };
 
   return (
-    <section id='habilidades' className='py-20 '>
-      <div className='container mx-auto px-6 lg:min-h-[520px]'>
+    <section id='habilidades' className='py-20  '>
+      <div className='container mx-auto px-6 lg:min-h-max'>
         <div className='w-full flex flex-row justify-center items-center gap-4 mb-7 '>
           <h2
             id='skills'
@@ -131,7 +41,7 @@ export default function Skills() {
           <h2
             id='favo'
             className={`text-2xl font-bold text-center ${isCheck ? "underline" : ""}`}>
-            Mis Fav
+            Favoritos
           </h2>
         </div>
 
@@ -141,7 +51,11 @@ export default function Skills() {
             <motion.div
               id='AllSkills'
               className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8'
-              variants={containerVariants}
+              variants={
+                window.innerWidth < 500
+                  ? containerVariants
+                  : containerVariantsMainAxis
+              }
               initial='hidden'
               animate='visible'
               exit='exit'>
