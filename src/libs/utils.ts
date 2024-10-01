@@ -110,7 +110,13 @@ export const projects: PropsProject[] = [
       " Municipalidad de Bonito Oriental, Colón, Honduras, sitio construido con Next.js, TailwindCSS, Firebase y PostgreSQL. ",
     images:
       "https://firebasestorage.googleapis.com/v0/b/todo-event.appspot.com/o/muni1.jpeg?alt=media&token=34e06ad2-6edc-498a-8b3e-3bb59f84e212",
-    technologies: ["Next.js", "TailwindCSS", "Firebase", "PostgreSQL"],
+    technologies: [
+      "Next.js",
+      "TailwindCSS",
+      "Firebase",
+      "PostgreSQL",
+      "Google Auth",
+    ],
     projectUrl: "https://munibonitooriental.com/",
     repoUrl: "https://github.com/hnkatze/muni",
   },
@@ -120,18 +126,52 @@ export const projects: PropsProject[] = [
       "Este proyecto es una aplicación de gestión de tareas construida con Next.js, Prisma (utilizando SQLite como base de datos) y ShadCN UI. ",
     images:
       "https://firebasestorage.googleapis.com/v0/b/todo-event.appspot.com/o/todo-task.jpeg?alt=media&token=28823fb0-1c0b-4be9-b551-c7c823a4bfa9",
-    technologies: ["Next.js", "TailwindCSS", "Prisma", "SQLite", "ShadCN UI"],
+    technologies: [
+      "Next.js",
+      "TailwindCSS",
+      "Prisma",
+      "SQLite",
+      "ShadCN UI",
+      "SSR",
+    ],
     projectUrl: "",
     repoUrl: "https://github.com/hnkatze/todo-task",
   },
   {
     title: "Event Test",
     description:
-      "This project is a web application built with Next.js and Firebase for creating, editing, viewing, and deleting events. ",
+      "Proyecto que comenzo como una prueba tecnica, una aplicación web construida con Next.js y Firebase para crear, editar, ver y eliminar eventos. ",
     images:
-      "https://firebasestorage.googleapis.com/v0/b/todo-event.appspot.com/o/muni1.jpeg?alt=media&token=34e06ad2-6edc-498a-8b3e-3bb59f84e212",
-    technologies: ["Next.js", "TailwindCSS", "Prisma", "SQLite", "ShadCN UI"],
-    projectUrl: "",
-    repoUrl: "https://github.com/hnkatze/todo-task",
+      "https://firebasestorage.googleapis.com/v0/b/todo-event.appspot.com/o/eventtest.jpeg?alt=media&token=e4add07f-687d-43c0-9b35-b6d0e7ed0755",
+    technologies: [
+      "Next.js",
+      "TailwindCSS",
+      "Firebase",
+      "SpaceX Api",
+      "ShadCN UI",
+      "SSR",
+    ],
+    projectUrl: "https://event-testsss.netlify.app/",
+    repoUrl: "https://github.com/hnkatze/Event-Test",
+  },
+  {
+    title: "Emprender o laborar en una Empresa",
+    description:
+      "Construida con el fin de presentar las respuestas de las encuestas realizadas a los estudiantes de la Universidades de Honduras. ",
+    images:
+      "https://firebasestorage.googleapis.com/v0/b/todo-event.appspot.com/o/Metodo.jpeg?alt=media&token=939edde4-e984-4f68-9283-f645dc2703e7",
+    technologies: ["Next.js", "TailwindCSS", "Chart.js", "Framer Motion"],
+    projectUrl: "https://metodo2-0.vercel.app/",
+    repoUrl: "https://github.com/hnkatze/metodo2.0",
+  },
+  {
+    title: "Calculadora de muestra de una población",
+    description:
+      "Calculadora basica, que calcula la muestra de una población, construida con Next.js y TailwindCSS. ",
+    images:
+      "https://firebasestorage.googleapis.com/v0/b/todo-event.appspot.com/o/calMuestra.jpeg?alt=media&token=ac8de681-69f1-4988-b3ea-6f97c5eafa06",
+    technologies: ["Next.js", "TailwindCSS"],
+    projectUrl: "https://calculadoramuestra.netlify.app/",
+    repoUrl: "https://github.com/hnkatze/muestra",
   },
 ];

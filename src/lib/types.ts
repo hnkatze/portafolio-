@@ -12,3 +12,9 @@ interface Props {
   body: string;
   href: string;
 }
+
+interface PropsFormData {
+  name: string;
+  email: string;
+  message: string;
+}
