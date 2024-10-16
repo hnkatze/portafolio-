@@ -95,9 +95,9 @@ export const favo = [
 
 export const projects: PropsProject[] = [
   {
-    title: "Portafolio",
+    title: "Portfolio",
     description:
-      "My portafolio personal, construido con Astro.js, TailwindCSS, TypeScript, React and Firebase. con un diseño minimalista y responsive. ",
+      "My personal portfolio, built with Astro.js, TailwindCSS, TypeScript, React, and Firebase. Featuring a minimalist and responsive design.",
     repoUrl: "https://github.com/hnkatze/portafolio-",
     images:
       "https://firebasestorage.googleapis.com/v0/b/todo-event.appspot.com/o/portafolio.jpeg?alt=media&token=18d3444d-2269-4d7a-8249-fbb77c6f5a34",
@@ -107,7 +107,7 @@ export const projects: PropsProject[] = [
   {
     title: "Munibo",
     description:
-      " Municipalidad de Bonito Oriental, Colón, Honduras, sitio construido con Next.js, TailwindCSS, Firebase y PostgreSQL. ",
+      "Municipality of Bonito Oriental, Colón, Honduras, site built with Next.js, TailwindCSS, Firebase, and PostgreSQL.",
     images:
       "https://firebasestorage.googleapis.com/v0/b/todo-event.appspot.com/o/muni1.jpeg?alt=media&token=34e06ad2-6edc-498a-8b3e-3bb59f84e212",
     technologies: [
@@ -123,7 +123,7 @@ export const projects: PropsProject[] = [
   {
     title: "Todo Task App",
     description:
-      "Este proyecto es una aplicación de gestión de tareas construida con Next.js, Prisma (utilizando SQLite como base de datos) y ShadCN UI. ",
+      "This project is a task management application built with Next.js, Prisma (using SQLite as the database), and ShadCN UI.",
     images:
       "https://firebasestorage.googleapis.com/v0/b/todo-event.appspot.com/o/todo-task.jpeg?alt=media&token=28823fb0-1c0b-4be9-b551-c7c823a4bfa9",
     technologies: [
@@ -140,7 +140,7 @@ export const projects: PropsProject[] = [
   {
     title: "Event Test",
     description:
-      "Proyecto que comenzo como una prueba tecnica, una aplicación web construida con Next.js y Firebase para crear, editar, ver y eliminar eventos. ",
+      "Project that started as a technical test, a web application built with Next.js and Firebase to create, edit, view, and delete events.",
     images:
       "https://firebasestorage.googleapis.com/v0/b/todo-event.appspot.com/o/eventtest.jpeg?alt=media&token=e4add07f-687d-43c0-9b35-b6d0e7ed0755",
     technologies: [
@@ -155,9 +155,9 @@ export const projects: PropsProject[] = [
     repoUrl: "https://github.com/hnkatze/Event-Test",
   },
   {
-    title: "Emprender o laborar en una Empresa",
+    title: "Entrepreneurship or Working in a Company",
     description:
-      "Construida con el fin de presentar las respuestas de las encuestas realizadas a los estudiantes de la Universidades de Honduras. ",
+      "Built to present the survey responses from students of the Universities of Honduras.",
     images:
       "https://firebasestorage.googleapis.com/v0/b/todo-event.appspot.com/o/Metodo.jpeg?alt=media&token=939edde4-e984-4f68-9283-f645dc2703e7",
     technologies: ["Next.js", "TailwindCSS", "Chart.js", "Framer Motion"],
@@ -165,9 +165,9 @@ export const projects: PropsProject[] = [
     repoUrl: "https://github.com/hnkatze/metodo2.0",
   },
   {
-    title: "Calculadora de muestra de una población",
+    title: "Population Sample Calculator",
     description:
-      "Calculadora basica, que calcula la muestra de una población, construida con Next.js y TailwindCSS. ",
+      "Basic calculator that calculates the sample of a population, built with Next.js and TailwindCSS.",
     images:
       "https://firebasestorage.googleapis.com/v0/b/todo-event.appspot.com/o/calMuestra.jpeg?alt=media&token=ac8de681-69f1-4988-b3ea-6f97c5eafa06",
     technologies: ["Next.js", "TailwindCSS"],

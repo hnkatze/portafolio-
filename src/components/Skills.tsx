@@ -27,7 +27,7 @@ export default function Skills() {
           <h2
             id='skills'
             className={`text-2xl font-bold text-center ${!isCheck ? "underline" : ""}`}>
-            Mis Habilidades
+            My Skills
           </h2>
           <label className='switch'>
             <input
@@ -41,7 +41,7 @@ export default function Skills() {
           <h2
             id='favo'
             className={`text-2xl font-bold text-center ${isCheck ? "underline" : ""}`}>
-            Favoritos
+            Favorite Skills
           </h2>
         </div>
 
