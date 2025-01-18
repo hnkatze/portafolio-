@@ -121,6 +121,26 @@ export const projects: PropsProject[] = [
     repoUrl: "https://github.com/hnkatze/muni",
   },
   {
+    title: "Entrepreneurship or Working in a Company",
+    description:
+      "Built to present the survey responses from students of the Universities of Honduras.",
+    images:
+      "https://firebasestorage.googleapis.com/v0/b/todo-event.appspot.com/o/Metodo.jpeg?alt=media&token=939edde4-e984-4f68-9283-f645dc2703e7",
+    technologies: ["Next.js", "TailwindCSS", "Chart.js", "Framer Motion"],
+    projectUrl: "https://metodo2-0.vercel.app/",
+    repoUrl: "https://github.com/hnkatze/metodo2.0",
+  },
+  {
+    title: "Population Sample Calculator",
+    description:
+      "Basic calculator that calculates the sample of a population, built with Next.js and TailwindCSS.",
+    images:
+      "https://firebasestorage.googleapis.com/v0/b/todo-event.appspot.com/o/calMuestra.jpeg?alt=media&token=ac8de681-69f1-4988-b3ea-6f97c5eafa06",
+    technologies: ["Next.js", "TailwindCSS"],
+    projectUrl: "https://calculadoramuestra.netlify.app/",
+    repoUrl: "https://github.com/hnkatze/muestra",
+  },
+    {
     title: "Todo Task App",
     description:
       "This project is a task management application built with Next.js, Prisma (using SQLite as the database), and ShadCN UI.",
@@ -153,25 +173,5 @@ export const projects: PropsProject[] = [
     ],
     projectUrl: "https://event-testsss.netlify.app/",
     repoUrl: "https://github.com/hnkatze/Event-Test",
-  },
-  {
-    title: "Entrepreneurship or Working in a Company",
-    description:
-      "Built to present the survey responses from students of the Universities of Honduras.",
-    images:
-      "https://firebasestorage.googleapis.com/v0/b/todo-event.appspot.com/o/Metodo.jpeg?alt=media&token=939edde4-e984-4f68-9283-f645dc2703e7",
-    technologies: ["Next.js", "TailwindCSS", "Chart.js", "Framer Motion"],
-    projectUrl: "https://metodo2-0.vercel.app/",
-    repoUrl: "https://github.com/hnkatze/metodo2.0",
-  },
-  {
-    title: "Population Sample Calculator",
-    description:
-      "Basic calculator that calculates the sample of a population, built with Next.js and TailwindCSS.",
-    images:
-      "https://firebasestorage.googleapis.com/v0/b/todo-event.appspot.com/o/calMuestra.jpeg?alt=media&token=ac8de681-69f1-4988-b3ea-6f97c5eafa06",
-    technologies: ["Next.js", "TailwindCSS"],
-    projectUrl: "https://calculadoramuestra.netlify.app/",
-    repoUrl: "https://github.com/hnkatze/muestra",
   },
 ];
