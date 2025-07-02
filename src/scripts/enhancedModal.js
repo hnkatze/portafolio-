@@ -15,9 +15,14 @@ document.addEventListener('DOMContentLoaded', function() {
     modal.showModal();
     document.body.style.overflow = 'hidden';
     
+    // Ensure modal is properly centered
+    modal.style.display = 'flex';
+    modal.style.alignItems = 'center';
+    modal.style.justifyContent = 'center';
+    
     // Add fade-in animation to backdrop
     requestAnimationFrame(() => {
-      modal.style.animation = 'modalFadeIn 0.3s ease-out forwards';
+      modal.style.animation = 'modalFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards';
     });
     
     // Animate form elements
@@ -26,11 +31,14 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Close modal with animation
   function closeModal() {
-    modal.style.animation = 'modalFadeOut 0.3s ease-out forwards';
+    modal.style.animation = 'modalFadeOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards';
     
     setTimeout(() => {
       modal.close();
       document.body.style.overflow = '';
+      modal.style.display = '';
+      modal.style.alignItems = '';
+      modal.style.justifyContent = '';
       resetForm();
     }, animationDuration);
   }
@@ -110,18 +118,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 2000);
   }
   
-  // Show success message
+  // Show success message with retro theme
   function showSuccessMessage() {
     const modalContent = document.querySelector('.modal-content');
     const successHTML = `
       <div class="text-center py-8">
-        <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
-          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="w-16 h-16 bg-gray-800 border-2 border-gray-600 rounded flex items-center justify-center mx-auto mb-4" style="box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);">
+          <svg class="w-8 h-8 text-gray-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
         </div>
-        <h2 class="text-2xl font-bold text-gray-800 mb-2">Message Sent!</h2>
-        <p class="text-gray-600">Thank you for reaching out. I'll get back to you soon!</p>
+        <h2 class="text-2xl font-bold text-gray-900 mb-2 font-mono">Message Sent!</h2>
+        <p class="text-gray-700 font-mono">Thank you for reaching out. I'll get back to you soon!</p>
       </div>
     `;
     

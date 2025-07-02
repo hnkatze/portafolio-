@@ -210,41 +210,41 @@ import { projects } from "@/libs/utils";
     </div>
   </section>
 
-  <!-- Enhanced Contact Modal -->
-  <dialog class='contact-modal w-96 md:w-[500px] rounded-2xl backdrop:bg-black backdrop:bg-opacity-50 backdrop:backdrop-blur-sm'>
-    <div class='bg-white p-8 border border-gray-200 rounded-2xl shadow-2xl w-full max-w-md relative overflow-hidden'>
-      <!-- Modal background decoration -->
-      <div class='absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500'></div>
+  <!-- Enhanced Contact Modal with Retro Theme -->
+  <dialog class='contact-modal fixed inset-0 w-96 md:w-[500px] rounded-lg backdrop:bg-black backdrop:bg-opacity-50 backdrop:backdrop-blur-sm'>
+    <div class='bg-gradient-to-br from-gray-100 to-gray-50 p-8 border-2 border-gray-400 rounded-lg shadow-[8px_8px_0px_rgba(0,0,0,0.15)] w-full max-w-md relative overflow-hidden'>
+      <!-- Modal retro decoration -->
+      <div class='absolute top-0 left-0 w-full h-3 bg-gray-800' style='clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);'></div>
       
       <!-- Close button -->
       <button 
         id='closeModalButton'
-        class='absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors duration-200 group'
+        class='absolute top-4 right-4 w-8 h-8 flex items-center justify-center border-2 border-gray-400 rounded bg-gray-200 hover:bg-gray-300 hover:border-gray-600 transition-all duration-300 group retro-shadow'
         type='button'
       >
-        <svg class='w-5 h-5 text-gray-400 group-hover:text-gray-600 transition-colors duration-200' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+        <svg class='w-4 h-4 text-gray-700 group-hover:text-gray-900 transition-colors duration-200' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
           <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 18L18 6M6 6l12 12'></path>
         </svg>
       </button>
       
       <div class='modal-content'>
         <div class='text-center mb-8'>
-          <div class='w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4'>
-            <svg class='w-8 h-8 text-white' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+          <div class='w-16 h-16 bg-gray-800 border-2 border-gray-600 rounded flex items-center justify-center mx-auto mb-4 retro-shadow'>
+            <svg class='w-8 h-8 text-gray-100' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
               <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'></path>
             </svg>
           </div>
-          <h1 class='text-3xl font-bold text-gray-800 mb-2'>Let's Connect!</h1>
-          <p class='text-gray-600'>I'd love to hear about your project</p>
+          <h1 class='text-3xl font-bold text-gray-900 mb-2 font-mono text-shadow-retro'>Let's Connect!</h1>
+          <p class='text-gray-700 font-mono'>I'd love to hear about your project</p>
         </div>
         
         <form class='space-y-6' id='contactForm'>
           <div class='form-group'>
-            <label class='block text-gray-700 font-semibold mb-2' for='name'>
+            <label class='block text-gray-800 font-bold mb-2 font-mono' for='name'>
               Full Name
             </label>
             <input
-              class='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:border-gray-400'
+              class='w-full px-4 py-3 border-2 border-gray-400 rounded bg-gray-100 focus:bg-white focus:border-gray-600 transition-all duration-300 hover:border-gray-500 font-mono text-gray-800 retro-input'
               type='text'
               id='name'
               name='name'
@@ -254,11 +254,11 @@ import { projects } from "@/libs/utils";
           </div>
           
           <div class='form-group'>
-            <label class='block text-gray-700 font-semibold mb-2' for='email'>
+            <label class='block text-gray-800 font-bold mb-2 font-mono' for='email'>
               Email Address
             </label>
             <input
-              class='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:border-gray-400'
+              class='w-full px-4 py-3 border-2 border-gray-400 rounded bg-gray-100 focus:bg-white focus:border-gray-600 transition-all duration-300 hover:border-gray-500 font-mono text-gray-800 retro-input'
               type='email'
               id='email'
               name='email'
@@ -268,11 +268,11 @@ import { projects } from "@/libs/utils";
           </div>
           
           <div class='form-group'>
-            <label class='block text-gray-700 font-semibold mb-2' for='message'>
+            <label class='block text-gray-800 font-bold mb-2 font-mono' for='message'>
               Message
             </label>
             <textarea
-              class='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:border-gray-400 resize-none'
+              class='w-full px-4 py-3 border-2 border-gray-400 rounded bg-gray-100 focus:bg-white focus:border-gray-600 transition-all duration-300 hover:border-gray-500 resize-none font-mono text-gray-800 retro-input'
               id='message'
               name='message'
               rows='4'
@@ -285,13 +285,13 @@ import { projects } from "@/libs/utils";
             <button 
               type='button'
               id='cancelButton'
-              class='flex-1 px-6 py-3 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all duration-200'
+              class='flex-1 px-6 py-3 border-2 border-gray-400 text-gray-800 font-bold rounded bg-gray-200 hover:bg-gray-300 hover:border-gray-600 transition-all duration-300 font-mono retro-button'
             >
               Cancel
             </button>
             <button 
               type='submit'
-              class='flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 group'
+              class='flex-1 px-6 py-3 bg-gray-800 border-2 border-gray-600 text-gray-100 font-bold rounded hover:bg-gray-900 hover:border-gray-700 transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 group font-mono retro-shadow retro-shadow-hover'
             >
               <span>Send Message</span>
               <svg class='w-4 h-4 transition-transform duration-200 group-hover:translate-x-1' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
@@ -482,50 +482,105 @@ import { projects } from "@/libs/utils";
     }
   }
   
-  /* Modal Animations */
+  /* Modal Animations - Retro Style */
   .contact-modal {
-    animation: modalFadeIn 0.3s ease-out forwards;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: visible;
+    animation: modalFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
   
   .contact-modal[open] {
-    animation: modalFadeIn 0.3s ease-out forwards;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .contact-modal:not([open]) {
-    animation: modalFadeOut 0.3s ease-out forwards;
+    animation: modalFadeOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  
+  .contact-modal::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    animation: backdropFadeIn 0.3s ease-out forwards;
   }
   
   @keyframes modalFadeIn {
     from {
       opacity: 0;
-      transform: scale(0.9) translateY(-20px);
+      transform: translate(-50%, -50%) scale(0.95) translateY(-10px);
     }
     to {
       opacity: 1;
-      transform: scale(1) translateY(0);
+      transform: translate(-50%, -50%) scale(1) translateY(0);
     }
   }
   
   @keyframes modalFadeOut {
     from {
       opacity: 1;
-      transform: scale(1) translateY(0);
+      transform: translate(-50%, -50%) scale(1) translateY(0);
     }
     to {
       opacity: 0;
-      transform: scale(0.9) translateY(-20px);
+      transform: translate(-50%, -50%) scale(0.95) translateY(-10px);
     }
   }
   
-  /* Form Animations */
+  @keyframes backdropFadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Form Animations - Retro Style */
   .form-group {
     position: relative;
   }
   
   .form-group input:focus,
   .form-group textarea:focus {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transform: translateY(-1px) translateX(-1px);
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(107, 114, 128, 0.2);
+  }
+  
+  .form-group input:hover,
+  .form-group textarea:hover {
+    transform: translateY(-1px);
+    border-color: #6b7280;
+  }
+  
+  /* Retro button styles */
+  .retro-button:active {
+    transform: translateY(1px) translateX(1px);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Fix modal positioning on different screen sizes */
+  @media (max-width: 768px) {
+    .contact-modal {
+      width: 90vw;
+      max-width: 400px;
+    }
+  }
+  
+  @media (max-height: 600px) {
+    .contact-modal {
+      max-height: 80vh;
+      overflow-y: auto;
+    }
   }
   
   /* Responsive Animations */
