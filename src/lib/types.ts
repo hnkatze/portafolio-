@@ -1,4 +1,4 @@
-interface PropsProject {
+export interface PropsProject {
   title: string;
   description: string;
   images: string;
@@ -7,13 +7,13 @@ interface PropsProject {
   repoUrl: string;
 }
 
-interface Props {
+export interface Props {
   title: string;
   body: string;
   href: string;
 }
 
-interface PropsFormData {
+export interface PropsFormData {
   name: string;
   email: string;
   message: string;

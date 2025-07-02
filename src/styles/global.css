@@ -64,3 +64,137 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Retro Theme Animations and Utilities */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+.animate-pulse-slow {
+  animation: pulse 2s infinite;
+}
+
+/* Animation delays */
+.animation-delay-150ms { animation-delay: 150ms; }
+.animation-delay-300ms { animation-delay: 300ms; }
+.animation-delay-450ms { animation-delay: 450ms; }
+.animation-delay-600ms { animation-delay: 600ms; }
+
+/* Retro utilities */
+.retro-shadow {
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.retro-shadow-hover:hover {
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px) translateX(-2px);
+}
+
+.text-shadow-retro {
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* Scroll indicator pulse animation */
+@keyframes scroll-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(4px);
+  }
+}
+
+.scroll-pulse {
+  animation: scroll-pulse 2s infinite;
+}
+
+/* Additional retro styles for consistency */
+.retro-button {
+  @apply bg-gray-100 text-gray-900 border-2 border-gray-400 rounded font-mono font-semibold px-4 py-2 transition-all duration-300;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.retro-button:hover {
+  @apply bg-gray-200 border-gray-600;
+  transform: translateY(-2px) translateX(-2px);
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.15);
+}
+
+.retro-button:active {
+  transform: translateY(0) translateX(0);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.retro-input {
+  @apply bg-gray-100 border-2 border-gray-400 rounded px-3 py-2 font-mono text-gray-800 transition-all duration-300;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.retro-input:focus {
+  @apply border-gray-600 bg-white;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(107, 114, 128, 0.2);
+}
+
+.retro-card {
+  @apply bg-gradient-to-br from-gray-100 to-gray-50 border-2 border-gray-400 rounded-lg;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.retro-card:hover {
+  @apply border-gray-600;
+  transform: translateY(-2px) translateX(-2px);
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.15);
+}
