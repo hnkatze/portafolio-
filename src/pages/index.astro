@@ -11,79 +11,87 @@ import { projects } from "@/libs/utils";
 ---
 
 <Layout title='Portafolio Camilo'>
-  <!-- Hero Section with Retro Theme -->
+  <!-- Hero Section with Glassmorphism -->
   <section
-    class='hero-section lg:h-screen w-full flex flex-col bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 shadow-2xl relative overflow-hidden border-b-4 border-gray-800'
+    class='hero-section lg:h-screen w-full flex flex-col gradient-bg relative overflow-hidden'
     title='Presentacion'
     id='hero'
   >
-    <!-- Retro grid pattern background -->
-    <div class='absolute inset-0 opacity-5'>
-      <div class='absolute inset-0' style='background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(0,0,0,.1) 35px, rgba(0,0,0,.1) 70px);'></div>
+    <!-- Animated particles background -->
+    <div class='particles absolute inset-0'>
+      <div class='particle' style='left: 10%; animation-delay: 0s;'></div>
+      <div class='particle' style='left: 20%; animation-delay: 2s;'></div>
+      <div class='particle' style='left: 30%; animation-delay: 4s;'></div>
+      <div class='particle' style='left: 40%; animation-delay: 0s;'></div>
+      <div class='particle' style='left: 50%; animation-delay: 3s;'></div>
+      <div class='particle' style='left: 60%; animation-delay: 5s;'></div>
+      <div class='particle' style='left: 70%; animation-delay: 2s;'></div>
+      <div class='particle' style='left: 80%; animation-delay: 1s;'></div>
+      <div class='particle' style='left: 90%; animation-delay: 3s;'></div>
     </div>
 
-    <!-- Retro floating elements -->
+    <!-- Glass morphism floating elements -->
     <div class='absolute inset-0 overflow-hidden'>
-      <div class='retro-shape absolute top-20 left-10 w-20 h-20 bg-gray-400 transform rotate-45 opacity-20'></div>
-      <div class='retro-shape absolute top-40 right-20 w-16 h-16 bg-gray-600 rounded-full opacity-15 animation-delay-2s'></div>
-      <div class='retro-shape absolute bottom-20 left-1/4 w-12 h-12 bg-gray-500 transform rotate-12 opacity-10 animation-delay-4s'></div>
-      <div class='retro-shape absolute bottom-40 right-1/3 w-24 h-4 bg-gray-700 opacity-20 animation-delay-6s'></div>
+      <div class='absolute top-20 left-10 w-32 h-32 glass rounded-full opacity-60 animate-float'></div>
+      <div class='absolute top-40 right-20 w-24 h-24 glass rounded-2xl opacity-50 animate-float animation-delay-2s'></div>
+      <div class='absolute bottom-20 left-1/4 w-20 h-20 glass rounded-lg opacity-40 animate-float animation-delay-4s'></div>
+      <div class='absolute bottom-40 right-1/3 w-28 h-28 glass rounded-full opacity-50 animate-float animation-delay-6s'></div>
     </div>
 
-    <div class='relative z-10 text-gray-900 flex flex-col lg:flex-row gap-10 justify-center items-center pt-10 pb-10 px-6 h-full'>
+    <div class='relative z-10 text-white flex flex-col lg:flex-row gap-10 justify-center items-center pt-10 pb-10 px-6 h-full'>
       <div class='w-full lg:w-1/2 text-center lg:text-left space-y-6'>
         <div class='hero-text'>
-          <h1 class='text-4xl lg:text-7xl font-bold leading-tight font-mono'>
-            <span class='block text-gray-800 retro-text-shadow animate-text-slide'>Hi, I'm</span>
-            <span class='block text-gray-900 retro-text-shadow animate-text-slide animation-delay-500ms'>Camilo Henriquez</span>
+          <h1 class='text-4xl lg:text-7xl font-bold leading-tight'>
+            <span class='block text-white/90 animate-fade-in-up'>Hi, I'm</span>
+            <span class='block gradient-text animate-fade-in-up animation-delay-300ms'>Camilo Henriquez</span>
           </h1>
         </div>
         <div class='hero-subtitle'>
-          <p class='text-xl lg:text-2xl font-light mx-4 md:mx-0 leading-relaxed text-gray-700 animate-fade-in-up animation-delay-1s font-mono'>
+          <p class='text-xl lg:text-2xl font-light mx-4 md:mx-0 leading-relaxed text-white/90 animate-fade-in-up animation-delay-600ms'>
             Full Stack Developer passionate about creating 
-            <span class='text-gray-900 font-bold bg-gray-300 px-2 py-1 rounded'>creative</span> and 
-            <span class='text-gray-900 font-bold bg-gray-400 px-2 py-1 rounded'>innovative</span> solutions.
+            <span class='text-white font-semibold glass px-3 py-1 rounded-lg inline-block'>creative</span> and 
+            <span class='text-white font-semibold glass px-3 py-1 rounded-lg inline-block'>innovative</span> solutions.
           </p>
         </div>
         
-        <!-- Retro tech stack -->
-        <div class='tech-stack animate-fade-in-up animation-delay-1500ms'>
-          <p class='text-sm uppercase tracking-wider text-gray-600 mb-4 font-mono font-bold'>// SPECIALIZED IN</p>
+        <!-- Modern tech stack with glass effect -->
+        <div class='tech-stack animate-fade-in-up animation-delay-900ms'>
+          <p class='text-sm uppercase tracking-wider text-white/70 mb-4 font-semibold'>// SPECIALIZED IN</p>
           <div class='flex flex-wrap gap-3 justify-center lg:justify-start'>
-            <span class='retro-tech-pill'>REACT</span>
-            <span class='retro-tech-pill animation-delay-200ms'>NEXT.JS</span>
-            <span class='retro-tech-pill animation-delay-400ms'>ASTRO</span>
-            <span class='retro-tech-pill animation-delay-600ms'>TYPESCRIPT</span>
-            <span class='retro-tech-pill animation-delay-800ms'>NODE.JS</span>
+            <span class='glass-card px-4 py-2 rounded-full text-white font-medium glass-hover animate-fade-in-up animation-delay-1s'>REACT</span>
+            <span class='glass-card px-4 py-2 rounded-full text-white font-medium glass-hover animate-fade-in-up animation-delay-1100ms'>NEXT.JS</span>
+            <span class='glass-card px-4 py-2 rounded-full text-white font-medium glass-hover animate-fade-in-up animation-delay-1200ms'>ASTRO</span>
+            <span class='glass-card px-4 py-2 rounded-full text-white font-medium glass-hover animate-fade-in-up animation-delay-1300ms'>TYPESCRIPT</span>
+            <span class='glass-card px-4 py-2 rounded-full text-white font-medium glass-hover animate-fade-in-up animation-delay-1400ms'>NODE.JS</span>
           </div>
         </div>
       </div>
 
       <div class='profile-section lg:w-1/2 flex justify-center items-center'>
         <div class='profile-container relative'>
-          <!-- Retro border effect -->
-          <div class='absolute -inset-4 bg-gray-800 transform rotate-3'></div>
-          <div class='absolute -inset-2 bg-gray-600 transform -rotate-1'></div>
+          <!-- Glass morphism border effect -->
+          <div class='absolute -inset-4 glass rounded-2xl opacity-40 animate-pulse-slow'></div>
+          <div class='absolute -inset-2 border-gradient'></div>
           <Image
             src={meb}
             alt='Camilo Henriquez - Full Stack Developer'
             width={350}
             height={350}
-            class='profile-image relative z-10 border-8 border-gray-400 shadow-2xl grayscale hover:grayscale-0 transition-all duration-200 animate-float'
+            class='profile-image relative z-10 rounded-2xl shadow-2xl transition-all duration-500 hover:scale-105 animate-fade-in-up animation-delay-1s'
           />
-          <!-- Retro status indicators -->
-          <div class='absolute -top-4 -right-4 w-8 h-8 bg-gray-800 transform rotate-45 animate-pulse'></div>
-          <div class='absolute -bottom-4 -left-4 w-6 h-6 bg-gray-600 transform rotate-12 animate-bounce animation-delay-1s'></div>
+          <!-- Glass status indicators -->
+          <div class='absolute -top-4 -right-4 w-12 h-12 glass rounded-full glow animate-pulse'></div>
+          <div class='absolute -bottom-4 -left-4 w-8 h-8 glass rounded-lg animate-float animation-delay-2s'></div>
         </div>
       </div>
     </div>
 
-    <!-- Retro Social Links -->
-    <div class='social-section relative z-10 w-full flex flex-col lg:flex-row justify-center gap-6 items-center text-gray-900 pb-8 px-6'>
+    <!-- Glass morphism Social Links -->
+    <div class='social-section relative z-10 w-full flex flex-col lg:flex-row justify-center gap-4 items-center text-white pb-8 px-6'>
       <a
         href='https://github.com/hnkatze'
         title='Visita mi perfil de GitHub'
-        class='retro-social-link group flex flex-row justify-center items-center gap-3 px-6 py-3 bg-gray-300 border-4 border-gray-800 shadow-retro hover:shadow-retro-hover transform hover:-translate-y-1 transition-all duration-200 animate-fade-in-up animation-delay-2s font-mono'
+        class='glass-button group flex flex-row justify-center items-center gap-3 animate-fade-in-up animation-delay-1500ms'
       >
         <svg
           class='w-6 h-6 transition-transform duration-300 group-hover:scale-110'
@@ -92,13 +100,13 @@ import { projects } from "@/libs/utils";
           xmlns='http://www.w3.org/2000/svg'>
           <path d='M 511.5,239.5 C 511.5,254.5 511.5,269.5 511.5,284.5C 501.712,368.067 462.045,433.233 392.5,480C 375.96,489.937 358.626,498.27 340.5,505C 332.538,508.098 325.704,506.598 320,500.5C 319.667,499.167 319.333,497.833 319,496.5C 318.945,465.803 318.278,435.136 317,404.5C 314.745,393.198 309.578,383.532 301.5,375.5C 386.523,365.627 425.023,317.96 417,232.5C 414.092,213.02 406.092,196.02 393,181.5C 395.13,171.162 396.63,160.662 397.5,150C 396.942,137.045 394.276,124.545 389.5,112.5C 380.987,111.166 372.653,111.999 364.5,115C 348.649,121.258 333.649,129.092 319.5,138.5C 276.833,126.5 234.167,126.5 191.5,138.5C 178.232,129.698 164.232,122.198 149.5,116C 140.423,112.415 131.09,111.248 121.5,112.5C 116.859,124.233 114.192,136.399 113.5,149C 114.241,160.014 115.741,170.847 118,181.5C 101.046,200.681 92.5461,223.181 92.5,249C 91.8045,278.57 99.3045,305.737 115,330.5C 132.176,351.18 154.009,364.347 180.5,370C 190.178,371.835 199.845,373.668 209.5,375.5C 200.217,385.316 194.55,396.983 192.5,410.5C 175.315,417.772 157.982,418.272 140.5,412C 134.129,408.635 128.629,404.135 124,398.5C 119.333,391.833 114.667,385.167 110,378.5C 101.35,369.175 90.6832,363.842 78,362.5C 65.3442,363.322 64.1776,367.489 74.5,375C 86.1029,381.936 94.9362,391.436 101,403.5C 111.325,435.484 133.325,451.817 167,452.5C 175.507,451.583 184.007,450.583 192.5,449.5C 192.667,465.17 192.5,480.837 192,496.5C 188.976,505.311 182.809,508.478 173.5,506C 94.2419,477.075 40.4086,422.909 12,343.5C 6.2084,324.034 2.04173,304.367 -0.5,284.5C -0.5,269.5 -0.5,254.5 -0.5,239.5C 10.224,149.84 54.224,82.0066 131.5,36C 200.175,0.151196 271.175,-5.18214 344.5,20C 409.529,45.589 457.363,89.7557 488,152.5C 500.7,180.31 508.534,209.31 511.5,239.5 Z'></path>
         </svg>
-        <span class='text-lg font-bold'>/hnkatze</span>
+        <span class='text-base font-semibold'>/hnkatze</span>
       </a>
       
       <a
         href='https://www.linkedin.com/in/hnkatze/'
         title='Visita mi perfil de LinkedIn'
-        class='retro-social-link group flex flex-row justify-center items-center gap-3 px-6 py-3 bg-gray-300 border-4 border-gray-800 shadow-retro hover:shadow-retro-hover transform hover:-translate-y-1 transition-all duration-200 animate-fade-in-up animation-delay-2200ms font-mono'
+        class='glass-button group flex flex-row justify-center items-center gap-3 animate-fade-in-up animation-delay-1600ms'
       >
         <Image
           src={linkedin}
@@ -107,13 +115,13 @@ import { projects } from "@/libs/utils";
           height={24}
           class='w-6 h-6 transition-transform duration-300 group-hover:scale-110'
         />
-        <span class='text-lg font-bold'>/camilo-henriquez</span>
+        <span class='text-base font-semibold'>/camilo-henriquez</span>
       </a>
       
       <a
         href='https://discord.com/users/hnkatze'
         title='Visita mi perfil de Discord'
-        class='retro-social-link group flex flex-row justify-center items-center gap-3 px-6 py-3 bg-gray-300 border-4 border-gray-800 shadow-retro hover:shadow-retro-hover transform hover:-translate-y-1 transition-all duration-200 animate-fade-in-up animation-delay-2400ms font-mono'
+        class='glass-button group flex flex-row justify-center items-center gap-3 animate-fade-in-up animation-delay-1700ms'
       >
         <svg
           class='w-6 h-6 transition-transform duration-300 group-hover:scale-110'
@@ -121,15 +129,15 @@ import { projects } from "@/libs/utils";
           fill='currentColor'
           viewBox='0 0 512 512'>
           <path d='M 511.5,310.5 C 511.5,330.167 511.5,349.833 511.5,369.5C 510.795,375.045 509.961,380.712 509,386.5C 470.043,415.396 427.209,437.063 380.5,451.5C 378.851,450.352 377.351,449.019 376,447.5C 367.039,434.526 358.872,421.026 351.5,407C 352.047,406.075 352.713,405.242 353.5,404.5C 367.015,399.409 380.015,393.242 392.5,386C 393.451,385.282 393.617,384.449 393,383.5C 390.305,381.306 387.472,379.306 384.5,377.5C 298.515,416.165 212.515,416.165 126.5,377.5C 123.528,379.306 120.695,381.306 118,383.5C 117.383,384.449 117.549,385.282 118.5,386C 131.236,393.536 144.569,399.702 158.5,404.5C 157.192,410.126 155.025,415.459 152,420.5C 145.807,431.568 138.64,441.902 130.5,451.5C 83.7907,437.063 40.9574,415.396 2,386.5C 0.989351,381.064 0.156017,375.73 -0.5,370.5C -0.5,350.5 -0.5,330.5 -0.5,310.5C 5.8552,230.765 31.8552,158.099 77.5,92.5C 111.077,77.0215 146.077,66.0215 182.5,59.5C 183.478,59.9767 184.311,60.6433 185,61.5C 189.277,70.3897 193.777,79.0564 198.5,87.5C 236.492,80.9636 274.492,80.9636 312.5,87.5C 317.223,79.0564 321.723,70.3897 326,61.5C 326.689,60.6433 327.522,59.9767 328.5,59.5C 364.923,66.0215 399.923,77.0215 433.5,92.5C 479.134,158.065 505.134,230.731 511.5,310.5 Z'></path>
-          <circle cx='167.5' cy='223.5' r='50' fill='#7b7f78'></circle>
-          <circle cx='338.5' cy='223.5' r='50' fill='#7b7f78'></circle>
+          <circle cx='167.5' cy='223.5' r='50' fill='white'></circle>
+          <circle cx='338.5' cy='223.5' r='50' fill='white'></circle>
         </svg>
-        <span class='text-lg font-bold'>Katze#9714</span>
+        <span class='text-base font-semibold'>Katze#9714</span>
       </a>
       
       <button
         id='openModalButton'
-        class='retro-cta-button group px-8 py-4 bg-gray-800 text-gray-100 font-bold border-4 border-gray-600 shadow-retro hover:shadow-retro-hover transform hover:-translate-y-2 transition-all duration-200 animate-fade-in-up animation-delay-2600ms font-mono relative overflow-hidden'
+        class='group px-8 py-4 rounded-xl font-semibold relative overflow-hidden animate-fade-in-up animation-delay-1800ms bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white/30 smooth-transition glow'
       >
         <span class='relative z-10 flex items-center gap-2'>
           <svg class='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
@@ -151,24 +159,25 @@ import { projects } from "@/libs/utils";
   <!-- Skills Section -->
   <Skills client:only="react" />
   
-  <!-- Projects Section with Retro Design -->
+  <!-- Projects Section with Glassmorphism -->
   <section
     title='Proyectos'
-    class='projects-section py-20 bg-gray-200 relative overflow-hidden'
+    class='projects-section py-20 bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 relative overflow-hidden'
     id='projects'
   >
-    <!-- Retro pattern background -->
-    <div class='absolute inset-0 overflow-hidden opacity-10'>
-      <div class='absolute top-0 left-0 w-full h-full' style='background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(0,0,0,.1) 20px, rgba(0,0,0,.1) 21px);'></div>
+    <!-- Subtle animated background -->
+    <div class='absolute inset-0 overflow-hidden opacity-30'>
+      <div class='absolute -top-1/2 -left-1/2 w-full h-full rounded-full bg-gradient-to-br from-purple-300 to-pink-300 blur-3xl animate-pulse-slow'></div>
+      <div class='absolute -bottom-1/2 -right-1/2 w-full h-full rounded-full bg-gradient-to-br from-blue-300 to-cyan-300 blur-3xl animate-pulse-slow animation-delay-2s'></div>
     </div>
 
     <div class='container mx-auto px-6 relative z-10'>
       <div class='text-center mb-16'>
-        <h2 class='section-title text-5xl lg:text-6xl font-bold text-gray-900 mb-6 animate-fade-in-up font-mono'>
+        <h2 class='section-title text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up gradient-text'>
           Featured Projects
         </h2>
-        <div class='w-24 h-2 bg-gray-800 mx-auto mb-6' style='clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);'></div>
-        <p class='text-lg text-gray-700 mt-8 max-w-3xl mx-auto leading-relaxed animate-fade-in-up animation-delay-300ms font-mono'>
+        <div class='w-32 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-6 rounded-full'></div>
+        <p class='text-lg text-gray-700 mt-8 max-w-3xl mx-auto leading-relaxed animate-fade-in-up animation-delay-300ms'>
           Explore a selection of my most impactful work, showcasing modern web technologies 
           and innovative problem-solving approaches.
         </p>
@@ -198,8 +207,7 @@ import { projects } from "@/libs/utils";
           href='https://github.com/hnkatze'
           target='_blank'
           rel='noopener noreferrer'
-          class='inline-flex items-center gap-3 px-8 py-4 bg-gray-800 text-gray-100 font-semibold border-2 border-gray-600 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:bg-gray-700 group animate-fade-in-up animation-delay-1s font-mono'
-          style='box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);'
+          class='inline-flex items-center gap-3 px-8 py-4 rounded-xl font-semibold glass-button text-purple-700 hover:text-purple-900 group animate-fade-in-up animation-delay-1s'
         >
           <span>View More on GitHub</span>
           <svg class='w-5 h-5 transition-transform duration-300 group-hover:translate-x-1' fill='none' stroke='currentColor' viewBox='0 0 24 24'>

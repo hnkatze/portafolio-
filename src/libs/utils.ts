@@ -43,12 +43,12 @@ export const skills = [
   },
   {
     name: "Firebase",
-    value: 70,
+    value: 20,
     url: "https://icon.icepanel.io/Technology/svg/Firebase.svg",
   },
   {
     name: "AWS",
-    value: 40,
+    value: 10,
     url: "https://icon.icepanel.io/Technology/png-shadow-512/AWS.png",
   },
   {
@@ -90,7 +90,7 @@ export const favo = [
   },
   {
     name: "Firebase",
-    value: 70,
+    value: 20,
     url: "https://icon.icepanel.io/Technology/svg/Firebase.svg",
   },
 ];

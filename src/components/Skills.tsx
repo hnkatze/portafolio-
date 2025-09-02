@@ -56,13 +56,19 @@ export default function Skills() {
   };
 
   const progressVariants = {
-    hidden: { width: 0 },
+    hidden: { width: 0, opacity: 0 },
     visible: (value: number) => ({
       width: `${value}%`,
+      opacity: 1,
       transition: {
-        duration: 1,
-        ease: "easeOut",
-        delay: 0.5
+        width: {
+          duration: 1.5,
+          ease: [0.4, 0, 0.2, 1], // cubic-bezier suave
+        },
+        opacity: {
+          duration: 0.3,
+          ease: "easeIn"
+        }
       }
     })
   };
@@ -70,13 +76,14 @@ export default function Skills() {
   return (
     <AnimatedSection 
       id='habilidades' 
-      className='py-20 bg-gray-200 relative overflow-hidden'
+      className='py-20 bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 relative overflow-hidden'
       direction="up"
       delay={0.2}
     >
-      {/* Retro pattern background */}
-      <div className='absolute inset-0 overflow-hidden opacity-10'>
-        <div className='absolute top-0 left-0 w-full h-full' style={{backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(0,0,0,.1) 20px, rgba(0,0,0,.1) 21px)'}}></div>
+      {/* Glass morphism background */}
+      <div className='absolute inset-0 overflow-hidden'>
+        <div className='absolute top-1/4 -left-1/4 w-96 h-96 bg-purple-300/30 rounded-full blur-3xl animate-pulse-slow'></div>
+        <div className='absolute bottom-1/4 -right-1/4 w-96 h-96 bg-indigo-300/30 rounded-full blur-3xl animate-pulse-slow animation-delay-2s'></div>
       </div>
       
       <div className='container mx-auto px-6 lg:min-h-max relative z-10'>
@@ -89,10 +96,10 @@ export default function Skills() {
         >
           <motion.h2
             id='skills'
-            className={`text-3xl font-bold text-center transition-all duration-300 font-mono ${
+            className={`text-3xl font-bold text-center transition-all duration-300 ${
               !isCheck 
-                ? "text-gray-900 scale-110 text-shadow-retro" 
-                : "text-gray-600 hover:text-gray-800"
+                ? "gradient-text scale-110" 
+                : "text-gray-600 hover:text-purple-600"
             }`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -116,10 +123,10 @@ export default function Skills() {
           
           <motion.h2
             id='favo'
-            className={`text-3xl font-bold text-center transition-all duration-300 font-mono ${
+            className={`text-3xl font-bold text-center transition-all duration-300 ${
               isCheck 
-                ? "text-gray-900 scale-110 text-shadow-retro" 
-                : "text-gray-600 hover:text-gray-800"
+                ? "gradient-text scale-110" 
+                : "text-gray-600 hover:text-purple-600"
             }`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -143,7 +150,7 @@ export default function Skills() {
               {skills.map((skill, index) => (
                 <motion.div
                   key={skill.name}
-                  className='bg-gradient-to-br from-gray-100 to-gray-50 p-6 rounded-lg border-2 border-gray-400 hover:border-gray-600 text-center group transition-all duration-300 retro-shadow retro-shadow-hover'
+                  className='glass-card p-6 rounded-xl text-center group glass-hover'
                   variants={itemVariants}
                   whileHover={{ 
                     y: -5,
@@ -153,7 +160,7 @@ export default function Skills() {
                 >
                   <div className='flex flex-row items-center justify-center gap-4 my-2 md:h-12'>
                     <motion.h3 
-                      className='font-bold text-lg text-gray-800 group-hover:text-gray-900 transition-colors duration-300 font-mono'
+                      className='font-bold text-lg text-gray-700 group-hover:text-purple-600 transition-colors duration-300'
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: index * 0.1 + 0.3 }}
@@ -175,9 +182,9 @@ export default function Skills() {
                     />
                   </div>
                   
-                  <div className='w-full bg-gray-300 rounded border border-gray-400 h-4 overflow-hidden'>
+                  <div className='w-full bg-white/30 rounded-full h-4 overflow-hidden backdrop-blur-sm border border-white/20'>
                     <motion.div
-                      className='bg-gray-800 h-full relative'
+                      className='bg-gradient-to-r from-purple-500 to-pink-500 h-full relative rounded-full'
                       variants={progressVariants}
                       custom={skill.value}
                       initial="hidden"
@@ -185,22 +192,24 @@ export default function Skills() {
                       viewport={{ once: true }}
                     >
                       <motion.div
-                        className='absolute inset-0 bg-gray-600 opacity-50'
+                        className='absolute inset-0 bg-white/20 rounded-full'
                         animate={{
-                          x: [-20, 20],
+                          x: ["0%", "100%"],
+                          opacity: [0.3, 0.6, 0.3]
                         }}
                         transition={{
-                          duration: 2,
+                          duration: 3,
                           repeat: Infinity,
-                          ease: "linear",
-                          delay: index * 0.2
+                          ease: "easeInOut",
+                          delay: index * 0.1
                         }}
+                        style={{ width: "30%" }}
                       />
                     </motion.div>
                   </div>
                   
                   <motion.span
-                    className='text-sm font-semibold text-gray-700 mt-3 block font-mono'
+                    className='text-sm font-semibold text-gray-600 mt-3 block'
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: index * 0.1 + 0.8 }}
@@ -227,7 +236,7 @@ export default function Skills() {
               {favo.map((skill, index) => (
                 <motion.div
                   key={skill.name}
-                  className='bg-gradient-to-br from-gray-100 to-gray-50 p-6 rounded-lg border-2 border-gray-500 hover:border-gray-700 text-center group transition-all duration-300 retro-shadow retro-shadow-hover'
+                  className='glass-card p-6 rounded-xl text-center group glass-hover border-2 border-purple-200/30'
                   variants={itemVariants}
                   whileHover={{ 
                     y: -5,
@@ -237,7 +246,7 @@ export default function Skills() {
                 >
                   <div className='flex flex-row items-center justify-center gap-4 my-2 md:h-12'>
                     <motion.h3 
-                      className='font-bold text-lg text-gray-800 group-hover:text-gray-900 transition-colors duration-300 font-mono'
+                      className='font-bold text-lg text-gray-700 group-hover:text-purple-600 transition-colors duration-300'
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: index * 0.1 + 0.3 }}
@@ -259,9 +268,9 @@ export default function Skills() {
                     />
                   </div>
                   
-                  <div className='w-full bg-gray-400 rounded border border-gray-500 h-4 overflow-hidden'>
+                  <div className='w-full bg-white/30 rounded-full h-4 overflow-hidden backdrop-blur-sm border border-white/20'>
                     <motion.div
-                      className='bg-gray-900 h-full relative'
+                      className='bg-gradient-to-r from-indigo-500 to-purple-500 h-full relative rounded-full'
                       variants={progressVariants}
                       custom={skill.value}
                       initial="hidden"
@@ -269,22 +278,24 @@ export default function Skills() {
                       viewport={{ once: true }}
                     >
                       <motion.div
-                        className='absolute inset-0 bg-gray-700 opacity-50'
+                        className='absolute inset-0 bg-white/20 rounded-full'
                         animate={{
-                          x: [-20, 20],
+                          x: ["0%", "100%"],
+                          opacity: [0.3, 0.6, 0.3]
                         }}
                         transition={{
-                          duration: 2,
+                          duration: 3,
                           repeat: Infinity,
-                          ease: "linear",
-                          delay: index * 0.2
+                          ease: "easeInOut",
+                          delay: index * 0.1
                         }}
+                        style={{ width: "30%" }}
                       />
                     </motion.div>
                   </div>
                   
                   <motion.span
-                    className='text-sm font-semibold text-gray-700 mt-3 block font-mono'
+                    className='text-sm font-semibold text-gray-600 mt-3 block'
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: index * 0.1 + 0.8 }}
