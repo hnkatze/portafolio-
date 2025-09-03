@@ -118,18 +118,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 2000);
   }
   
-  // Show success message with retro theme
+  // Show success message with dark theme
   function showSuccessMessage() {
     const modalContent = document.querySelector('.modal-content');
     const successHTML = `
       <div class="text-center py-8">
-        <div class="w-16 h-16 bg-gray-800 border-2 border-gray-600 rounded flex items-center justify-center mx-auto mb-4" style="box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);">
-          <svg class="w-8 h-8 text-gray-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="w-16 h-16 bg-green-500/20 border border-green-500/30 rounded-lg flex items-center justify-center mx-auto mb-4 backdrop-blur-lg">
+          <svg class="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
         </div>
-        <h2 class="text-2xl font-bold text-gray-900 mb-2 font-mono">Message Sent!</h2>
-        <p class="text-gray-700 font-mono">Thank you for reaching out. I'll get back to you soon!</p>
+        <h2 class="text-xl font-bold text-gray-100 mb-3 font-mono">
+          <span class="text-blue-400">response</span>.<span class="text-purple-400">status</span> <span class="text-gray-500">=</span> <span class="text-green-400">200</span>
+        </h2>
+        <p class="text-gray-400 font-mono text-sm">
+          <span class="text-gray-600">// </span>Thank you for reaching out. I'll get back to you soon!
+        </p>
       </div>
     `;
     
