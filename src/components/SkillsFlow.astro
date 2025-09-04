@@ -1,0 +1,479 @@
+---
+import { skills } from "../libs/utils";
+
+const skillSteps = [
+  {
+    number: 1,
+    title: "Frontend Fundamentals",
+    description: "Core web technologies and modern frameworks",
+    skills: skills.filter(s => ["HTML", "CSS", "JavaScript", "TypeScript", "React"].includes(s.name)),
+    color: "purple-pink"
+  },
+  {
+    number: 2,
+    title: "Advanced Frameworks",
+    description: "Next-generation web development tools",
+    skills: skills.filter(s => ["Next.js", "Astro.js", "Angular"].includes(s.name)),
+    color: "blue-cyan"
+  },
+  {
+    number: 3,
+    title: "Backend & Cloud",
+    description: "Server-side and cloud infrastructure",
+    skills: skills.filter(s => ["Nest.js", "C#", "Firebase", "AWS"].includes(s.name)),
+    color: "indigo-purple"
+  },
+  {
+    number: 4,
+    title: "Design & Styling",
+    description: "UI/UX and modern styling solutions",
+    skills: skills.filter(s => ["Tailwind"].includes(s.name)),
+    color: "pink-rose"
+  }
+];
+
+const coreSkills = skills.filter(s => ["Next.js", "React", "TypeScript", "CSS", "Tailwind", "Angular"].includes(s.name));
+---
+
+<section 
+  id='habilidades' 
+  class='skills-section py-20 bg-[#0f0f0f] relative overflow-hidden min-h-screen'
+>
+  <!-- Dark animated background elements -->
+  <div class='absolute inset-0 overflow-hidden'>
+    <div class='absolute top-1/4 -right-1/4 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-purple-500/5 rounded-full blur-3xl'></div>
+    <div class='absolute bottom-1/4 -left-1/4 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-blue-500/5 rounded-full blur-3xl'></div>
+  </div>
+
+  <div class='w-full px-6 sm:px-8 lg:px-12 2xl:px-16 relative z-10'>
+    <!-- Header -->
+    <div class="text-center mb-20 skills-header">
+      <h2 class="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4">
+        <span class="text-gray-100">
+          <span class="font-mono text-blue-400">const</span> myJourney <span class="text-gray-500">=</span> <span class="text-purple-400">[</span>
+        </span>
+      </h2>
+      <p class="text-sm sm:text-base lg:text-lg text-gray-400 max-w-3xl mx-auto font-mono px-4 sm:px-0">
+        Follow my progression through different technologies and frameworks, 
+        from fundamentals to advanced specializations.
+      </p>
+    </div>
+
+    <!-- Timeline Flow -->
+    <div class="relative timeline-container">
+      <!-- Animated SVG Path for desktop -->
+      <svg 
+        class="hidden sm:block absolute left-1/2 transform -translate-x-1/2 w-2"
+        style="height: 100%;"
+      >
+        <line
+          x1="4" y1="0"
+          x2="4" y2="100%"
+          stroke="url(#gradient)"
+          stroke-width="2"
+          class="timeline-line"
+        />
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#8b5cf6" />
+            <stop offset="50%" stop-color="#3b82f6" />
+            <stop offset="100%" stop-color="#ec4899" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <!-- Step Cards -->
+      {skillSteps.map((step, index) => {
+        const isLeft = index % 2 === 0;
+        return (
+          <div 
+            class={`skill-step relative flex flex-col ${isLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-4 sm:gap-8 mb-16 sm:mb-32`}
+            data-index={index}
+          >
+            <!-- Step Number Circle -->
+            <div class="step-circle relative lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2 z-20 mb-4 lg:mb-0">
+              <div class={`w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shadow-2xl gradient-${step.color}`}>
+                <span class="text-2xl sm:text-3xl font-bold text-white">{step.number}</span>
+              </div>
+            </div>
+
+            <!-- Content Card -->
+            <div class={`w-full px-4 sm:px-0 lg:w-5/12 ${isLeft ? 'lg:pr-16' : 'lg:pl-16'}`}>
+              <div class="skill-card relative">
+                <!-- Glow effect -->
+                <div class={`absolute inset-0 blur-2xl opacity-20 gradient-${step.color}`} />
+                
+                <!-- Card content -->
+                <div class="relative bg-gray-900/80 backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-2xl border border-gray-800">
+                  <h3 class="text-xl sm:text-2xl font-bold mb-2 text-gray-100">
+                    <span class="font-mono text-gray-500 text-lg">// </span>
+                    {step.title}
+                  </h3>
+                  <p class="text-gray-400 mb-6 font-mono text-sm">{step.description}</p>
+                  
+                  <!-- Skills Grid -->
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                    {step.skills.map((skill, idx) => (
+                      <div 
+                        class="skill-item flex items-center gap-3"
+                        style={`animation-delay: ${idx * 50}ms`}
+                      >
+                        <img src={skill.url} alt={skill.name} class="w-6 h-6 sm:w-8 sm:h-8" />
+                        <div class="flex-1">
+                          <p class="text-sm font-semibold text-gray-300 font-mono">{skill.name}</p>
+                          <div class="mt-1 h-1 bg-gray-700 rounded-full overflow-hidden">
+                            <div 
+                              class={`skill-progress h-full gradient-${step.color}`}
+                              data-value={skill.value}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Empty space for desktop -->
+            <div class="hidden lg:block lg:w-5/12" />
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Core Specializations Section -->
+    <div class="mt-32 text-center core-section-header">
+      <div class="mb-8">
+        <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 text-gray-100">
+          <span class="font-mono text-gray-400">myJourney</span>.<span class="text-purple-400">push</span>(<span class="text-green-400">"Core Specializations"</span>)
+        </h3>
+        <p class="text-gray-400 font-mono text-sm sm:text-base">
+          <span class="text-purple-400">];</span> <span class="text-gray-600">// Technologies I work with daily</span>
+        </p>
+      </div>
+      
+      <!-- Core Skills Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 max-w-6xl mx-auto px-4">
+        {coreSkills.map((skill, idx) => (
+          <div 
+            class="core-skill-card group"
+            style={`animation-delay: ${idx * 80}ms`}
+          >
+            <div class="relative bg-gray-900/60 backdrop-blur-md rounded-2xl p-4 sm:p-5 lg:p-6 border border-gray-800 hover:border-purple-500/50 transition-all duration-500 hover:shadow-lg hover:shadow-purple-500/20 hover:scale-105 hover:bg-gray-900/80">
+              <div class="skill-icon-wrapper">
+                <img 
+                  src={skill.url} 
+                  alt={skill.name} 
+                  class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mx-auto mb-3 group-hover:scale-110 transition-transform duration-500" 
+                />
+              </div>
+              <h4 class="font-bold text-gray-100 text-sm sm:text-base mb-3 font-mono group-hover:text-purple-400 transition-colors duration-300">{skill.name}</h4>
+              <div class="relative h-2 bg-gray-800 rounded-full overflow-hidden mb-2">
+                <div 
+                  class="core-skill-progress h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
+                  data-value={skill.value}
+                  style="width: 0%"
+                >
+                  <div class="skill-progress-glow absolute inset-0 bg-gradient-to-r from-purple-400/50 to-pink-400/50 blur-sm"></div>
+                </div>
+              </div>
+              <span class="text-xs sm:text-sm text-gray-500 block font-mono group-hover:text-gray-400 transition-colors duration-300">{skill.value}%</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Gradient backgrounds */
+  .gradient-purple-pink {
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+  }
+  
+  .gradient-blue-cyan {
+    background: linear-gradient(135deg, #3b82f6, #06b6d4);
+  }
+  
+  .gradient-indigo-purple {
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+  }
+  
+  .gradient-pink-rose {
+    background: linear-gradient(135deg, #ec4899, #f43f5e);
+  }
+
+  /* Timeline animation */
+  @keyframes drawLine {
+    from {
+      stroke-dashoffset: 1000;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .timeline-line {
+    stroke-dasharray: 5 5;
+    animation: drawLine 2s ease-out forwards;
+  }
+
+  /* Skill step animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .skill-step {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .skill-step:nth-child(1) { animation-delay: 0.1s; }
+  .skill-step:nth-child(2) { animation-delay: 0.2s; }
+  .skill-step:nth-child(3) { animation-delay: 0.3s; }
+  .skill-step:nth-child(4) { animation-delay: 0.4s; }
+
+  /* Step circle animation */
+  @keyframes scaleIn {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  .step-circle > div {
+    animation: scaleIn 0.3s ease-out forwards;
+  }
+
+  /* Skill card animations */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .skill-card {
+    opacity: 0;
+    animation: slideIn 0.4s ease-out 0.3s forwards;
+  }
+
+  /* Skill item animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .skill-item {
+    opacity: 0;
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  /* Progress bar animations */
+  .skill-progress {
+    width: 0;
+    transition: width 0.8s ease-out;
+  }
+
+  /* Core skill animations */
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.8) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .core-skill-card {
+    opacity: 0;
+    animation: fadeInScale 0.6s ease-out forwards;
+  }
+
+  .core-skill-card:hover {
+    z-index: 10;
+  }
+
+  /* Icon bounce animation on hover */
+  @keyframes iconBounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .core-skill-card:hover .skill-icon-wrapper img {
+    animation: iconBounce 0.6s ease-in-out;
+  }
+
+  .core-skill-progress {
+    width: 0;
+    position: relative;
+    transition: width 1s ease-out;
+  }
+
+  /* Progress bar glow animation */
+  @keyframes progressGlow {
+    0%, 100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  .skill-progress-glow {
+    animation: progressGlow 2s ease-in-out infinite;
+  }
+
+  /* Stagger animation for cards */
+  .core-skill-card:nth-child(1) { animation-delay: 0.1s; }
+  .core-skill-card:nth-child(2) { animation-delay: 0.18s; }
+  .core-skill-card:nth-child(3) { animation-delay: 0.26s; }
+  .core-skill-card:nth-child(4) { animation-delay: 0.34s; }
+  .core-skill-card:nth-child(5) { animation-delay: 0.42s; }
+  .core-skill-card:nth-child(6) { animation-delay: 0.5s; }
+  .core-skill-card:nth-child(7) { animation-delay: 0.58s; }
+
+  /* Intersection Observer animations */
+  .skill-step.visible .skill-progress {
+    width: var(--progress-width);
+  }
+
+  .core-skill-card.visible .core-skill-progress {
+    width: var(--progress-width);
+  }
+
+  /* Header animation */
+  .skills-header {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .core-section-header {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out 0.2s forwards;
+  }
+
+  /* Hover effects for desktop */
+  @media (hover: hover) {
+    .core-skill-card:hover {
+      transform: translateY(-5px);
+    }
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .skill-step {
+      animation-duration: 0.4s;
+    }
+
+    .skill-card {
+      animation-duration: 0.3s;
+    }
+
+    .core-skill-card {
+      animation-duration: 0.4s;
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.9) translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+  }
+</style>
+
+<script>
+  // Simple progress bar animation
+  setTimeout(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const element = entry.target;
+          
+          // Timeline skill progress bars
+          const skillBars = element.querySelectorAll('.skill-progress');
+          skillBars.forEach((bar, i) => {
+            const value = bar.getAttribute('data-value');
+            if (value) {
+              setTimeout(() => {
+                (bar as HTMLElement).style.width = value + '%';
+              }, i * 50);
+            }
+          });
+          
+          // Core skill progress bars
+          const coreBars = element.querySelectorAll('.core-skill-progress');
+          coreBars.forEach((bar, i) => {
+            const value = bar.getAttribute('data-value');
+            if (value) {
+              setTimeout(() => {
+                (bar as HTMLElement).style.width = value + '%';
+              }, 200 + (i * 100));
+            }
+          });
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Observe all elements
+    document.querySelectorAll('.skill-step').forEach(el => {
+      observer.observe(el);
+    });
+    
+    document.querySelectorAll('.core-skill-card').forEach(el => {
+      observer.observe(el);
+    });
+  }, 500); // Increased delay to ensure DOM is ready
+</script>

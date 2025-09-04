@@ -6,7 +6,7 @@ import linkedin from "../assets/linkedin.svg";
 import "../styles/switch.css";
 import "../styles/global.css";
 import AnimatedProjectCard from "@/components/AnimatedProjectCard.astro";
-import SkillsFlow from "@/components/SkillsFlow";
+import SkillsFlow from "@/components/SkillsFlow.astro";
 import { projects } from "@/libs/utils";
 ---
 
@@ -157,7 +157,7 @@ import { projects } from "@/libs/utils";
         <span class='text-base font-semibold'>Katze#9714</span>
       </a>
       
-      <button
+      {/* <button
         id='openModalButton'
         class='group px-8 py-4 rounded-xl font-semibold relative overflow-hidden animate-fade-in-up animation-delay-1800ms bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white/30 smooth-transition glow'
       >
@@ -167,7 +167,7 @@ import { projects } from "@/libs/utils";
           </svg>
           CONTACT ME
         </span>
-      </button>
+      </button> */}
     </div>
 
     <!-- Retro scroll indicator -->
@@ -375,7 +375,7 @@ import { projects } from "@/libs/utils";
   </section>
   
   <!-- Skills Flow Section -->
-  <SkillsFlow client:load />
+  <SkillsFlow />
   
   <!-- Projects Section Dark Theme -->
   <section
@@ -539,7 +539,9 @@ import { projects } from "@/libs/utils";
       </div>
     </div>
   </dialog>
-  <script src='../scripts/enhancedModal.js'></script>
+  <script>
+    import '../scripts/enhancedModal.js';
+  </script>
 </Layout>
 
 <style>

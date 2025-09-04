@@ -5,7 +5,17 @@
       "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\styles/**)",
       "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\components/**)",
       "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\pages/**)",
-      "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\astro.config.mjs)"
+      "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\astro.config.mjs)",
+      "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\components/**)",
+      "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\components/**)",
+      "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\components/**)",
+      "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\components/**)",
+      "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\lib/**)",
+      "Bash(npm run build:*)",
+      "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\libs/**)",
+      "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\libs/**)",
+      "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\components/**)",
+      "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\pages/**)"
     ],
     "deny": [],
     "ask": []

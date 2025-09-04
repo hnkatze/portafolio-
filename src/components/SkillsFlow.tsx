@@ -42,7 +42,7 @@ const skillSteps: SkillStep[] = [
   }
 ];
 
-function SkillStepCard({ step, index, progress }: { step: SkillStep; index: number; progress: any }) {
+function SkillStepCard({ step, index }: { step: SkillStep; index: number }) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   
@@ -235,7 +235,6 @@ export default function SkillsFlow() {
               key={step.number} 
               step={step} 
               index={index}
-              progress={scrollYProgress}
             />
           ))}
         </div>

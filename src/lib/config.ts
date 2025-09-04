@@ -17,7 +17,7 @@ const db = getFirestore(app);
 
 export async function submitFormData(formData: PropsFormData) {
   try {
-    const docRef = await addDoc(collection(db, "contacts"), {
+    await addDoc(collection(db, "contacts"), {
       name: formData.name,
       email: formData.email,
       message: formData.message,
