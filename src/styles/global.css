@@ -384,6 +384,32 @@
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Performance optimizations for animations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* GPU acceleration for smoother animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Reduce animation complexity on slower devices */
+@media (prefers-reduced-motion: no-preference) {
+  .animate-fade-in-up,
+  .animate-slide-in-left,
+  .animate-slide-in-right {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+  }
+}
+
 /* Modern input styles */
 .glass-input {
   @apply px-4 py-3 rounded-xl text-white placeholder-gray-300 transition-all duration-300;

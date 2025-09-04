@@ -53,7 +53,10 @@ function SkillStepCard({ step, index, progress }: { step: SkillStep; index: numb
           setIsVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { 
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
     );
 
     if (ref.current) {
@@ -69,16 +72,16 @@ function SkillStepCard({ step, index, progress }: { step: SkillStep; index: numb
     <motion.div
       ref={ref}
       className={`relative flex flex-col ${isLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-4 sm:gap-8 mb-16 sm:mb-32`}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isVisible ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.4, ease: "easeOut" }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
     >
       {/* Step Number Circle */}
       <motion.div 
         className="relative lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2 z-20 mb-4 lg:mb-0"
         initial={{ scale: 0 }}
-        animate={isVisible ? { scale: 1 } : {}}
-        transition={{ duration: 0.3, type: "spring" }}
+        animate={isVisible ? { scale: 1 } : { scale: 0 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
       >
         <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center shadow-2xl`}>
           <span className="text-2xl sm:text-3xl font-bold text-white">{step.number}</span>
@@ -89,8 +92,8 @@ function SkillStepCard({ step, index, progress }: { step: SkillStep; index: numb
       <div className={`w-full px-4 sm:px-0 lg:w-5/12 ${isLeft ? 'lg:pr-16' : 'lg:pl-16'}`}>
         <motion.div
           className="relative"
-          whileHover={{ scale: 1.02 }}
-          transition={{ type: "spring", stiffness: 300 }}
+          whileHover={{ scale: 1.01 }}
+          transition={{ duration: 0.2 }}
         >
           {/* Glow effect */}
           <div className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-20 blur-2xl`} />
@@ -111,7 +114,7 @@ function SkillStepCard({ step, index, progress }: { step: SkillStep; index: numb
                   className="flex items-center gap-3"
                   initial={{ opacity: 0 }}
                   animate={isVisible ? { opacity: 1 } : {}}
-                  transition={{ duration: 0.3, delay: idx * 0.05 }}
+                  transition={{ duration: 0.2, delay: Math.min(idx * 0.02, 0.1) }}
                 >
                   <img src={skill.url} alt={skill.name} className="w-6 h-6 sm:w-8 sm:h-8" />
                   <div className="flex-1">
@@ -121,7 +124,7 @@ function SkillStepCard({ step, index, progress }: { step: SkillStep; index: numb
                         className={`h-full bg-gradient-to-r ${step.color}`}
                         initial={{ width: 0 }}
                         animate={isVisible ? { width: `${skill.value}%` } : {}}
-                        transition={{ duration: 0.8, delay: idx * 0.05 }}
+                        transition={{ duration: 0.4, delay: Math.min(idx * 0.02, 0.1), ease: "easeOut" }}
                       />
                     </div>
                   </div>
@@ -146,8 +149,9 @@ export default function SkillsFlow() {
   });
 
   const pathLength = useSpring(useTransform(scrollYProgress, [0, 1], [0, 1]), {
-    stiffness: 100,
-    damping: 30
+    stiffness: 50,
+    damping: 25,
+    restDelta: 0.001
   });
 
   return (
@@ -159,21 +163,19 @@ export default function SkillsFlow() {
     >
       {/* Dark animated background elements */}
       <div className='absolute inset-0 overflow-hidden'>
-        <motion.div 
+        <div 
           className='absolute top-1/4 -right-1/4 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-purple-500/5 rounded-full blur-3xl'
-          animate={{ 
-            x: [0, 50, 0],
-            y: [0, -30, 0],
+          style={{
+            willChange: 'transform',
+            transform: 'translate3d(0, 0, 0)'
           }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
         />
-        <motion.div 
+        <div 
           className='absolute bottom-1/4 -left-1/4 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-blue-500/5 rounded-full blur-3xl'
-          animate={{ 
-            x: [0, -50, 0],
-            y: [0, 30, 0],
+          style={{
+            willChange: 'transform',
+            transform: 'translate3d(0, 0, 0)'
           }}
-          transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
         />
       </div>
 
