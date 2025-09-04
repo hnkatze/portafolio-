@@ -121,12 +121,6 @@ const coreSkills = skills.filter(s => ["Next.js", "React", "TypeScript", "CSS", 
                         <img src={skill.url} alt={skill.name} class="w-6 h-6 sm:w-8 sm:h-8" />
                         <div class="flex-1">
                           <p class="text-sm font-semibold text-gray-300 font-mono">{skill.name}</p>
-                          <div class="mt-1 h-1 bg-gray-700 rounded-full overflow-hidden">
-                            <div 
-                              class={`skill-progress h-full gradient-${step.color}`}
-                              data-value={skill.value}
-                            />
-                          </div>
                         </div>
                       </div>
                     ))}
@@ -168,17 +162,7 @@ const coreSkills = skills.filter(s => ["Next.js", "React", "TypeScript", "CSS", 
                   class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mx-auto mb-3 group-hover:scale-110 transition-transform duration-500" 
                 />
               </div>
-              <h4 class="font-bold text-gray-100 text-sm sm:text-base mb-3 font-mono group-hover:text-purple-400 transition-colors duration-300">{skill.name}</h4>
-              <div class="relative h-2 bg-gray-800 rounded-full overflow-hidden mb-2">
-                <div 
-                  class="core-skill-progress h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
-                  data-value={skill.value}
-                  style="width: 0%"
-                >
-                  <div class="skill-progress-glow absolute inset-0 bg-gradient-to-r from-purple-400/50 to-pink-400/50 blur-sm"></div>
-                </div>
-              </div>
-              <span class="text-xs sm:text-sm text-gray-500 block font-mono group-hover:text-gray-400 transition-colors duration-300">{skill.value}%</span>
+              <h4 class="font-bold text-gray-100 text-sm sm:text-base font-mono group-hover:text-purple-400 transition-colors duration-300">{skill.name}</h4>
             </div>
           </div>
         ))}
@@ -288,11 +272,6 @@ const coreSkills = skills.filter(s => ["Next.js", "React", "TypeScript", "CSS", 
     animation: fadeIn 0.3s ease-out forwards;
   }
 
-  /* Progress bar animations */
-  .skill-progress {
-    width: 0;
-    transition: width 0.8s ease-out;
-  }
 
   /* Core skill animations */
   @keyframes fadeInScale {
@@ -329,25 +308,6 @@ const coreSkills = skills.filter(s => ["Next.js", "React", "TypeScript", "CSS", 
     animation: iconBounce 0.6s ease-in-out;
   }
 
-  .core-skill-progress {
-    width: 0;
-    position: relative;
-    transition: width 1s ease-out;
-  }
-
-  /* Progress bar glow animation */
-  @keyframes progressGlow {
-    0%, 100% {
-      opacity: 0.5;
-    }
-    50% {
-      opacity: 1;
-    }
-  }
-
-  .skill-progress-glow {
-    animation: progressGlow 2s ease-in-out infinite;
-  }
 
   /* Stagger animation for cards */
   .core-skill-card:nth-child(1) { animation-delay: 0.1s; }
@@ -358,14 +318,6 @@ const coreSkills = skills.filter(s => ["Next.js", "React", "TypeScript", "CSS", 
   .core-skill-card:nth-child(6) { animation-delay: 0.5s; }
   .core-skill-card:nth-child(7) { animation-delay: 0.58s; }
 
-  /* Intersection Observer animations */
-  .skill-step.visible .skill-progress {
-    width: var(--progress-width);
-  }
-
-  .core-skill-card.visible .core-skill-progress {
-    width: var(--progress-width);
-  }
 
   /* Header animation */
   .skills-header {
@@ -434,60 +386,3 @@ const coreSkills = skills.filter(s => ["Next.js", "React", "TypeScript", "CSS", 
   }
 </style>
 
-<script>
-  // Ensure DOM is fully loaded before running animations
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initProgressBars);
-  } else {
-    // DOM is already loaded
-    initProgressBars();
-  }
-
-  function initProgressBars() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const element = entry.target;
-          
-          // Timeline skill progress bars
-          const skillBars = element.querySelectorAll('.skill-progress');
-          skillBars.forEach((bar, i) => {
-            const value = bar.getAttribute('data-value');
-            if (value) {
-              requestAnimationFrame(() => {
-                setTimeout(() => {
-                  (bar as HTMLElement).style.width = value + '%';
-                }, i * 50);
-              });
-            }
-          });
-          
-          // Core skill progress bars
-          const coreBars = element.querySelectorAll('.core-skill-progress');
-          coreBars.forEach((bar, i) => {
-            const value = bar.getAttribute('data-value');
-            if (value) {
-              requestAnimationFrame(() => {
-                setTimeout(() => {
-                  (bar as HTMLElement).style.width = value + '%';
-                }, 200 + (i * 100));
-              });
-            }
-          });
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px' });
-
-    // Small delay to ensure elements are rendered
-    requestAnimationFrame(() => {
-      // Observe all elements
-      document.querySelectorAll('.skill-step').forEach(el => {
-        observer.observe(el);
-      });
-      
-      document.querySelectorAll('.core-skill-card').forEach(el => {
-        observer.observe(el);
-      });
-    });
-  }
-</script>
