@@ -435,8 +435,15 @@ const coreSkills = skills.filter(s => ["Next.js", "React", "TypeScript", "CSS", 
 </style>
 
 <script>
-  // Simple progress bar animation
-  setTimeout(() => {
+  // Ensure DOM is fully loaded before running animations
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProgressBars);
+  } else {
+    // DOM is already loaded
+    initProgressBars();
+  }
+
+  function initProgressBars() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -447,9 +454,11 @@ const coreSkills = skills.filter(s => ["Next.js", "React", "TypeScript", "CSS", 
           skillBars.forEach((bar, i) => {
             const value = bar.getAttribute('data-value');
             if (value) {
-              setTimeout(() => {
-                (bar as HTMLElement).style.width = value + '%';
-              }, i * 50);
+              requestAnimationFrame(() => {
+                setTimeout(() => {
+                  (bar as HTMLElement).style.width = value + '%';
+                }, i * 50);
+              });
             }
           });
           
@@ -458,22 +467,27 @@ const coreSkills = skills.filter(s => ["Next.js", "React", "TypeScript", "CSS", 
           coreBars.forEach((bar, i) => {
             const value = bar.getAttribute('data-value');
             if (value) {
-              setTimeout(() => {
-                (bar as HTMLElement).style.width = value + '%';
-              }, 200 + (i * 100));
+              requestAnimationFrame(() => {
+                setTimeout(() => {
+                  (bar as HTMLElement).style.width = value + '%';
+                }, 200 + (i * 100));
+              });
             }
           });
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.1, rootMargin: '0px' });
 
-    // Observe all elements
-    document.querySelectorAll('.skill-step').forEach(el => {
-      observer.observe(el);
+    // Small delay to ensure elements are rendered
+    requestAnimationFrame(() => {
+      // Observe all elements
+      document.querySelectorAll('.skill-step').forEach(el => {
+        observer.observe(el);
+      });
+      
+      document.querySelectorAll('.core-skill-card').forEach(el => {
+        observer.observe(el);
+      });
     });
-    
-    document.querySelectorAll('.core-skill-card').forEach(el => {
-      observer.observe(el);
-    });
-  }, 500); // Increased delay to ensure DOM is ready
+  }
 </script>
