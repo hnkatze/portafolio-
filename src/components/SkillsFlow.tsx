@@ -68,25 +68,25 @@ function SkillStepCard({ step, index, progress }: { step: SkillStep; index: numb
   return (
     <motion.div
       ref={ref}
-      className={`relative flex ${isLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-8 mb-32`}
+      className={`relative flex flex-col ${isLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-4 sm:gap-8 mb-16 sm:mb-32`}
       initial={{ opacity: 0, y: 30 }}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.4, ease: "easeOut" }}
     >
       {/* Step Number Circle */}
       <motion.div 
-        className="absolute left-1/2 transform -translate-x-1/2 z-20"
+        className="relative lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2 z-20 mb-4 lg:mb-0"
         initial={{ scale: 0 }}
         animate={isVisible ? { scale: 1 } : {}}
         transition={{ duration: 0.3, type: "spring" }}
       >
-        <div className={`w-20 h-20 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center shadow-2xl`}>
-          <span className="text-3xl font-bold text-white">{step.number}</span>
+        <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center shadow-2xl`}>
+          <span className="text-2xl sm:text-3xl font-bold text-white">{step.number}</span>
         </div>
       </motion.div>
 
       {/* Content Card */}
-      <div className={`w-full lg:w-5/12 ${isLeft ? 'lg:pr-16' : 'lg:pl-16'}`}>
+      <div className={`w-full px-4 sm:px-0 lg:w-5/12 ${isLeft ? 'lg:pr-16' : 'lg:pl-16'}`}>
         <motion.div
           className="relative"
           whileHover={{ scale: 1.02 }}
@@ -96,15 +96,15 @@ function SkillStepCard({ step, index, progress }: { step: SkillStep; index: numb
           <div className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-20 blur-2xl`} />
           
           {/* Card content */}
-          <div className="relative bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-gray-800">
-            <h3 className="text-2xl font-bold mb-2 text-gray-100">
+          <div className="relative bg-gray-900/80 backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-2xl border border-gray-800">
+            <h3 className="text-xl sm:text-2xl font-bold mb-2 text-gray-100">
               <span className="font-mono text-gray-500 text-lg">// </span>
               {step.title}
             </h3>
             <p className="text-gray-400 mb-6 font-mono text-sm">{step.description}</p>
             
             {/* Skills Grid */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {step.skills.map((skill, idx) => (
                 <motion.div
                   key={skill.name}
@@ -113,7 +113,7 @@ function SkillStepCard({ step, index, progress }: { step: SkillStep; index: numb
                   animate={isVisible ? { opacity: 1 } : {}}
                   transition={{ duration: 0.3, delay: idx * 0.05 }}
                 >
-                  <img src={skill.url} alt={skill.name} className="w-8 h-8" />
+                  <img src={skill.url} alt={skill.name} className="w-6 h-6 sm:w-8 sm:h-8" />
                   <div className="flex-1">
                     <p className="text-sm font-semibold text-gray-300 font-mono">{skill.name}</p>
                     <div className="mt-1 h-1 bg-gray-700 rounded-full overflow-hidden">
@@ -132,7 +132,7 @@ function SkillStepCard({ step, index, progress }: { step: SkillStep; index: numb
         </motion.div>
       </div>
 
-      {/* Empty space */}
+      {/* Empty space for desktop */}
       <div className="hidden lg:block lg:w-5/12" />
     </motion.div>
   );
@@ -160,7 +160,7 @@ export default function SkillsFlow() {
       {/* Dark animated background elements */}
       <div className='absolute inset-0 overflow-hidden'>
         <motion.div 
-          className='absolute top-1/4 -right-1/4 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-3xl'
+          className='absolute top-1/4 -right-1/4 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-purple-500/5 rounded-full blur-3xl'
           animate={{ 
             x: [0, 50, 0],
             y: [0, -30, 0],
@@ -168,7 +168,7 @@ export default function SkillsFlow() {
           transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
         />
         <motion.div 
-          className='absolute bottom-1/4 -left-1/4 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-3xl'
+          className='absolute bottom-1/4 -left-1/4 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-blue-500/5 rounded-full blur-3xl'
           animate={{ 
             x: [0, -50, 0],
             y: [0, 30, 0],
@@ -177,7 +177,7 @@ export default function SkillsFlow() {
         />
       </div>
 
-      <div className='w-full px-4 sm:px-6 lg:px-8 2xl:px-12 relative z-10' ref={containerRef}>
+      <div className='w-full px-6 sm:px-8 lg:px-12 2xl:px-16 relative z-10' ref={containerRef}>
         {/* Header */}
         <motion.div 
           className="text-center mb-20"
@@ -187,7 +187,7 @@ export default function SkillsFlow() {
           viewport={{ once: true }}
         >
           <motion.h2 
-            className="text-6xl font-bold mb-4"
+            className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4"
             initial={{ scale: 0.9 }}
             whileInView={{ scale: 1 }}
             transition={{ duration: 0.5 }}
@@ -197,7 +197,7 @@ export default function SkillsFlow() {
               <span className="font-mono text-blue-400">const</span> myJourney <span className="text-gray-500">=</span> <span className="text-purple-400">[</span>
             </span>
           </motion.h2>
-          <p className="text-lg text-gray-400 max-w-3xl mx-auto font-mono">
+          <p className="text-sm sm:text-base lg:text-lg text-gray-400 max-w-3xl mx-auto font-mono px-4 sm:px-0">
             Follow my progression through different technologies and frameworks, 
             from fundamentals to advanced specializations.
           </p>
@@ -207,7 +207,7 @@ export default function SkillsFlow() {
         <div className="relative">
           {/* Animated SVG Path */}
           <svg 
-            className="absolute left-1/2 transform -translate-x-1/2 w-2 h-full pointer-events-none"
+            className="hidden sm:block absolute left-1/2 transform -translate-x-1/2 w-2 h-full pointer-events-none"
             style={{ top: 0, bottom: 0 }}
           >
             <motion.path

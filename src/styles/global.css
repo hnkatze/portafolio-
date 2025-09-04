@@ -231,14 +231,17 @@
 
 .animate-fade-in-up {
   animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
 }
 
 .animate-slide-in-left {
   animation: slideInLeft 0.8s ease-out forwards;
+  opacity: 0;
 }
 
 .animate-slide-in-right {
   animation: slideInRight 0.8s ease-out forwards;
+  opacity: 0;
 }
 
 .animate-pulse-slow {
@@ -247,9 +250,95 @@
 
 /* Animation delays */
 .animation-delay-150ms { animation-delay: 150ms; }
+.animation-delay-200ms { animation-delay: 200ms; }
 .animation-delay-300ms { animation-delay: 300ms; }
+.animation-delay-400ms { animation-delay: 400ms; }
 .animation-delay-450ms { animation-delay: 450ms; }
+.animation-delay-500ms { animation-delay: 500ms; }
 .animation-delay-600ms { animation-delay: 600ms; }
+.animation-delay-700ms { animation-delay: 700ms; }
+.animation-delay-800ms { animation-delay: 800ms; }
+.animation-delay-900ms { animation-delay: 900ms; }
+.animation-delay-1s { animation-delay: 1s; }
+.animation-delay-1100ms { animation-delay: 1100ms; }
+.animation-delay-1200ms { animation-delay: 1200ms; }
+.animation-delay-1300ms { animation-delay: 1300ms; }
+.animation-delay-1400ms { animation-delay: 1400ms; }
+.animation-delay-1500ms { animation-delay: 1500ms; }
+.animation-delay-1600ms { animation-delay: 1600ms; }
+.animation-delay-1700ms { animation-delay: 1700ms; }
+.animation-delay-1800ms { animation-delay: 1800ms; }
+
+/* Mobile optimizations for animations */
+@media (max-width: 768px) {
+  .animate-fade-in-up {
+    animation-duration: 0.5s;
+  }
+  
+  .animate-slide-in-left,
+  .animate-slide-in-right {
+    animation-duration: 0.5s;
+  }
+  
+  /* Reduce animation delays on mobile */
+  .animation-delay-600ms { animation-delay: 300ms; }
+  .animation-delay-700ms { animation-delay: 350ms; }
+  .animation-delay-800ms { animation-delay: 400ms; }
+  .animation-delay-900ms { animation-delay: 450ms; }
+  .animation-delay-1s { animation-delay: 500ms; }
+  .animation-delay-1100ms { animation-delay: 550ms; }
+  .animation-delay-1200ms { animation-delay: 600ms; }
+  .animation-delay-1300ms { animation-delay: 650ms; }
+  .animation-delay-1400ms { animation-delay: 700ms; }
+  .animation-delay-1500ms { animation-delay: 750ms; }
+  .animation-delay-1600ms { animation-delay: 800ms; }
+  .animation-delay-1700ms { animation-delay: 850ms; }
+  .animation-delay-1800ms { animation-delay: 900ms; }
+  
+  /* Reduce transform distances on mobile */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-slide-in-left,
+  .animate-slide-in-right {
+    animation: none;
+    opacity: 1;
+  }
+}
 
 /* Retro utilities */
 .retro-shadow {
