@@ -1,0 +1,4 @@
+Contact: mailto:contact@camilohenriquez.com
+Expires: 2026-01-14T00:00:00.000Z
+Preferred-Languages: en, es
+Canonical: https://camilohenriquez.com/.well-known/security.txt

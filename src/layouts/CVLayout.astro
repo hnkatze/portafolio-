@@ -9,7 +9,7 @@ export interface Props {
 const { 
   title, 
   description = "Camilo Henriquez - Full Stack Developer with 3+ years of experience in React, Next.js, TypeScript, and modern web technologies. View my professional CV and portfolio.",
-  keywords = "full stack developer, react developer, nextjs developer, typescript, javascript, web developer, frontend developer, backend developer, node.js, portfolio, CV, resume, Camilo Henriquez",
+  keywords = "Camilo Henriquez, Full Stack Developer, React Developer, Next.js Developer, TypeScript Developer, JavaScript Expert, Web Developer, Frontend Developer, Backend Developer, Node.js Developer, Software Engineer, Desarrollador Full Stack, Desarrollador Web, Creative Information Technologies, CEUTEC, Honduras Developer, Remote Developer, Astro Developer, Angular Developer, TailwindCSS, PostgreSQL, MongoDB, Firebase, AWS, Docker, Git, CI/CD, Portfolio, CV, Resume, Curriculum Vitae, Software Development, Web Applications, SaaS Development, E-commerce Development, REST API, GraphQL, Agile Development, Scrum, Professional Developer, Freelance Developer, Tech Lead, Software Architect, HTML5, CSS3, ES6, React Hooks, Next.js 14, Server Components, SSR, SSG, ISR, JAMstack, Responsive Design, Mobile First, PWA, SEO Optimization, Performance Optimization, Code Review, Best Practices, Clean Code, Testing, Jest, Software Engineering, Computer Science, Bilingual Developer, English Spanish Developer",
   image = "/og-image.png"
 } = Astro.props;
 
@@ -29,15 +29,39 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <meta name="author" content="Camilo Henriquez" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="subject" content="Professional Portfolio and CV of Camilo Henriquez" />
+    <meta name="copyright" content="Camilo Henriquez" />
+    <meta name="language" content="EN" />
+    <meta name="revised" content="2025-01-14" />
+    <meta name="abstract" content="Full Stack Developer Portfolio showcasing projects and professional experience" />
+    <meta name="topic" content="Software Development, Web Development, Programming" />
+    <meta name="summary" content={description} />
+    <meta name="classification" content="Business" />
+    <meta name="designer" content="Camilo Henriquez" />
+    <meta name="owner" content="Camilo Henriquez" />
+    <meta name="url" content={canonicalURL} />
+    <meta name="identifier-URL" content={canonicalURL} />
+    <meta name="directory" content="submission" />
+    <meta name="category" content="Technology" />
+    <meta name="coverage" content="Worldwide" />
+    <meta name="distribution" content="Global" />
+    <meta name="rating" content="General" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content="https://camilohenriquez.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Camilo Henriquez - Full Stack Developer Portfolio" />
     <meta property="og:site_name" content="Camilo Henriquez Portfolio" />
     <meta property="og:locale" content="en_US" />
     
@@ -46,8 +70,10 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
     <meta name="twitter:url" content={canonicalURL} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image" content="https://camilohenriquez.com/twitter-card.png" />
+    <meta name="twitter:image:alt" content="Camilo Henriquez - Full Stack Developer Portfolio" />
     <meta name="twitter:creator" content="@camilohenriquez" />
+    <meta name="twitter:site" content="@camilohenriquez" />
     
     <!-- LinkedIn -->
     <meta property="linkedin:card" content="summary" />
@@ -55,13 +81,14 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
     <meta property="linkedin:description" content={description} />
     
     <!-- Schema.org Structured Data -->
-    <script type="application/ld+json">
+    <script type="application/ld+json" is:inline>
       {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Camilo Henriquez",
+        "alternateName": "Camilo",
         "url": "https://camilohenriquez.com",
-        "image": "/profile.jpg",
+        "image": "https://camilohenriquez.com/tshirtw.png",
         "sameAs": [
           "https://linkedin.com/in/camilohenriquez",
           "https://github.com/camilohenriquez",
@@ -70,14 +97,96 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
         "jobTitle": "Full Stack Developer",
         "worksFor": {
           "@type": "Organization",
-          "name": "Tech Company"
+          "name": "Creative Information Technologies",
+          "url": "https://creativeit.com"
         },
-        "knowsAbout": ["React", "Next.js", "TypeScript", "Node.js", "JavaScript", "Web Development"],
+        "knowsAbout": ["React", "Next.js", "TypeScript", "Node.js", "JavaScript", "Astro", "Angular", "TailwindCSS", "PostgreSQL", "MongoDB", "Express.js", "NestJS", "GraphQL", "REST API", "Git", "Docker", "AWS", "Firebase", "Jest", "Webpack", "HTML5", "CSS3", "Sass", "Redux", "React Hooks", "Responsive Design", "SEO", "Web Performance", "Agile", "Scrum"],
+        "hasOccupation": {
+          "@type": "Occupation",
+          "name": "Full Stack Developer",
+          "occupationalCategory": "15-1252.00",
+          "occupationLocation": {
+            "@type": "City",
+            "name": "Remote"
+          },
+          "estimatedSalary": {
+            "@type": "MonetaryAmountDistribution",
+            "name": "base",
+            "currency": "USD",
+            "duration": "P1Y"
+          }
+        },
         "alumniOf": {
           "@type": "CollegeOrUniversity",
-          "name": "University Name"
+          "name": "CEUTEC",
+          "url": "https://ceutec.hn"
         },
-        "description": "Full Stack Developer with 3+ years of experience building scalable web applications"
+        "description": "Full Stack Developer with 3+ years of experience building scalable web applications",
+        "email": "contact@camilohenriquez.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Remote",
+          "addressRegion": "Worldwide"
+        },
+        "nationality": {
+          "@type": "Country",
+          "name": "Honduras"
+        },
+        "knowsLanguage": [
+          {
+            "@type": "Language",
+            "name": "Spanish",
+            "alternateName": "es"
+          },
+          {
+            "@type": "Language",
+            "name": "English",
+            "alternateName": "en"
+          }
+        ]
+      }
+    </script>
+    
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://camilohenriquez.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "CV",
+            "item": "https://camilohenriquez.com/cv"
+          }
+        ]
+      }
+    </script>
+    
+    <!-- WebSite Schema -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Camilo Henriquez Portfolio",
+        "url": "https://camilohenriquez.com",
+        "description": "Full Stack Developer Portfolio - React, Next.js, TypeScript Expert",
+        "author": {
+          "@type": "Person",
+          "name": "Camilo Henriquez"
+        },
+        "dateModified": "2025-01-14",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://camilohenriquez.com/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
       }
     </script>
     
@@ -90,10 +199,13 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
     />
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+    <link rel="manifest" href="/manifest.json" />
     
     <!-- Generator -->
     <meta name="generator" content={Astro.generator} />
@@ -101,9 +213,24 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
     <!-- Theme Color -->
     <meta name="theme-color" content="#3b82f6" />
     
-    <!-- Additional SEO -->
+    <!-- Search Engine Verification -->
     <meta name="google-site-verification" content="your-google-verification-code" />
     <meta name="msvalidate.01" content="your-bing-verification-code" />
+    <meta name="yandex-verification" content="your-yandex-verification-code" />
+    <meta name="p:domain_verify" content="your-pinterest-verification" />
+    
+    <!-- Geo Tags -->
+    <meta name="geo.region" content="HN" />
+    <meta name="geo.placename" content="Honduras" />
+    <meta name="geo.position" content="14.0723;-87.1921" />
+    <meta name="ICBM" content="14.0723, -87.1921" />
+    
+    <!-- Additional Meta Tags -->
+    <meta name="application-name" content="Camilo Henriquez Portfolio" />
+    <meta name="msapplication-TileColor" content="#2563eb" />
+    <meta name="msapplication-TileImage" content="/mstile-150x150.png" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    <meta name="format-detection" content="telephone=no" />
   </head>
   <body>
     <slot />

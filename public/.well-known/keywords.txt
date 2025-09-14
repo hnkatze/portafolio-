@@ -1,0 +1,181 @@
+# English Keywords
+Camilo Henriquez
+Full Stack Developer
+React Developer
+Next.js Developer
+TypeScript Developer
+JavaScript Developer
+Node.js Developer
+Web Developer
+Frontend Developer
+Backend Developer
+Software Engineer
+Software Developer
+Programmer
+Web Programmer
+React Expert
+Next.js Expert
+TypeScript Expert
+JavaScript Expert
+Node.js Expert
+Angular Developer
+Astro Developer
+TailwindCSS Expert
+PostgreSQL Developer
+MongoDB Developer
+Firebase Developer
+AWS Developer
+Docker Developer
+Git Expert
+CI/CD Expert
+Remote Developer
+Freelance Developer
+Honduras Developer
+Central America Developer
+Latin America Developer
+Bilingual Developer
+English Spanish Developer
+
+# Spanish Keywords
+Desarrollador Full Stack
+Desarrollador React
+Desarrollador Next.js
+Desarrollador TypeScript
+Desarrollador JavaScript
+Desarrollador Node.js
+Desarrollador Web
+Desarrollador Frontend
+Desarrollador Backend
+Ingeniero de Software
+Desarrollador de Software
+Programador
+Programador Web
+Experto en React
+Experto en Next.js
+Experto en TypeScript
+Experto en JavaScript
+Experto en Node.js
+Desarrollador Angular
+Desarrollador Astro
+Experto en TailwindCSS
+Desarrollador PostgreSQL
+Desarrollador MongoDB
+Desarrollador Firebase
+Desarrollador AWS
+Desarrollador Docker
+Experto en Git
+Experto en CI/CD
+Desarrollador Remoto
+Desarrollador Freelance
+Desarrollador Honduras
+Desarrollador Centroamérica
+Desarrollador América Latina
+Desarrollador Bilingüe
+Desarrollador Inglés Español
+
+# Technical Skills
+HTML5
+CSS3
+SASS
+LESS
+Bootstrap
+Material UI
+Ant Design
+Chakra UI
+Styled Components
+CSS Modules
+Redux
+Redux Toolkit
+Context API
+React Query
+SWR
+Axios
+Fetch API
+REST API
+GraphQL
+Apollo Client
+WebSockets
+Socket.io
+Express.js
+NestJS
+Fastify
+Koa.js
+Prisma
+Sequelize
+TypeORM
+Mongoose
+JWT
+OAuth
+Auth0
+Passport.js
+Bcrypt
+Testing
+Jest
+React Testing Library
+Cypress
+Playwright
+Vitest
+Webpack
+Vite
+Rollup
+Parcel
+ESLint
+Prettier
+Husky
+Git Hooks
+GitHub Actions
+GitLab CI
+Jenkins
+Travis CI
+CircleCI
+Vercel
+Netlify
+Heroku
+Digital Ocean
+Google Cloud Platform
+Microsoft Azure
+Kubernetes
+Microservices
+Serverless
+JAMstack
+SSR
+SSG
+ISR
+PWA
+SEO
+Web Performance
+Core Web Vitals
+Accessibility
+WCAG
+Responsive Design
+Mobile First
+Cross Browser
+Agile
+Scrum
+Kanban
+JIRA
+Trello
+Notion
+Figma
+Adobe XD
+Sketch
+
+# Company and Education
+Creative Information Technologies
+CEUTEC
+Universidad
+Ingeniería en Informática
+Técnico Universitario
+Call Center
+Customer Service
+
+# Location
+Honduras
+Tegucigalpa
+San Pedro Sula
+Central America
+Latin America
+Remote
+Worldwide
+Global
+International
