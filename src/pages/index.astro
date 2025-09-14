@@ -1,766 +1,277 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import meb from "../../public/tshirtw.png";
+import CVLayout from "../layouts/CVLayout.astro";
 import { Image } from "astro:assets";
-import linkedin from "../assets/linkedin.svg";
-import "../styles/switch.css";
-import "../styles/global.css";
-import AnimatedProjectCard from "@/components/AnimatedProjectCard.astro";
-import SkillsFlow from "@/components/SkillsFlow.astro";
-import { projects } from "@/libs/utils";
+import meb from "../../public/tshirtw.png";
+import "../styles/minimal-cv.css";
+
+// Personal Information
+const personal = {
+  name: "Camilo Henriquez",
+  title: "Full Stack Developer",
+  summary: "Passionate developer with 3+ years of experience building scalable web applications. Specialized in React, Next.js, and modern JavaScript frameworks. Focused on clean code, best practices, and delivering exceptional user experiences.",
+  email: "contact@camilohenriquez.com",
+  phone: "+1 (555) 123-4567",
+  location: "Remote / Worldwide",
+  linkedin: "linkedin.com/in/camilohenriquez",
+  github: "github.com/camilohenriquez",
+  portfolio: "templates.camilohenriquez.com"
+};
+
+// Experience
+const experience = [
+  {
+    title: "Associate Developer",
+    company: "Creative Information Technologies",
+    date: "July 2024 - Present",
+    description: "Developing scalable web applications using modern JavaScript frameworks. Collaborating with cross-functional teams to deliver high-quality software solutions.",
+    achievements: [
+      "Improved application performance by 40%",
+      "Implemented CI/CD pipelines reducing deployment time by 60%",
+      "Led frontend architecture decisions for 3 major projects"
+    ]
+  },
+  {
+    title: "Full Stack Developer",
+    company: "Freelance",
+    date: "2021 - Present",
+    description: "Delivered custom web solutions for diverse clients across various industries. Specialized in React, Next.js, and Node.js applications.",
+    achievements: [
+      "Successfully completed 25+ projects",
+      "Maintained 100% client satisfaction rate",
+      "Built reusable component libraries saving 30% development time"
+    ]
+  }
+];
+
+// Education
+const education = [
+  {
+    degree: "Ingeniería en Informática",
+    school: "CEUTEC",
+    date: "En curso",
+    highlights: ["Software Engineering", "Web Technologies", "Data Structures"]
+  },
+  {
+    degree: "Técnico Universitario Bilingüe en Call Center",
+    school: "CEUTEC",
+    date: "Completado",
+    highlights: ["Customer Service", "English Proficiency", "Communication Skills"]
+  }
+];
+
+// Skills
+const skills = {
+  frontend: ["React", "Next.js", "TypeScript", "Astro", "Tailwind CSS", "HTML/CSS", "Angular", "Lit"],
+  backend: ["Node.js", "Express", "PostgreSQL", "MongoDB", "REST APIs", "GraphQL", "NestJS"],
+  tools: ["Git", "Docker", "AWS", "CI/CD", "Firebase", "Jest", "Webpack"]
+};
+
+// Languages
+const languages = [
+  { name: "Spanish", level: "Native" },
+  { name: "English", level: "Professional" }
+];
+
+// Featured Projects (minimal)
+const projects = [
+  {
+    name: "E-Commerce Platform",
+    description: "Full-stack application with real-time inventory",
+    tech: ["React", "Node.js", "MongoDB"]
+  },
+  {
+    name: "SaaS Dashboard",
+    description: "Analytics platform with data visualization",
+    tech: ["Next.js", "TypeScript", "PostgreSQL"]
+  }
+];
 ---
 
-<Layout title='Portafolio Camilo'>
-  <!-- Hero Section Dark Professional -->
-  <section
-    class='hero-section min-h-screen w-full flex flex-col bg-[#0a0a0a] relative'
-    title='Presentacion'
-    id='home'
-  >
-    <!-- Code Background Pattern -->
-    <div class='absolute inset-0 opacity-5'>
-      <div class='h-full w-full' style='background-image: repeating-linear-gradient(0deg, transparent, transparent 35px, rgba(96, 165, 250, 0.03) 35px, rgba(96, 165, 250, 0.03) 70px);'></div>
-    </div>
-
-    <!-- Subtle gradient overlay -->
-    <div class='absolute inset-0'>
-      <div class='absolute top-0 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl'></div>
-      <div class='absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl'></div>
-    </div>
-
-    <div class='relative z-10 flex flex-col lg:flex-row gap-10 justify-center items-center pt-10 pb-10 px-6 sm:px-8 lg:px-12 2xl:px-16 min-h-screen w-full'>
-      <div class='w-full lg:w-1/2 text-center lg:text-left space-y-4'>
-        <!-- Code-style introduction -->
-        <div class='mb-4 animate-fade-in-up'>
-          <span class='text-gray-500 font-mono text-sm'>// Developer.tsx</span>
-        </div>
-        
-        <div class='hero-text'>
-          <div class='font-mono text-xs sm:text-sm text-gray-500 mb-2 animate-fade-in-up'>export class <span class='text-blue-400'>Developer</span> {</div>
-          <div class='pl-4 sm:pl-8 space-y-2'>
-            <h1 class='text-2xl sm:text-3xl lg:text-5xl font-bold'>
-              <span class='text-gray-300 animate-fade-in-up animation-delay-200ms font-mono'>name: <span class='text-blue-400'>"Camilo Henriquez"</span>;</span>
-            </h1>
-            <div class='font-mono text-base sm:text-lg text-gray-400 animate-fade-in-up animation-delay-400ms'>
-              role: <span class='text-purple-400'>"Full Stack Developer"</span>;
-            </div>
-            <div class='font-mono text-sm sm:text-base text-gray-400 animate-fade-in-up animation-delay-500ms'>
-              experience: <span class='text-green-400'>"3+ years"</span>;
-            </div>
-          </div>
-        </div>
-        
-        <div class='hero-subtitle pl-4 sm:pl-8'>
-          <p class='text-xs sm:text-sm lg:text-base font-mono text-gray-500 animate-fade-in-up animation-delay-600ms'>
-            passion: [
-          </p>
-          <div class='pl-2 sm:pl-4 space-y-1'>
-            <span class='text-green-400 block text-xs sm:text-sm lg:text-base font-mono animate-fade-in-up animation-delay-700ms'>"Building scalable solutions",</span>
-            <span class='text-green-400 block text-xs sm:text-sm lg:text-base font-mono animate-fade-in-up animation-delay-800ms'>"Clean code architecture",</span>
-            <span class='text-green-400 block text-xs sm:text-sm lg:text-base font-mono animate-fade-in-up animation-delay-900ms'>"Innovation through technology"</span>
-          </div>
-          <p class='text-sm lg:text-base font-mono text-gray-500 animate-fade-in-up animation-delay-1s'>];</p>
-        </div>
-        
-        <!-- Tech stack as array -->
-        <div class='tech-stack pl-4 sm:pl-8'>
-          <p class='font-mono text-xs sm:text-sm text-gray-500 mb-2 animate-fade-in-up animation-delay-1100ms'>techStack: <span class='text-purple-400'>[</span></p>
-          <div class='flex flex-wrap gap-2 justify-center lg:justify-start pl-2 sm:pl-4'>
-            <span class='px-2 sm:px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded text-blue-400 font-mono text-xs sm:text-sm hover:bg-blue-500/20 transition-colors animate-fade-in-up animation-delay-1200ms'>"React"</span>
-            <span class='px-2 sm:px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded text-blue-400 font-mono text-xs sm:text-sm hover:bg-blue-500/20 transition-colors animate-fade-in-up animation-delay-1300ms'>"Next.js"</span>
-            <span class='px-2 sm:px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded text-blue-400 font-mono text-xs sm:text-sm hover:bg-blue-500/20 transition-colors animate-fade-in-up animation-delay-1400ms'>"Astro"</span>
-            <span class='px-2 sm:px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded text-blue-400 font-mono text-xs sm:text-sm hover:bg-blue-500/20 transition-colors animate-fade-in-up animation-delay-1500ms'>"TypeScript"</span>
-            <span class='px-2 sm:px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded text-blue-400 font-mono text-xs sm:text-sm hover:bg-blue-500/20 transition-colors animate-fade-in-up animation-delay-1600ms'>"Node.js"</span>
-          </div>
-          <p class='font-mono text-xs sm:text-sm text-purple-400 mt-2 animate-fade-in-up animation-delay-1700ms'>];</p>
-        </div>
-        
-        <div class='font-mono text-xs sm:text-sm text-gray-500 animate-fade-in-up animation-delay-1800ms'>}</div>
-      </div>
-
-      <div class='profile-section mx-auto w-10/12 lg:w-1/2 flex justify-center items-center my-10'>
-        <div class='profile-container relative justify-center items-center flex'>
-          <!-- Terminal-style frame -->
-          <div class='absolute -inset-6 bg-gray-900/50 rounded-lg border border-gray-800 backdrop-blur-sm'>
-            <div class='flex gap-2 p-3 border-b border-gray-800'>
-              <div class='w-3 h-3 rounded-full bg-red-500/50'></div>
-              <div class='w-3 h-3 rounded-full bg-yellow-500/50'></div>
-              <div class='w-3 h-3 rounded-full bg-green-500/50'></div>
-              <span class='text-xs text-gray-500 ml-2 font-mono'>profile.tsx</span>
-            </div>
-          </div>
-          <!-- Profile Image -->
-          <div class=" w-10/12 relative flex justify-center items-center p-6 sm:p-8 lg:p-10"> 
-          <Image
-            src={meb}
-            alt='Camilo Henriquez - Full Stack Developer'
-            class=' profile-image relative z-10 rounded-lg shadow-2xl transition-all duration-500 hover:scale-105 animate-fade-in-up animation-delay-1s filter contrast-110'
-          />
-          </div>
-          <!-- Status indicator -->
-          <div class='absolute -bottom-6 -right-4 px-3 py-1 bg-green-500/20 border border-green-500/50 rounded-full backdrop-blur-sm'>
-            <span class='text-xs text-green-400 font-mono flex items-center gap-1'>
-              <span class='w-2 h-2 bg-green-400 rounded-full animate-pulse'></span>
-              available for hire
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Social Links with code style -->
-    <div class='social-section relative z-10 w-full flex flex-col lg:flex-row justify-center gap-4 items-center pb-8 px-6 sm:px-8 lg:px-12 lg:mt-8'>
-      <a
-        href='https://github.com/hnkatze'
-        title='Visita mi perfil de GitHub'
-        class='glass-button group flex flex-row justify-center items-center gap-3 animate-fade-in-up animation-delay-2s'
-      >
-        <svg
-          class='w-6 h-6 transition-transform duration-300 group-hover:scale-110'
-          viewBox='0 0 512 512'
-          fill='currentColor'
-          xmlns='http://www.w3.org/2000/svg'>
-          <path d='M 511.5,239.5 C 511.5,254.5 511.5,269.5 511.5,284.5C 501.712,368.067 462.045,433.233 392.5,480C 375.96,489.937 358.626,498.27 340.5,505C 332.538,508.098 325.704,506.598 320,500.5C 319.667,499.167 319.333,497.833 319,496.5C 318.945,465.803 318.278,435.136 317,404.5C 314.745,393.198 309.578,383.532 301.5,375.5C 386.523,365.627 425.023,317.96 417,232.5C 414.092,213.02 406.092,196.02 393,181.5C 395.13,171.162 396.63,160.662 397.5,150C 396.942,137.045 394.276,124.545 389.5,112.5C 380.987,111.166 372.653,111.999 364.5,115C 348.649,121.258 333.649,129.092 319.5,138.5C 276.833,126.5 234.167,126.5 191.5,138.5C 178.232,129.698 164.232,122.198 149.5,116C 140.423,112.415 131.09,111.248 121.5,112.5C 116.859,124.233 114.192,136.399 113.5,149C 114.241,160.014 115.741,170.847 118,181.5C 101.046,200.681 92.5461,223.181 92.5,249C 91.8045,278.57 99.3045,305.737 115,330.5C 132.176,351.18 154.009,364.347 180.5,370C 190.178,371.835 199.845,373.668 209.5,375.5C 200.217,385.316 194.55,396.983 192.5,410.5C 175.315,417.772 157.982,418.272 140.5,412C 134.129,408.635 128.629,404.135 124,398.5C 119.333,391.833 114.667,385.167 110,378.5C 101.35,369.175 90.6832,363.842 78,362.5C 65.3442,363.322 64.1776,367.489 74.5,375C 86.1029,381.936 94.9362,391.436 101,403.5C 111.325,435.484 133.325,451.817 167,452.5C 175.507,451.583 184.007,450.583 192.5,449.5C 192.667,465.17 192.5,480.837 192,496.5C 188.976,505.311 182.809,508.478 173.5,506C 94.2419,477.075 40.4086,422.909 12,343.5C 6.2084,324.034 2.04173,304.367 -0.5,284.5C -0.5,269.5 -0.5,254.5 -0.5,239.5C 10.224,149.84 54.224,82.0066 131.5,36C 200.175,0.151196 271.175,-5.18214 344.5,20C 409.529,45.589 457.363,89.7557 488,152.5C 500.7,180.31 508.534,209.31 511.5,239.5 Z'></path>
-        </svg>
-        <span class='text-base font-semibold'>/hnkatze</span>
-      </a>
-      
-      <a
-        href='https://www.linkedin.com/in/hnkatze/'
-        title='Visita mi perfil de LinkedIn'
-        class='glass-button group flex flex-row justify-center items-center gap-3 animate-fade-in-up animation-delay-1600ms'
-      >
+<CVLayout title={`${personal.name} - ${personal.title}`}>
+  <div class="cv-page">
+    <!-- Header Section -->
+    <header class="cv-header">
+      <!-- Profile Photo -->
+      <div style="margin-bottom: 24px;">
         <Image
-          src={linkedin}
-          alt='linkedin'
-          width={24}
-          height={24}
-          class='w-6 h-6 transition-transform duration-300 group-hover:scale-110'
+          src={meb}
+          alt={personal.name}
+          width={120}
+          height={120}
+          style="border-radius: 50%; border: 3px solid var(--accent); margin: 0 auto;"
         />
-        <span class='text-base font-semibold'>/camilo-henriquez</span>
-      </a>
-      
-      <a
-        href='https://discord.com/users/hnkatze'
-        title='Visita mi perfil de Discord'
-        class='glass-button group flex flex-row justify-center items-center gap-3 animate-fade-in-up animation-delay-1700ms'
-      >
-        <svg
-          class='w-6 h-6 transition-transform duration-300 group-hover:scale-110'
-          xmlns='http://www.w3.org/2000/svg'
-          fill='currentColor'
-          viewBox='0 0 512 512'>
-          <path d='M 511.5,310.5 C 511.5,330.167 511.5,349.833 511.5,369.5C 510.795,375.045 509.961,380.712 509,386.5C 470.043,415.396 427.209,437.063 380.5,451.5C 378.851,450.352 377.351,449.019 376,447.5C 367.039,434.526 358.872,421.026 351.5,407C 352.047,406.075 352.713,405.242 353.5,404.5C 367.015,399.409 380.015,393.242 392.5,386C 393.451,385.282 393.617,384.449 393,383.5C 390.305,381.306 387.472,379.306 384.5,377.5C 298.515,416.165 212.515,416.165 126.5,377.5C 123.528,379.306 120.695,381.306 118,383.5C 117.383,384.449 117.549,385.282 118.5,386C 131.236,393.536 144.569,399.702 158.5,404.5C 157.192,410.126 155.025,415.459 152,420.5C 145.807,431.568 138.64,441.902 130.5,451.5C 83.7907,437.063 40.9574,415.396 2,386.5C 0.989351,381.064 0.156017,375.73 -0.5,370.5C -0.5,350.5 -0.5,330.5 -0.5,310.5C 5.8552,230.765 31.8552,158.099 77.5,92.5C 111.077,77.0215 146.077,66.0215 182.5,59.5C 183.478,59.9767 184.311,60.6433 185,61.5C 189.277,70.3897 193.777,79.0564 198.5,87.5C 236.492,80.9636 274.492,80.9636 312.5,87.5C 317.223,79.0564 321.723,70.3897 326,61.5C 326.689,60.6433 327.522,59.9767 328.5,59.5C 364.923,66.0215 399.923,77.0215 433.5,92.5C 479.134,158.065 505.134,230.731 511.5,310.5 Z'></path>
-          <circle cx='167.5' cy='223.5' r='50' fill='white'></circle>
-          <circle cx='338.5' cy='223.5' r='50' fill='white'></circle>
-        </svg>
-        <span class='text-base font-semibold'>Katze#9714</span>
-      </a>
-      
-      {/* <button
-        id='openModalButton'
-        class='group px-8 py-4 rounded-xl font-semibold relative overflow-hidden animate-fade-in-up animation-delay-1800ms bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white/30 smooth-transition glow'
-      >
-        <span class='relative z-10 flex items-center gap-2'>
-          <svg class='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'></path>
-          </svg>
-          CONTACT ME
-        </span>
-      </button> */}
-    </div>
-
-    <!-- Retro scroll indicator -->
-    <!-- <div class='absolute bottom-8 left-1/2 transform -translate-x-1/2'>
-      <div class='w-8 h-12 border-4 border-gray-800 bg-gray-300 flex justify-center items-start pt-2'>
-        <div class='w-2 h-3 bg-gray-800 animate-bounce'></div>
       </div>
-      <p class='text-xs font-mono text-gray-700 mt-2 text-center'>SCROLL</p>
-    </div> -->
-  </section>
-
-  <!-- About Me Section -->
-  <section 
-    class="py-20 bg-[#0f0f0f] relative overflow-hidden"
-    id="about"
-  >
-    <!-- Dark background elements -->
-    <div class="absolute inset-0 overflow-hidden">
-      <div class="absolute top-1/3 left-1/4 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl"></div>
-      <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"></div>
-    </div>
-
-    <div class="relative z-10 px-6 sm:px-2 lg:px-12 2xl:px-16 w-full">
-      <div class="w-full">
-        <h2 class="text-4xl md:text-5xl font-bold mb-8 text-center text-gray-100 animate-fade-in-up">
-          <span class="font-mono text-blue-400">class</span> <span class="text-gray-100">AboutMe</span> <span class="text-purple-400">{'{'}</span>
-        </h2>
-        <div class="w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-12 rounded-full"></div>
+      <h1>{personal.name}</h1>
+      <div class="title">{personal.title}</div>
+      <p class="summary">{personal.summary}</p>
+      
+      <!-- Contact Information -->
+      <div class="contact-bar">
+        <a href={`mailto:${personal.email}`} class="contact-item">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          {personal.email}
+        </a>
         
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-7xl mx-auto">
-          <!-- Left Column - Main Info -->
-          <div class="bg-gray-900/50 backdrop-blur-sm p-4 md:p-8 rounded-xl border border-gray-800 animate-fade-in-up animation-delay-300ms">
-            <div class="space-y-6">
-              <div class="font-mono text-sm text-gray-500 mb-4">// Constructor</div>
-              <div class="pl-4 space-y-3">
-                <p class="font-mono text-gray-300">
-                  <span class="text-blue-400">constructor</span>() {'{'}
-                </p>
-                <div class="pl-6 space-y-2">
-                  <p class="font-mono text-sm text-gray-400">
-                    <span class="text-blue-400">this</span>.role = <span class="text-green-400">"Full Stack Developer"</span>;
-                  </p>
-                  <p class="font-mono text-sm text-gray-400">
-                    <span class="text-blue-400">this</span>.since = <span class="text-green-400">"2022"</span>;
-                  </p>
-                  <p class="font-mono text-sm text-gray-400">
-                    <span class="text-blue-400">this</span>.location = <span class="text-green-400">"Remote"</span>;
-                  </p>
-                  <p class="font-mono text-sm text-gray-400">
-                    <span class="text-blue-400">this</span>.available = <span class="text-purple-400">true</span>;
-                  </p>
-                </div>
-                <p class="font-mono text-gray-300 pl-6">{'}'}</p>
-            
-              <div class="mt-6">
-                <div class="font-mono text-sm text-gray-500 mb-2">// Main focus</div>
-                <div class="p-4 border-l-2 border-blue-500 bg-blue-500/5">
-                  <p class="font-mono text-sm text-blue-400">
-                    <span class="text-gray-500">/*</span><br/>
-                    <span class="text-gray-500"> * Next.js is my framework of choice.</span><br/>
-                    <span class="text-gray-500"> * Constantly pushing for expert-level proficiency.</span><br/>
-                    <span class="text-gray-500"> * Preference: 100% Next.js for its powerful SSR/SSG.</span><br/>
-                    <span class="text-gray-500"> */</span>
-                  </p>
-                </div>
-              </div>
-            
-              <div class="mt-6">
-                <p class="font-mono text-sm text-gray-400">
-                  <span class="text-blue-400">getExperience</span>() {'{'}
-                </p>
-                <div class="pl-6 mt-2">
-                  <p class="font-mono text-xs text-gray-400">
-                    <span class="text-purple-400">return</span> {'{'}
-                  </p>
-                  <div class="pl-6 space-y-2">
-                    <p class="font-mono text-xs text-gray-400">
-                      current: {'{'}
-                    </p>
-                    <div class="pl-6">
-                      <p class="font-mono text-xs text-gray-400">
-                        position: <span class="text-green-400">"Associate Developer"</span>,
-                      </p>
-                      <p class="font-mono text-xs text-gray-400">
-                        company: <span class="text-green-400">"Tech Company"</span>,
-                      </p>
-                      <p class="font-mono text-xs text-gray-400">
-                        since: <span class="text-blue-400">new Date("2024-07")</span>,
-                      </p>
-                      <p class="font-mono text-xs text-gray-400">
-                        status: <span class="text-yellow-400">"Active"</span>
-                      </p>
-                    </div>
-                    <p class="font-mono text-xs text-gray-400">
-                      {'}'},
-                    </p>
-                    <p class="font-mono text-xs text-gray-400">
-                      freelance: {'{'}
-                    </p>
-                    <div class="pl-6">
-                      <p class="font-mono text-xs text-gray-400">
-                        years: <span class="text-blue-400">3</span>,
-                      </p>
-                      <p class="font-mono text-xs text-gray-400">
-                        projects: <span class="text-blue-400">25+</span>,
-                      </p>
-                      <p class="font-mono text-xs text-gray-400">
-                        status: <span class="text-green-400">"Ongoing"</span>
-                      </p>
-                    </div>
-                    <p class="font-mono text-xs text-gray-400">
-                      {'}'}
-                    </p>
-                  </div>
-                  <p class="font-mono text-xs text-gray-400">{'}'};</p>
-                </div>
-                <p class="font-mono text-sm text-gray-400">{'}'}</p>
-              </div>
-            </div>
-          </div>
-            
-          <!-- Right Column - Methods & Properties -->
-          <div class="space-y-6">
-            <!-- Skills Method -->
-            <div class="bg-gray-900/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800 animate-fade-in-up animation-delay-400ms">
-              <p class="font-mono text-sm text-gray-500 mb-4">// Core competencies</p>
-              <p class="font-mono text-sm text-gray-400">
-                <span class="text-blue-400">getSkills</span>() {'{'}
-              </p>
-              <div class="pl-6 mt-3 space-y-2">
-                <p class="font-mono text-xs text-gray-400">
-                  <span class="text-purple-400">return</span> {'{'}
-                </p>
-                <div class="pl-6 space-y-1">
-                  <p class="font-mono text-xs text-gray-400">
-                    frontend: [<span class="text-green-400">"React", "Next.js", "TypeScript"</span>],
-                  </p>
-                  <p class="font-mono text-xs text-gray-400">
-                    backend: [<span class="text-green-400">"Node.js", "Nest.js", "PostgreSQL"</span>],
-                  </p>
-                  <p class="font-mono text-xs text-gray-400">
-                    styling: [<span class="text-green-400">"TailwindCSS", "Framer Motion"</span>],
-                  </p>
-                  <p class="font-mono text-xs text-gray-400">
-                    tools: [<span class="text-green-400">"Git", "Docker", "Vercel"</span>]
-                  </p>
-                </div>
-                <p class="font-mono text-xs text-gray-400 pl-6">{'}'}</p>
-              </div>
-              <p class="font-mono text-sm text-gray-400">{'}'}</p>
-            </div>
-
-            <!-- Approach Method -->
-            <div class="bg-gray-900/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800 animate-fade-in-up animation-delay-500ms">
-              <p class="font-mono text-sm text-gray-500 mb-4">// Development philosophy</p>
-              <p class="font-mono text-sm text-gray-400">
-                <span class="text-blue-400">getApproach</span>() {'{'}
-              </p>
-              <div class="pl-6 mt-3">
-                <p class="font-mono text-xs text-gray-400">
-                  <span class="text-purple-400">return</span> {'{'}
-                </p>
-                <div class="pl-6 space-y-1">
-                  <p class="font-mono text-xs text-gray-400">
-                    code: <span class="text-green-400">"Clean & maintainable"</span>,
-                  </p>
-                  <p class="font-mono text-xs text-gray-400">
-                    design: <span class="text-green-400">"User-centered"</span>,
-                  </p>
-                  <p class="font-mono text-xs text-gray-400">
-                    performance: <span class="text-green-400">"Optimized"</span>,
-                  </p>
-                  <p class="font-mono text-xs text-gray-400">
-                    delivery: <span class="text-green-400">"On-time"</span>
-                  </p>
-                </div>
-                <p class="font-mono text-xs text-gray-400 pl-6">{'}'}</p>
-              </div>
-              <p class="font-mono text-sm text-gray-400">{'}'}</p>
-            </div>
-                  </li>
-                  <li class="flex items-start">
-                    <svg class="w-5 h-5 text-purple-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    <span>Seamless frontend-backend integration</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            
-            <p class="text-lg leading-relaxed">
-              My goal is to continue growing as a developer, with a clear path toward becoming a <span class="font-semibold text-purple-700">Next.js expert</span>. 
-              I'm constantly learning, experimenting with new features, and staying up-to-date with the evolving web development landscape.
-            </p>
-          </div>
+        <div class="contact-item">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          {personal.location}
         </div>
         
-        <!-- Closing the class -->
-        <div class="text-center mt-8 animate-fade-in-up animation-delay-600ms">
-          <p class="font-mono text-2xl text-purple-400">{'}'}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Skills Flow Section -->
-  <SkillsFlow />
-  
-  <!-- Projects Section Dark Theme -->
-  <section
-    title='Proyectos'
-    class='projects-section py-20 bg-[#0a0a0a] relative overflow-hidden'
-    id='projects'
-  >
-    <!-- Dark animated background -->
-    <div class='absolute inset-0 overflow-hidden'>
-      <div class='absolute -top-1/2 -left-1/2 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl'></div>
-      <div class='absolute -bottom-1/2 -right-1/2 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl'></div>
-    </div>
-
-    <div class='relative z-10 px-6 sm:px-8 lg:px-12 2xl:px-16 w-full'>
-      <div class='text-center mb-16'>
-        <h2 class='section-title text-4xl lg:text-5xl font-bold mb-6 animate-fade-in-up text-gray-100'>
-          <span class='font-mono text-blue-400'>const</span> projects <span class='text-gray-500'>=</span> <span class='text-purple-400'>[</span>
-        </h2>
-        <div class='w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6 rounded-full'></div>
-        <p class='text-lg text-gray-400 mt-8 max-w-5xl mx-auto leading-relaxed animate-fade-in-up animation-delay-300ms font-mono'>
-          // Showcasing modern web applications and innovative solutions
-        </p>
-      </div>
-      
-      <div class='projects-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6'>
-        {projects.map((project, index) => (
-          <div 
-            class='project-card-wrapper w-full flex justify-center animate-fade-in-up'
-            style={`animation-delay: ${index * 150}ms`}
-          >
-            <AnimatedProjectCard
-              title={project.title}
-              description={project.description}
-              images={project.images}
-              technologies={project.technologies}
-              projectUrl={project.projectUrl}
-              repoUrl={project.repoUrl}
-            />
-          </div>
-        ))}
-      </div>
-      
-      <!-- View More Projects Button -->
-      <div class='text-center mt-16'>
-        <a
-          href='https://github.com/hnkatze'
-          target='_blank'
-          rel='noopener noreferrer'
-          class='inline-flex items-center gap-3 px-8 py-4 rounded-xl font-semibold glass-button text-purple-700 hover:text-purple-900 group animate-fade-in-up animation-delay-1s'
-        >
-          <span>View More on GitHub</span>
-          <svg class='w-5 h-5 transition-transform duration-300 group-hover:translate-x-1' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M13 7l5 5m0 0l-5 5m5-5H6'></path>
+        <a href={`https://${personal.linkedin}`} target="_blank" class="contact-item">
+          <svg fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
           </svg>
+          LinkedIn
+        </a>
+        
+        <a href={`https://${personal.github}`} target="_blank" class="contact-item">
+          <svg fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          GitHub
         </a>
       </div>
+    </header>
+
+    <!-- Body Content -->
+    <div class="cv-body">
+      <!-- Main Content -->
+      <main class="cv-main">
+        <!-- Experience Section -->
+        <section class="cv-section">
+          <h2>Professional Experience</h2>
+          <div class="experience-timeline">
+            {experience.map(job => (
+              <div class="experience-item fade-in">
+                <div class="experience-date">{job.date}</div>
+                <h3 class="experience-title">{job.title}</h3>
+                <div class="experience-company">{job.company}</div>
+                <p class="experience-description">{job.description}</p>
+                {job.achievements && (
+                  <ul style="margin-top: 12px; padding-left: 20px;">
+                    {job.achievements.map(achievement => (
+                      <li style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 4px;">
+                        {achievement}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="cv-section">
+          <h2>Education</h2>
+          {education.map(edu => (
+            <div class="education-item" style="margin-bottom: 24px;">
+              <div class="experience-date">{edu.date}</div>
+              <h3 class="experience-title">{edu.degree}</h3>
+              <div class="experience-company">{edu.school}</div>
+              <div style="margin-top: 8px;">
+                {edu.highlights.map((item, index) => (
+                  <span style="color: var(--text-secondary); font-size: 0.875rem;">
+                    {item}{index < edu.highlights.length - 1 ? " • " : ""}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </section>
+
+        <!-- Projects Section -->
+        <section class="cv-section">
+          <h2>Featured Projects</h2>
+          <div class="projects-grid">
+            {projects.map(project => (
+              <div class="project-card">
+                <h3 class="project-title">{project.name}</h3>
+                <p class="project-description">{project.description}</p>
+                <div class="project-tech">
+                  {project.tech.map(tech => (
+                    <span class="tech-tag">{tech}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <!-- Portfolio Link -->
+          <div style="margin-top: 32px; padding: 24px; background: var(--bg-secondary); border-radius: 8px; text-align: center;">
+            <p style="margin-bottom: 16px; color: var(--text-primary); font-weight: 500;">
+              View My Complete Portfolio
+            </p>
+            <a 
+              href={`https://${personal.portfolio}`}
+              target="_blank"
+              style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--accent); color: white; border-radius: 6px; font-weight: 500; text-decoration: none; transition: all 0.2s;"
+              onmouseover="this.style.background='var(--accent-hover)'; this.style.transform='translateY(-2px)'"
+              onmouseout="this.style.background='var(--accent)'; this.style.transform='translateY(0)'"
+            >
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+              templates.camilohenriquez.com
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <!-- Sidebar -->
+      <aside class="cv-sidebar">
+        <!-- Skills Section -->
+        <section class="cv-section">
+          <h2>Technical Skills</h2>
+          
+          <div style="margin-bottom: 20px;">
+            <h3 style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 8px; font-weight: 500;">Frontend</h3>
+            <div class="skills-grid">
+              {skills.frontend.map(skill => (
+                <span class="skill-tag">{skill}</span>
+              ))}
+            </div>
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <h3 style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 8px; font-weight: 500;">Backend</h3>
+            <div class="skills-grid">
+              {skills.backend.map(skill => (
+                <span class="skill-tag">{skill}</span>
+              ))}
+            </div>
+          </div>
+          
+          <div>
+            <h3 style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 8px; font-weight: 500;">Tools & DevOps</h3>
+            <div class="skills-grid">
+              {skills.tools.map(skill => (
+                <span class="skill-tag">{skill}</span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Languages Section -->
+        <section class="cv-section">
+          <h2>Languages</h2>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            {languages.map(lang => (
+              <div class="language-item">
+                <span class="language-name">{lang.name}</span>
+                <span class="language-level">{lang.level}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+
+      </aside>
     </div>
-  </section>
-
-</Layout>
-
-<style>
-  /* Enhanced CSS Animations */
-  
-  /* Hero Section Animations */
-  .hero-section {
-    position: relative;
-    min-height: 100vh;
-  }
-  
-  .floating-shape {
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  .animation-delay-2s { animation-delay: 2s; }
-  .animation-delay-4s { animation-delay: 4s; }
-  .animation-delay-6s { animation-delay: 6s; }
-  
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(180deg); }
-  }
-  
-  /* Text Animations */
-  .text-gradient {
-    background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #06b6d4, #10b981);
-    background-size: 400% 400%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientShift 4s ease infinite;
-  }
-  
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  
-  .animate-text-gradient {
-    animation: slideInFromLeft 1s ease-out forwards;
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  
-  @keyframes slideInFromLeft {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  /* Profile Animations */
-  .profile-image {
-    animation: float 3s ease-in-out infinite;
-    transition: all 0.3s ease;
-  }
-  
-  .profile-image:hover {
-    transform: scale(1.05) rotate(5deg);
-  }
-  
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-  
-  .animate-pulse-slow {
-    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-  
-  /* Tech Pills */
-  .tech-pill {
-    @apply px-3 py-1 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full text-sm font-medium;
-    animation: fadeInScale 0.6s ease-out forwards;
-    opacity: 0;
-    transform: scale(0.8) translateY(10px);
-  }
-  
-  @keyframes fadeInScale {
-    to {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-  }
-  
-  /* Fade In Up Animation */
-  .animate-fade-in-up {
-    animation: fadeInUp 0.8s ease-out forwards;
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* Animation Delays */
-  .animation-delay-200ms { animation-delay: 200ms; }
-  .animation-delay-300ms { animation-delay: 300ms; }
-  .animation-delay-400ms { animation-delay: 400ms; }
-  .animation-delay-500ms { animation-delay: 500ms; }
-  .animation-delay-600ms { animation-delay: 600ms; }
-  .animation-delay-800ms { animation-delay: 800ms; }
-  .animation-delay-1s { animation-delay: 1s; }
-  .animation-delay-1500ms { animation-delay: 1500ms; }
-  .animation-delay-2s { animation-delay: 2s; }
-  .animation-delay-2200ms { animation-delay: 2200ms; }
-  .animation-delay-2400ms { animation-delay: 2400ms; }
-  .animation-delay-2600ms { animation-delay: 2600ms; }
-  
-  /* CTA Button */
-  .cta-button {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .cta-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s ease;
-  }
-  
-  .cta-button:hover::before {
-    left: 100%;
-  }
-  
-  /* Projects Section */
-  .projects-section {
-    position: relative;
-    z-index: 1;
-  }
-  
-  .projects-grid {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  
-  .project-card-wrapper {
-    display: flex !important;
-    justify-content: center;
-    opacity: 1 !important;
-    transform: none !important;
-    visibility: visible !important;
-  }
-  
-  /* Ensure animations don't hide cards initially */
-  .animate-fade-in-up {
-    opacity: 1 !important;
-    animation: fadeInUp 0.8s ease-out forwards;
-  }
-  
-  .section-title {
-    position: relative;
-  }
-  
-  .animate-expand {
-    animation: expand 1s ease-out forwards;
-    transform: scaleX(0);
-  }
-  
-  @keyframes expand {
-    to {
-      transform: scaleX(1);
-    }
-  }
-  
-  /* Modal Animations - Retro Style */
-  .contact-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0;
-    padding: 0;
-    border: none;
-    background: transparent;
-    max-width: 90vw;
-    max-height: 90vh;
-    overflow: visible;
-    animation: modalFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  }
-  
-  .contact-modal[open] {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .contact-modal:not([open]) {
-    animation: modalFadeOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  }
-  
-  .contact-modal::backdrop {
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-    animation: backdropFadeIn 0.3s ease-out forwards;
-  }
-  
-  @keyframes modalFadeIn {
-    from {
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(0.95) translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1) translateY(0);
-    }
-  }
-  
-  @keyframes modalFadeOut {
-    from {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1) translateY(0);
-    }
-    to {
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(0.95) translateY(-10px);
-    }
-  }
-  
-  @keyframes backdropFadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  /* Form Animations - Retro Style */
-  .form-group {
-    position: relative;
-  }
-  
-  .form-group input:focus,
-  .form-group textarea:focus {
-    transform: translateY(-1px) translateX(-1px);
-    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(107, 114, 128, 0.2);
-  }
-  
-  .form-group input:hover,
-  .form-group textarea:hover {
-    transform: translateY(-1px);
-    border-color: #6b7280;
-  }
-  
-  /* Retro button styles */
-  .retro-button:active {
-    transform: translateY(1px) translateX(1px);
-    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Fix modal positioning on different screen sizes */
-  @media (max-width: 768px) {
-    .contact-modal {
-      width: 90vw;
-      max-width: 400px;
-    }
-  }
-  
-  @media (max-height: 600px) {
-    .contact-modal {
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-  }
-  
-  /* Responsive Animations */
-  @media (max-width: 768px) {
-    .animate-text-gradient {
-      animation-duration: 0.8s;
-    }
-    
-    .tech-pill {
-      animation-duration: 0.4s;
-    }
-  }
-  
-  /* Scroll Animations */
-  @keyframes scrollIndicator {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(10px); }
-  }
-  
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .scroll-indicator {
-    animation: scrollIndicator 2s ease-in-out infinite;
-  }
-  
-  /* Hover Effects */
-  .social-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  }
-  
-  /* Loading Animation for Images */
-  @keyframes shimmer {
-    0% { background-position: -200px 0; }
-    100% { background-position: calc(200px + 100%) 0; }
-  }
-  
-  .image-loading {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200px 100%;
-    animation: shimmer 1.5s infinite;
-  }
-</style>
+  </div>
+</CVLayout>

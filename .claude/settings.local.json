@@ -21,7 +21,12 @@
       "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\pages/**)",
       "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\components/**)",
       "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\components/**)",
-      "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\components/**)"
+      "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\components/**)",
+      "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\pages/**)",
+      "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\layouts/**)",
+      "Bash(copy:*)",
+      "Read(/C:\\Users\\Camilo\\proyectos\\portafolio-\\src\\pages/**)",
+      "Bash(npm run dev:*)"
     ],
     "deny": [],
     "ask": []
