@@ -4,6 +4,10 @@ import { Image } from "astro:assets";
 import meb from "../../public/tshirtw.png";
 import "../styles/cv-layout.css";
 
+// Dynamic experience calculation
+const startYear = 2021;
+const yearsOfExperience = new Date().getFullYear() - startYear;
+
 // Contact info
 const contact = {
   email: "contact@camilohenriquez.com",
@@ -28,7 +32,7 @@ const experience = [
     ]
   },
   {
-    title: "Freelance Full Stack Developer",
+    title: "Freelance Frontend Developer",
     company: "Self-Employed",
     date: "2021 - 2024",
     description: "Delivered custom web solutions for diverse clients. Specialized in React, Next.js, and Node.js applications.",
@@ -58,13 +62,13 @@ const languages = [
 
 // Core skills for sidebar
 const coreSkills = [
-  "React", "Next.js", "TypeScript", "Node.js", 
-  "Astro", "Tailwind CSS", "PostgreSQL", "MongoDB",
-  "Git", "Docker", "AWS", "Agile"
+  "React", "Next.js", "Angular", "Astro", "TypeScript",
+  "Tailwind CSS", "Node.js", "PostgreSQL", "MongoDB",
+  "Git", "Docker", "AWS"
 ];
 ---
 
-<CVLayout title="Camilo Henriquez - Full Stack Developer CV">
+<CVLayout title="Camilo Henriquez - Frontend-Focused Developer CV">
   <div class="cv-container">
     <div class="cv-layout">
       <!-- Sidebar -->
@@ -79,9 +83,9 @@ const coreSkills = [
             />
           </div>
           <h1 class="cv-name">Camilo Henriquez</h1>
-          <p class="cv-title">Full Stack Developer</p>
+          <p class="cv-title">Frontend-Focused Developer</p>
           <p class="cv-summary">
-            Passionate developer with 3+ years of experience building scalable web applications. 
+            Passionate developer with {yearsOfExperience}+ years of experience building scalable web applications.
             Focused on clean code, best practices, and delivering exceptional user experiences.
           </p>
         </div>
@@ -142,6 +146,33 @@ const coreSkills = [
               <span class="cv-skill-tag">{skill}</span>
             ))}
           </div>
+        </div>
+
+        <!-- AI-Augmented Workflow Section -->
+        <div class="cv-section">
+          <h2 class="cv-section-title">
+            <svg class="cv-contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            AI-Augmented Workflow
+          </h2>
+          <div class="cv-ai-workflow">
+            <div class="cv-ai-item">
+              <span class="cv-ai-label">AI Coding Assistants</span>
+              <span class="cv-ai-detail">Claude Code, GitHub Copilot for code generation, refactors & pair programming</span>
+            </div>
+            <div class="cv-ai-item">
+              <span class="cv-ai-label">MCP Integrations</span>
+              <span class="cv-ai-detail">Model Context Protocol servers for enhanced development workflows</span>
+            </div>
+            <div class="cv-ai-item">
+              <span class="cv-ai-label">Automated Review</span>
+              <span class="cv-ai-detail">AI-accelerated test scaffolding and code review</span>
+            </div>
+          </div>
+          <p class="cv-ai-summary">
+            I integrate AI tools into my daily workflow to maximize productivity and code quality, while maintaining full human oversight on architecture and design decisions.
+          </p>
         </div>
 
         <!-- Languages Section -->

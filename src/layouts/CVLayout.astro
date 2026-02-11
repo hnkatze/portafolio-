@@ -6,9 +6,12 @@ export interface Props {
   image?: string;
 }
 
-const { 
-  title, 
-  description = "Camilo Henriquez - Full Stack Developer with 3+ years of experience in React, Next.js, TypeScript, and modern web technologies. View my professional CV and portfolio.",
+const startYear = 2021;
+const yearsOfExperience = new Date().getFullYear() - startYear;
+
+const {
+  title,
+  description = `Camilo Henriquez - Frontend-Focused Developer with ${yearsOfExperience}+ years of experience in React, Next.js, Angular, TypeScript, and modern web technologies. View my professional CV and portfolio.`,
   keywords = "Camilo Henriquez, Full Stack Developer, React Developer, Next.js Developer, TypeScript Developer, JavaScript Expert, Web Developer, Frontend Developer, Backend Developer, Node.js Developer, Software Engineer, Desarrollador Full Stack, Desarrollador Web, Creative Information Technologies, CEUTEC, Honduras Developer, Remote Developer, Astro Developer, Angular Developer, TailwindCSS, PostgreSQL, MongoDB, Firebase, AWS, Docker, Git, CI/CD, Portfolio, CV, Resume, Curriculum Vitae, Software Development, Web Applications, SaaS Development, E-commerce Development, REST API, GraphQL, Agile Development, Scrum, Professional Developer, Freelance Developer, Tech Lead, Software Architect, HTML5, CSS3, ES6, React Hooks, Next.js 14, Server Components, SSR, SSG, ISR, JAMstack, Responsive Design, Mobile First, PWA, SEO Optimization, Performance Optimization, Code Review, Best Practices, Clean Code, Testing, Jest, Software Engineering, Computer Science, Bilingual Developer, English Spanish Developer",
   image = "/og-image.png"
 } = Astro.props;
@@ -94,7 +97,7 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
           "https://github.com/camilohenriquez",
           "https://templates.camilohenriquez.com"
         ],
-        "jobTitle": "Full Stack Developer",
+        "jobTitle": "Frontend-Focused Developer",
         "worksFor": {
           "@type": "Organization",
           "name": "Creative Information Technologies",
@@ -103,7 +106,7 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
         "knowsAbout": ["React", "Next.js", "TypeScript", "Node.js", "JavaScript", "Astro", "Angular", "TailwindCSS", "PostgreSQL", "MongoDB", "Express.js", "NestJS", "GraphQL", "REST API", "Git", "Docker", "AWS", "Firebase", "Jest", "Webpack", "HTML5", "CSS3", "Sass", "Redux", "React Hooks", "Responsive Design", "SEO", "Web Performance", "Agile", "Scrum"],
         "hasOccupation": {
           "@type": "Occupation",
-          "name": "Full Stack Developer",
+          "name": "Frontend-Focused Developer",
           "occupationalCategory": "15-1252.00",
           "occupationLocation": {
             "@type": "City",
@@ -121,7 +124,7 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
           "name": "CEUTEC",
           "url": "https://ceutec.hn"
         },
-        "description": "Full Stack Developer with 3+ years of experience building scalable web applications",
+        "description": "Frontend-Focused Developer with 5+ years of experience building scalable web applications",
         "email": "contact@camilohenriquez.com",
         "address": {
           "@type": "PostalAddress",
@@ -176,7 +179,7 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astr
         "@type": "WebSite",
         "name": "Camilo Henriquez Portfolio",
         "url": "https://camilohenriquez.com",
-        "description": "Full Stack Developer Portfolio - React, Next.js, TypeScript Expert",
+        "description": "Frontend-Focused Developer Portfolio - React, Next.js, Angular, TypeScript Expert",
         "author": {
           "@type": "Person",
           "name": "Camilo Henriquez"

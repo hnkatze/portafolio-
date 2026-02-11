@@ -4,11 +4,15 @@ import { Image } from "astro:assets";
 import meb from "../../public/tshirtw.png";
 import "../styles/minimal-cv.css";
 
+// Dynamic experience calculation
+const startYear = 2021;
+const yearsOfExperience = new Date().getFullYear() - startYear;
+
 // Personal Information
 const personal = {
   name: "Camilo Henriquez",
-  title: "Full Stack Developer",
-  summary: "Passionate developer with 3+ years of experience building scalable web applications. Specialized in React, Next.js, and modern JavaScript frameworks. Focused on clean code, best practices, and delivering exceptional user experiences.",
+  title: "Frontend-Focused Developer",
+  summary: `Passionate developer with ${yearsOfExperience}+ years of experience building scalable web applications. Specialized in React, Next.js, Angular, and modern JavaScript frameworks. Focused on clean code, best practices, and delivering exceptional user experiences.`,
   email: "contact@camilohenriquez.com",
   phone: "+1 (555) 123-4567",
   location: "Remote / Worldwide",
@@ -26,12 +30,11 @@ const experience = [
     description: "Developing scalable web applications using modern JavaScript frameworks. Collaborating with cross-functional teams to deliver high-quality software solutions.",
     achievements: [
       "Improved application performance by 40%",
-      "Implemented CI/CD pipelines reducing deployment time by 60%",
       "Led frontend architecture decisions for 3 major projects"
     ]
   },
   {
-    title: "Full Stack Developer",
+    title: "Freelance Frontend Developer",
     company: "Freelance",
     date: "2021 - Present",
     description: "Delivered custom web solutions for diverse clients across various industries. Specialized in React, Next.js, and Node.js applications.",
@@ -255,6 +258,28 @@ const projects = [
               ))}
             </div>
           </div>
+        </section>
+
+        <!-- AI-Augmented Workflow Section -->
+        <section class="cv-section">
+          <h2>AI-Augmented Workflow</h2>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div>
+              <span style="font-weight: 600; font-size: 0.875rem; color: var(--text-primary); display: block;">AI Coding Assistants</span>
+              <span style="font-size: 0.8rem; color: var(--text-secondary);">Claude Code, GitHub Copilot for code generation, refactors & pair programming</span>
+            </div>
+            <div>
+              <span style="font-weight: 600; font-size: 0.875rem; color: var(--text-primary); display: block;">MCP Integrations</span>
+              <span style="font-size: 0.8rem; color: var(--text-secondary);">Model Context Protocol servers for enhanced development workflows</span>
+            </div>
+            <div>
+              <span style="font-weight: 600; font-size: 0.875rem; color: var(--text-primary); display: block;">Automated Review</span>
+              <span style="font-size: 0.8rem; color: var(--text-secondary);">AI-accelerated test scaffolding and code review</span>
+            </div>
+          </div>
+          <p style="margin-top: 12px; font-size: 0.8rem; color: var(--text-secondary); font-style: italic;">
+            I integrate AI tools into my daily workflow to maximize productivity and code quality, while maintaining full human oversight on architecture and design decisions.
+          </p>
         </section>
 
         <!-- Languages Section -->

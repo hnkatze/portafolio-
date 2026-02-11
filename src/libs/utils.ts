@@ -69,14 +69,19 @@ export const skills = [
 ];
 export const favo = [
   {
+    name: "Next.js",
+    value: 80,
+    url: "https://icon.icepanel.io/Technology/png-shadow-512/Next.js.png",
+  },
+  {
     name: "Astro.js",
     value: 70,
     url: "https://icon.icepanel.io/Technology/png-shadow-512/Astro.png",
   },
   {
-    name: "Next.js",
-    value: 80,
-    url: "https://icon.icepanel.io/Technology/png-shadow-512/Next.js.png",
+    name: "Angular",
+    value: 50,
+    url: "https://icon.icepanel.io/Technology/svg/AngularJS.svg",
   },
   {
     name: "TypeScript",
@@ -87,11 +92,6 @@ export const favo = [
     name: "Tailwind",
     value: 70,
     url: "https://icon.icepanel.io/Technology/svg/Tailwind-CSS.svg",
-  },
-  {
-    name: "Firebase",
-    value: 20,
-    url: "https://icon.icepanel.io/Technology/svg/Firebase.svg",
   },
 ];
 

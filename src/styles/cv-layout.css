@@ -299,6 +299,39 @@
   color: var(--cv-primary);
 }
 
+/* AI-Augmented Workflow */
+.cv-ai-workflow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cv-ai-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.cv-ai-label {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--cv-text);
+}
+
+.cv-ai-detail {
+  font-size: 0.8rem;
+  color: var(--cv-muted);
+  line-height: 1.4;
+}
+
+.cv-ai-summary {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--cv-muted);
+  font-style: italic;
+  line-height: 1.5;
+}
+
 /* Languages */
 .cv-languages {
   display: flex;
