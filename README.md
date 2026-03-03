@@ -1,438 +1,62 @@
-# 🚀 Portafolio Personal - Camilo Henriquez
+# Camilo Henriquez — Portfolio
 
 [![Astro](https://img.shields.io/badge/Astro-4.15.9-purple?style=flat&logo=astro)](https://astro.build)
 [![React](https://img.shields.io/badge/React-18.3.1-blue?style=flat&logo=react)](https://reactjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6.2-blue?style=flat&logo=typescript)](https://www.typescriptlang.org)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4.13-cyan?style=flat&logo=tailwindcss)](https://tailwindcss.com)
-[![Firebase](https://img.shields.io/badge/Firebase-10.14.0-orange?style=flat&logo=firebase)](https://firebase.google.com)
-[![Framer Motion](https://img.shields.io/badge/Framer%20Motion-11.9.0-pink?style=flat&logo=framer)](https://www.framer.com/motion)
 
-Un portafolio personal moderno y responsivo que muestra mis habilidades como **Full Stack Developer**, construido con las últimas tecnologías web y un diseño retro-futurista.
+Interactive developer portfolio built with Astro Islands + React. Features parallax scroll animations, real-time GitHub integrations, bilingual CV with PDF export, and contact form via EmailJS.
 
-## 🌟 Demo en Vivo
+**[camilohenriquez.com](https://camilohenriquez.com)**
 
-🔗 **[Ver Portafolio](https://portafolio-hnkatze.vercel.app)**
+## Stack
 
-## 📋 Características Destacadas
+- **Framework**: Astro 4 (SSG) + React 18 Islands
+- **Styling**: TailwindCSS + Framer Motion
+- **Contact**: EmailJS (client-side)
+- **CV Export**: html2pdf.js (A4 layout, modal preview)
+- **Language**: TypeScript strict mode
 
-- ✨ **Diseño Retro-Futurista**: Estética única con elementos vintage y modernos combinados
-- 📱 **Totalmente Responsivo**: Optimizado para todos los dispositivos y tamaños de pantalla
-- ⚡ **Rendimiento Excepcional**: Construido con Astro.js para carga ultrarrápida (SSG)
-- � **Animaciones Fluidas**: Integración avanzada con Framer Motion y AOS
-- 💫 **Interacciones Dinámicas**: Efectos hover, transiciones suaves y micro-animaciones
-- 📧 **Modal de Contacto Avanzado**: Sistema de contacto con Firebase backend
-- 🎨 **Componentes Reutilizables**: Arquitectura modular con TypeScript
-- 🔧 **Switch Interactivo**: Alternancia entre skills generales y favoritas
-- � **SEO Optimizado**: Meta tags, Open Graph y estructura semántica
+## Features
 
-## 🛠️ Stack Tecnológico
+- **Interactive Journey**: Scroll-driven experience with parallax layers and entrance animations
+- **Side Navigation**: Fixed dot nav tracking active section
+- **Skills Grid**: Category tabs (Frontend/Backend/Tools) with 3D tilt cards
+- **Experience Timeline**: Animated timeline with alternating layout
+- **Projects Showcase**: 11 projects including MCP servers and dev tools
+- **GitHub Integrations**: Stats, contribution graph, and pinned repos (build-time fetch)
+- **Bilingual CV Modal**: A4 PDF generation with ES/EN toggle, desktop preview + mobile direct download
+- **Contact Form**: EmailJS integration with validation
 
-### **Frontend Core**
+## Project Structure
 
-- **[Astro.js 4.15.9](https://astro.build)** - Framework web moderno con arquitectura de islas
-- **[React 18.3.1](https://reactjs.org)** - Componentes interactivos y estado dinámico
-- **[TypeScript 5.6.2](https://www.typescriptlang.org)** - Tipado estático para mejor DX
-
-### **Styling & Design**
-
-- **[TailwindCSS 3.4.13](https://tailwindcss.com)** - Framework CSS utility-first
-- **[Tailwind Animate](https://github.com/jamiebuilds/tailwindcss-animate)** - Animaciones CSS avanzadas
-- **CSS Custom Properties** - Variables CSS para temas dinámicos
-
-### **Animaciones & UX**
-
-- **[Framer Motion 11.9.0](https://www.framer.com/motion)** - Animaciones declarativas para React
-- **[AOS (Animate On Scroll)](https://michalsnik.github.io/aos/)** - Animaciones basadas en scroll
-- **Intersection Observer API** - Detección de visibilidad optimizada
-
-### **UI Components**
-
-- **[Radix UI](https://www.radix-ui.com)** - Primitivos de UI accesibles y sin estilos
-- **[Lucide React](https://lucide.dev)** - Iconos SVG optimizados y consistentes
-- **[Class Variance Authority](https://cva.style/docs)** - Sistema de variantes de componentes
-
-### **Backend & Services**
-
-- **[Firebase 10.14.0](https://firebase.google.com)** - Backend as a Service
-  - Firestore Database para formularios de contacto
-  - Storage para imágenes y assets
-  - Hosting para contenido estático
-
-### **Development Tools**
-
-- **[Astro Integration](https://docs.astro.build/en/guides/integrations-guide/)** - React + TailwindCSS
-- **Path Mapping** - Imports absolutos con `@/*`
-- **ESLint + Prettier** - Linting y formateo de código
-
-## 📁 Arquitectura del Proyecto
-
-```text
-portafolio/
-├── 📁 public/                    # Assets estáticos optimizados
-│   ├── favicon.svg              # Favicon del sitio
-│   ├── tshirtb.png             # Foto de perfil (tema oscuro)
-│   └── tshirtw.png             # Foto de perfil (tema claro)
-├── 📁 src/
-│   ├── 📁 assets/              # SVG y recursos vectoriales
-│   │   ├── discord.svg         # Icono Discord personalizado
-│   │   ├── github.svg          # Icono GitHub (versión 1)
-│   │   ├── github2.svg         # Icono GitHub (versión 2)
-│   │   └── linkedin.svg        # Icono LinkedIn
-│   ├── 📁 components/          # Componentes reutilizables
-│   │   ├── 📁 ui/             # Sistema de Design Components
-│   │   │   ├── badge.tsx       # Componente Badge con variantes
-│   │   │   ├── button.tsx      # Sistema de botones tipados
-│   │   │   └── card.tsx        # Cards con efecto retro
-│   │   ├── AnimatedProjectCard.astro    # Card de proyecto animada
-│   │   ├── AnimatedSection.tsx          # Wrapper de animaciones
-│   │   ├── Card.astro                   # Card base
-│   │   ├── CardProject.astro            # Card de proyecto
-│   │   ├── NavBar.astro                 # Navegación principal
-│   │   └── Skills.tsx                   # Sección de habilidades interactiva
-│   ├── 📁 hooks/              # Custom React Hooks
-│   │   └── useScrollAnimation.ts        # Hook para animaciones de scroll
-│   ├── 📁 layouts/            # Layouts de página
-│   │   └── Layout.astro                 # Layout principal con SEO
-│   ├── 📁 lib/               # Configuración y tipos
-│   │   ├── config.ts                    # Configuración Firebase
-│   │   ├── types.ts                     # Definiciones TypeScript
-│   │   └── utils.ts                     # Utilidades (cn, clsx)
-│   ├── 📁 libs/              # Datos y constantes
-│   │   └── utils.ts                     # Skills, proyectos y datos
-│   ├── 📁 pages/             # Páginas de la aplicación
-│   │   └── index.astro                  # Página principal (Hero + Sections)
-│   ├── 📁 scripts/           # Scripts JavaScript del lado cliente
-│   │   ├── enhancedModal.js             # Modal avanzado con animaciones
-│   │   ├── isModal.js                   # Manejo básico de modal
-│   │   ├── swipper.js                   # Funcionalidad de carrusel
-│   │   └── switch.js                    # Toggle skills/favoritos
-│   └── 📁 styles/            # Estilos CSS globales
-│       ├── global.css                   # Variables CSS + animaciones
-│       └── switch.css                   # Estilos del switch component
-├── 📄 astro.config.mjs          # Configuración de Astro
-├── 📄 components.json           # Configuración shadcn/ui
-├── 📄 tailwind.config.mjs       # Configuración TailwindCSS
-└── 📄 tsconfig.json            # Configuración TypeScript
+```
+src/
+  components/
+    journey/       # Main page islands (Hero, Skills, Experience, Projects, Contact)
+    integrations/  # GitHub stats, contributions, repos (Astro components)
+    cv/            # CV modal template + language toggle
+    ui/            # Shared UI primitives
+  layouts/         # Layout.astro + CVLayout.astro
+  lib/             # Types, i18n helper, EmailJS config
+  libs/            # Portfolio data (skills, projects, experience, education, certifications)
+  pages/           # index.astro + cv.astro (redirect)
+  styles/          # Global CSS + journey animations
 ```
 
-## 🎯 Características Técnicas Avanzadas
-
-### **🎨 Sistema de Animaciones**
-
-- **Framer Motion Variants**: Animaciones orquestadas con stagger effects
-- **Intersection Observer**: Animaciones basadas en visibilidad
-- **CSS Custom Properties**: Variables dinámicas para transiciones
-- **Gesture Recognition**: Hover, tap y drag interactions
-
-### **🔧 Arquitectura de Componentes**
-
-- **Composition Pattern**: Componentes altamente reutilizables
-- **Variant System**: Props tipadas para diferentes estilos
-- **Compound Components**: Componentes que trabajan juntos
-- **Render Props**: Flexibilidad máxima en componentes
-
-### **⚡ Optimizaciones de Rendimiento**
-
-- **Static Site Generation**: Pre-renderizado para velocidad máxima
-- **Image Optimization**: Formatos modernos y lazy loading
-- **Code Splitting**: Carga solo el JavaScript necesario
-- **CSS Purging**: Solo los estilos utilizados en producción
-
-### **🌐 SEO & Accesibilidad**
-
-- **Semantic HTML**: Estructura correcta para screen readers
-- **ARIA Labels**: Atributos de accesibilidad completos
-- **Focus Management**: Navegación por teclado optimizada
-- **Meta Tags**: Open Graph, Twitter Cards y JSON-LD
-
-## 🎭 Secciones Interactivas
-
-### **1. Hero Section Retro**
-
-- **Presentación dinámica** con efectos de máquina de escribir
-- **Foto de perfil interactiva** con hover effects y transforms
-- **Tech stack animado** con badges que aparecen secuencialmente
-- **CTA button** con efectos de shine y micro-interacciones
-- **Social links** con iconos personalizados y hover states
-
-### **2. Skills Section Avanzada**
-
-- **Switch interactivo** para alternar entre todas las skills y favoritas
-- **Progress bars animadas** con efectos de carga secuencial
-- **Skill cards** con hover effects y transformaciones 3D
-- **Iconos dinámicos** que rotan y escalan en interacciones
-- **Stagger animations** para entrada suave de elementos
-
-### **3. Projects Gallery**
-
-- **Grid responsivo** que se adapta a cualquier pantalla
-- **Project cards** con lazy loading de imágenes
-- **Technology badges** con efectos hover únicos
-- **Links interactivos** a demo y repositorio
-- **Image overlays** con gradientes y efectos de hover
-
-### **4. Contact Modal Profesional**
-
-- **Modal backdrop** con blur effect y animaciones
-- **Form validation** en tiempo real con feedback visual
-- **Success animations** con iconos animados
-- **Firebase integration** para almacenar mensajes
-- **Error handling** con notificaciones elegantes
-
-## 🚀 Instalación y Desarrollo
-
-### **Prerrequisitos**
+## Quick Start
 
 ```bash
-Node.js >= 18.0.0
-npm >= 8.0.0 (o yarn/pnpm)
-Git >= 2.0.0
-```
-
-### **Instalación Rápida**
-
-```bash
-# Clonar repositorio
-git clone https://github.com/hnkatze/portafolio-.git
-cd portafolio-
-
-# Instalar dependencias
 npm install
-
-# Configurar variables de entorno (opcional)
-cp .env.example .env.local
-
-# Ejecutar en desarrollo
-npm run dev
+npm run dev        # http://localhost:4321
+npm run build      # Production build
+npm run preview    # Preview build locally
 ```
 
-### **Scripts Disponibles**
+## Data
 
-```bash
-npm run dev         # Servidor de desarrollo (http://localhost:4321)
-npm run build       # Build de producción optimizada
-npm run preview     # Preview de la build localmente
-npm run astro       # CLI de Astro para comandos avanzados
-```
+All portfolio data lives in `src/libs/utils.ts` — skills, projects, experience, education, certifications, and personal info. Types are defined in `src/lib/types.ts`.
 
-### **Configuración Firebase (Opcional)**
+## License
 
-```javascript
-// .env.local
-PUBLIC_FIREBASE_API_KEY=tu_api_key
-PUBLIC_FIREBASE_AUTH_DOMAIN=tu_proyecto.firebaseapp.com
-PUBLIC_FIREBASE_PROJECT_ID=tu_proyecto_id
-PUBLIC_FIREBASE_STORAGE_BUCKET=tu_proyecto.appspot.com
-PUBLIC_FIREBASE_MESSAGING_SENDER_ID=123456789
-PUBLIC_FIREBASE_APP_ID=1:123456789:web:abcdef
-```
-
-## 🎨 Personalización Avanzada
-
-### **Modificar Información Personal**
-
-```typescript
-// src/pages/index.astro - Líneas 34-42
-<h1 class='text-4xl lg:text-7xl font-bold leading-tight font-mono'>
-  <span class='block text-gray-800'>Hi, I'm</span>
-  <span class='block text-gray-900'>Tu Nombre Aquí</span>
-</h1>
-```
-
-### **Actualizar Skills y Tecnologías**
-
-```typescript
-// src/libs/utils.ts
-export const skills = [
-  {
-    name: "Nueva Tecnología",
-    value: 85, // Porcentaje 0-100
-    url: "https://tu-icono-url.com/icon.svg"
-  }
-];
-
-export const favo = [
-  // Tus tecnologías favoritas
-];
-```
-
-### **Agregar Nuevos Proyectos**
-
-```typescript
-// src/libs/utils.ts
-export const projects: PropsProject[] = [
-  {
-    title: "Nombre del Proyecto",
-    description: "Descripción detallada con tecnologías utilizadas",
-    images: "https://tu-imagen.com/screenshot.jpg",
-    technologies: ["React", "Next.js", "TypeScript"],
-    projectUrl: "https://demo-live.com",
-    repoUrl: "https://github.com/usuario/proyecto"
-  }
-];
-```
-
-### **Personalizar Tema de Colores**
-
-```css
-/* src/styles/global.css */
-:root {
-  --primary: 220 100% 50%;     /* Azul personalizado */
-  --secondary: 160 100% 50%;   /* Verde personalizado */
-  --accent: 340 100% 50%;      /* Rosa personalizado */
-}
-```
-
-## 🌐 Despliegue y Hosting
-
-### **Vercel (Recomendado)**
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/hnkatze/portafolio-)
-
-1. Conecta tu fork del repositorio
-2. Vercel detecta automáticamente Astro
-3. Variables de entorno opcionales para Firebase
-4. Deploy automático en cada push
-
-### **Netlify**
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/hnkatze/portafolio-)
-
-```bash
-# Build command
-npm run build
-
-# Publish directory
-dist/
-
-# Redirects file (opcional)
-# _redirects en public/
-```
-
-### **GitHub Pages**
-
-```yaml
-# .github/workflows/deploy.yml
-name: Deploy to GitHub Pages
-on:
-  push:
-    branches: [ main ]
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - run: npm install
-      - run: npm run build
-      - uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-```
-
-## 📊 Métricas de Rendimiento
-
-### **Lighthouse Scores**
-
-- **Performance**: 98/100 ⚡
-- **Accessibility**: 100/100 ♿
-- **Best Practices**: 95/100 ✅
-- **SEO**: 100/100 🔍
-
-### **Métricas Web Vitals**
-
-- **LCP**: < 1.2s (Excellent)
-- **FID**: < 100ms (Good)
-- **CLS**: < 0.1 (Good)
-- **FCP**: < 1.0s (Excellent)
-
-## 🤝 Contribuciones
-
-¡Las contribuciones son muy bienvenidas! Este proyecto sigue las mejores prácticas de desarrollo:
-
-### **Proceso de Contribución**
-
-1. **Fork** el repositorio
-2. **Crea** una rama feature (`git checkout -b feature/nueva-funcionalidad`)
-3. **Commit** tus cambios (`git commit -m 'feat: nueva funcionalidad increíble'`)
-4. **Push** a la rama (`git push origin feature/nueva-funcionalidad`)
-5. **Abre** un Pull Request detallado
-
-### **Convenciones de Código**
-
-- **Commits**: Seguimos [Conventional Commits](https://www.conventionalcommits.org/)
-- **TypeScript**: Tipado estricto obligatorio
-- **Components**: PascalCase para componentes
-- **CSS**: Utility-first con Tailwind
-
-### **Issues y Feature Requests**
-
-- 🐛 **Bug Reports**: Usa el template de bug
-- ✨ **Feature Requests**: Describe el caso de uso
-- 📖 **Documentation**: Mejoras a la documentación
-- 🎨 **Design**: Sugerencias de UI/UX
-
-## 📄 Licencia
-
-Este proyecto está bajo la **Licencia MIT**. Esto significa que puedes:
-
-- ✅ Usar comercialmente
-- ✅ Modificar el código
-- ✅ Distribuir
-- ✅ Sublicenciar
-- ❌ Responsabilidad del autor
-
-Ver el archivo [LICENSE](LICENSE) para detalles completos.
-
-## 👨‍💻 Autor y Contacto
-
-**Camilo Henriquez** - *Full Stack Developer & UI/UX Enthusiast*
-
-- 🐙 **GitHub**: [@hnkatze](https://github.com/hnkatze)
-- 💼 **LinkedIn**: [/in/hnkatze](https://www.linkedin.com/in/hnkatze/)
-- 💬 **Discord**: Katze#9714
-- 🌐 **Portfolio**: [portafolio-hnkatze.vercel.app](https://portafolio-hnkatze.vercel.app)
-- 📧 **Email**: Contacto a través del formulario web
-
-### **Especializaciones**
-
-- **Frontend**: React, Next.js, Astro.js, TypeScript
-- **Backend**: Node.js, Firebase, PostgreSQL
-- **Cloud**: AWS, Vercel, Netlify
-- **Design**: Figma, Adobe Creative Suite
-
-## 🙏 Agradecimientos y Créditos
-
-### **Tecnologías y Herramientas**
-
-- **[Astro Team](https://astro.build)** - Por el increíble framework
-- **[Vercel](https://vercel.com)** - Hosting y despliegue excepcional
-- **[TailwindCSS](https://tailwindcss.com)** - Sistema de diseño utility-first
-
-### **Recursos y Assets**
-
-- **[Icepanel](https://icepanel.io)** - Iconos de tecnologías
-- **[Lucide](https://lucide.dev)** - Iconografía consistente
-- **[Unsplash](https://unsplash.com)** - Imágenes de alta calidad
-
-### **Inspiración y Comunidad**
-
-- **Dev Community** - Feedback y sugerencias
-- **GitHub Sponsors** - Apoyo al desarrollo open source
-- **Astro Discord** - Comunidad técnica excepcional
-
----
-
-### ⭐ Si este proyecto te fue útil, considera darle una estrella
-
-[![GitHub stars](https://img.shields.io/github/stars/hnkatze/portafolio-?style=social)](https://github.com/hnkatze/portafolio-/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/hnkatze/portafolio-?style=social)](https://github.com/hnkatze/portafolio-/network/members)
-
-**[🚀 Ver Demo en Vivo](https://portafolio-hnkatze.vercel.app) | [📚 Documentación](https://github.com/hnkatze/portafolio-/wiki) | [🎯 Roadmap](https://github.com/hnkatze/portafolio-/projects)**
-
----
-
-Última actualización: Enero 2025 | Versión: 2.0.0
+MIT
