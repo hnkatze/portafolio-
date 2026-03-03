@@ -1,0 +1,35 @@
+---
+interface Props {
+  username: string;
+}
+
+const { username } = Astro.props;
+---
+
+<div class="overflow-x-auto rounded-xl" data-github-contributions>
+  <img
+    src={`https://ghchart.rshah.org/60a5fa/${username}`}
+    alt={`${username}'s GitHub Contribution Graph`}
+    loading="lazy"
+    class="min-w-[700px] h-auto"
+  />
+  <div class="hidden p-4 text-center text-gray-500 text-sm" data-fallback>
+    <a
+      href={`https://github.com/${username}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-blue-400 hover:underline"
+    >
+      View Contributions on GitHub →
+    </a>
+  </div>
+</div>
+
+<script is:inline>
+  document.querySelectorAll('[data-github-contributions] img').forEach(img => {
+    img.addEventListener('error', () => {
+      img.style.display = 'none';
+      img.parentElement.querySelector('[data-fallback]').classList.remove('hidden');
+    });
+  });
+</script>

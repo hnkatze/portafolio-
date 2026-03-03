@@ -9,6 +9,31 @@ export default {
     			md: 'calc(var(--radius) - 2px)',
     			sm: 'calc(var(--radius) - 4px)'
     		},
+    		animation: {
+    			'float-slow': 'floatSlow 6s ease-in-out infinite',
+    			'float-medium': 'floatMedium 4s ease-in-out infinite',
+    			'glow-pulse': 'glowPulse 3s ease-in-out infinite',
+    			'scroll-bounce': 'scrollBounce 2s ease-in-out infinite',
+    		},
+    		keyframes: {
+    			floatSlow: {
+    				'0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+    				'50%': { transform: 'translateY(-20px) rotate(3deg)' },
+    			},
+    			floatMedium: {
+    				'0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+    				'33%': { transform: 'translateY(-15px) rotate(-2deg)' },
+    				'66%': { transform: 'translateY(-8px) rotate(2deg)' },
+    			},
+    			glowPulse: {
+    				'0%, 100%': { boxShadow: '0 0 20px rgba(96, 165, 250, 0.2)' },
+    				'50%': { boxShadow: '0 0 40px rgba(96, 165, 250, 0.4)' },
+    			},
+    			scrollBounce: {
+    				'0%, 100%': { transform: 'translateY(0)', opacity: '0.6' },
+    				'50%': { transform: 'translateY(8px)', opacity: '1' },
+    			},
+    		},
     		colors: {
     			background: 'hsl(var(--background))',
     			foreground: 'hsl(var(--foreground))',

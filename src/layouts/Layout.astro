@@ -1,9 +1,11 @@
 ---
+import '../styles/global.css';
 interface Props {
   title: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description = "Frontend-Focused Developer passionate about creating innovative solutions" } = Astro.props;
 ---
 
 <!doctype html>
@@ -16,11 +18,7 @@ const { title } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <meta
-      name="description"
-      content="Portafolio de Camilo Henriquez - Frontend-Focused Developer especializado en React, Next.js, Angular, Astro y tecnologías modernas."
-    />
+    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -34,10 +32,7 @@ const { title } = Astro.props;
       content="full stack developer, react, nextjs, astro, typescript, portfolio"
     />
     <meta property="og:title" content={title} />
-    <meta
-      property="og:description"
-      content="Frontend-Focused Developer passionate about creating innovative solutions"
-    />
+    <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://camilohenriquez.com" />
     <meta property="og:image" content="https://camilohenriquez.com/og-image.png" />
@@ -57,35 +52,6 @@ const { title } = Astro.props;
     <main>
       <slot />
     </main>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      const typebotInitScript = document.createElement("script");
-      typebotInitScript.type = "module";
-      typebotInitScript.innerHTML = `import Typebot from 'https://cdn.jsdelivr.net/npm/@typebot.io/js@0/dist/web.js'
-
-Typebot.initBubble({
-  typebot: "faq-elms0s6",
-  theme: {
-    button: { backgroundColor: "#5490da" },
-    chatWindow: { backgroundColor: "#f1f1f1" },
-  },
-});
-`;
-      document.body.append(typebotInitScript);
-    </script>
-    <script is:inline>
-      // Initialize AOS
-      document.addEventListener("DOMContentLoaded", function () {
-        if (window.AOS) {
-          window.AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100,
-            easing: "ease-out-cubic",
-          });
-        }
-      });
-    </script>
   </body>
 </html>
 
@@ -94,12 +60,6 @@ Typebot.initBubble({
     --accent: 136, 58, 234;
     --accent-light: 224, 204, 250;
     --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%
-    );
   }
 
   * {
@@ -127,24 +87,14 @@ Typebot.initBubble({
 
   code {
     font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
+      Menlo, Monaco, Lucida Console, Liberation Mono,
+      DejaVu Sans Mono, Bitstream Vera Sans Mono,
+      Courier New, monospace;
   }
 
-  /* Enhanced link styles */
   a {
     text-decoration: none;
     transition: all 0.3s ease;
-  }
-
-  a img {
-    color: white;
   }
 
   /* Custom scrollbar */
@@ -165,13 +115,7 @@ Typebot.initBubble({
     background: linear-gradient(180deg, #3b82f6, #8b5cf6);
   }
 
-  /* Selection styles */
   ::selection {
-    background: rgba(59, 130, 246, 0.2);
-    color: #1e40af;
-  }
-
-  ::-moz-selection {
     background: rgba(59, 130, 246, 0.2);
     color: #1e40af;
   }
@@ -185,7 +129,6 @@ Typebot.initBubble({
     outline-offset: 2px;
   }
 
-  /* Loading states */
   .loading {
     opacity: 0.7;
     pointer-events: none;

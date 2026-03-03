@@ -1,0 +1,74 @@
+---
+interface Props {
+  username: string;
+}
+
+const { username } = Astro.props;
+
+interface Repo {
+  name: string;
+  description: string | null;
+  language: string | null;
+  stargazers_count: number;
+  html_url: string;
+}
+
+let repos: Repo[] = [];
+
+try {
+  const res = await fetch(
+    `https://api.github.com/users/${username}/repos?sort=stars&per_page=6`,
+    { headers: { Accept: "application/vnd.github.v3+json" } }
+  );
+  if (res.ok) {
+    repos = await res.json();
+  }
+} catch {
+  // Build-time fetch failed — render fallback
+}
+---
+
+{
+  repos.length > 0 ? (
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      {repos.map((repo) => (
+        <a
+          href={repo.html_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-blue-400/20 transition-all duration-300 block"
+        >
+          <div class="flex items-start justify-between mb-2">
+            <h4 class="text-sm font-medium text-white truncate mr-2">
+              {repo.name}
+            </h4>
+            {repo.stargazers_count > 0 && (
+              <span class="text-xs text-yellow-400 flex items-center gap-0.5 shrink-0">
+                &#9733; {repo.stargazers_count}
+              </span>
+            )}
+          </div>
+          {repo.description && (
+            <p class="text-xs text-gray-500 line-clamp-2 mb-2">
+              {repo.description}
+            </p>
+          )}
+          {repo.language && (
+            <span class="text-xs text-gray-600">{repo.language}</span>
+          )}
+        </a>
+      ))}
+    </div>
+  ) : (
+    <div class="p-4 text-center text-gray-500 text-sm">
+      <a
+        href={`https://github.com/${username}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-blue-400 hover:underline"
+      >
+        View repositories on GitHub
+      </a>
+    </div>
+  )
+}
