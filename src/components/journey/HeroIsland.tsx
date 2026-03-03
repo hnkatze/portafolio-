@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { TypewriterText } from "@/components/AnimatedSection";
 import ParallaxLayer from "./ParallaxLayer";
 import type { PersonalInfo } from "@/lib/types";
 import type { Lang } from "@/lib/types";
@@ -30,14 +29,24 @@ export default function HeroIsland({ data, lang }: HeroIslandProps) {
         <div className="absolute top-[60%] left-[25%] w-2.5 h-2.5 bg-blue-300/20 rounded-full" />
       </ParallaxLayer>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+      {/* Content — fast stagger, no typewriter */}
+      <motion.div
+        className="relative z-10 max-w-5xl mx-auto px-6 text-center"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: {},
+          visible: { transition: { staggerChildren: 0.15 } },
+        }}
+      >
         {/* Profile photo */}
         <motion.div
           className="mb-8"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+          variants={{
+            hidden: { scale: 0.8, opacity: 0 },
+            visible: { scale: 1, opacity: 1 },
+          }}
+          transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           <div className="relative inline-block">
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 blur-lg opacity-30 animate-glow-pulse" />
@@ -50,22 +59,26 @@ export default function HeroIsland({ data, lang }: HeroIslandProps) {
           </div>
         </motion.div>
 
-        {/* Name with typewriter */}
+        {/* Name */}
         <motion.h1
           className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 0.5 }}
         >
-          <TypewriterText text={data.name} delay={0.5} />
+          {data.name}
         </motion.h1>
 
         {/* Title */}
         <motion.p
           className="text-xl md:text-2xl text-blue-400 font-medium mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 0.5 }}
         >
           {t(data.title, lang)}
         </motion.p>
@@ -73,9 +86,11 @@ export default function HeroIsland({ data, lang }: HeroIslandProps) {
         {/* Summary */}
         <motion.p
           className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 0.5 }}
         >
           {t(data.summary, lang)}
         </motion.p>
@@ -83,9 +98,11 @@ export default function HeroIsland({ data, lang }: HeroIslandProps) {
         {/* Social links */}
         <motion.div
           className="flex items-center justify-center gap-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.8, duration: 0.6 }}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 0.5 }}
         >
           <a
             href={`https://github.com/${data.socials.github}`}
@@ -119,30 +136,7 @@ export default function HeroIsland({ data, lang }: HeroIslandProps) {
             </svg>
           </a>
         </motion.div>
-
-        {/* Scroll indicator */}
-        {/* <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.2, duration: 0.6 }}
-        >
-          <div className="flex flex-col items-center gap-2 text-gray-500">
-            <span className="text-xs uppercase tracking-widest">Scroll</span>
-            <motion.div
-              className="w-5 h-8 border-2 border-gray-600 rounded-full flex justify-center"
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <motion.div
-                className="w-1 h-2 bg-gray-500 rounded-full mt-1.5"
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-            </motion.div>
-          </div>
-        </motion.div> */}
-      </div>
+      </motion.div>
     </section>
   );
 }

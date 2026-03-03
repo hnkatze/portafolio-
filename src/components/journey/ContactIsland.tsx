@@ -49,7 +49,7 @@ export default function ContactIsland({ data }: ContactIslandProps) {
           </p>
         </AnimatedSection>
 
-        <AnimatedSection delay={0.2}>
+        <AnimatedSection delay={0.1}>
           <form
             onSubmit={handleSubmit}
             className="space-y-5 p-8 rounded-2xl bg-white/[0.03] border border-white/[0.06]"
@@ -123,7 +123,7 @@ export default function ContactIsland({ data }: ContactIslandProps) {
         </AnimatedSection>
 
         {/* Social links + CV link */}
-        <AnimatedSection delay={0.4} className="mt-10 text-center">
+        <AnimatedSection delay={0.2} className="mt-10 text-center">
           <div className="flex items-center justify-center gap-4 mb-4">
             <a
               href={`https://github.com/${data.socials.github}`}

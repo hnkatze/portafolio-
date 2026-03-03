@@ -95,7 +95,7 @@ export default function SkillsIsland({ skills }: SkillsIslandProps) {
         </AnimatedSection>
 
         {/* Category tabs */}
-        <AnimatedSection delay={0.2} className="flex justify-center gap-2 mb-12">
+        <AnimatedSection delay={0.1} className="flex justify-center gap-2 mb-12">
           {categories.map(({ key, label }) => (
             <button
               key={key}
