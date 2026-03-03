@@ -150,7 +150,7 @@ export default function CVTemplate({
           <span style={{ color: "#d1d5db" }}>|</span>
           <span>github.com/{personalInfo.socials.github}</span>
           <span style={{ color: "#d1d5db" }}>|</span>
-          <span>linkedin.com/in/camilohenriquez</span>
+          <span>linkedin.com/in/hnkatze</span>
         </div>
       </header>
 
@@ -459,7 +459,7 @@ export default function CVTemplate({
                     <span style={{ color: "#d1d5db" }}>|</span>
                     <span>github.com/{personalInfo.socials.github}</span>
                     <span style={{ color: "#d1d5db" }}>|</span>
-                    <span>linkedin.com/in/camilohenriquez</span>
+                    <span>linkedin.com/in/hnkatze</span>
                   </div>
                 </header>
 

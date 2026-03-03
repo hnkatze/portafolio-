@@ -25,7 +25,7 @@ export const personalInfo: PersonalInfo = {
   photo: "/tshirtw.png",
   socials: {
     github: "hnkatze",
-    linkedin: "https://linkedin.com/in/camilohenriquez",
+    linkedin: "https://www.linkedin.com/in/hnkatze/",
     discord: undefined,
   },
 };
@@ -374,6 +374,6 @@ export const integrationConfig: IntegrationConfig = {
   },
   discord: undefined,
   linkedin: {
-    profileUrl: "https://linkedin.com/in/camilohenriquez",
+    profileUrl: "https://www.linkedin.com/in/hnkatze/",
   },
 };
