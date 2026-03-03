@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -28,7 +29,7 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 1rem;
-    
+
     /* Glassmorphism colors */
     --glass-bg: rgba(255, 255, 255, 0.1);
     --glass-border: rgba(255, 255, 255, 0.2);
@@ -38,6 +39,7 @@
     --gradient-3: #f093fb;
     --gradient-4: #4facfe;
   }
+
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
@@ -63,13 +65,13 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-    
-    /* Glassmorphism colors dark */
+
     --glass-bg: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
     --glass-shadow: rgba(0, 0, 0, 0.3);
   }
 }
+
 @layer base {
   * {
     @apply border-border;
@@ -153,12 +155,8 @@
     transform: translateY(100vh) translateX(0);
     opacity: 0;
   }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
   to {
     transform: translateY(-100vh) translateX(100px);
     opacity: 0;
@@ -186,7 +184,7 @@
   border-color: rgba(96, 165, 250, 0.5);
 }
 
-/* Modern Theme Animations and Utilities */
+/* CSS animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -220,156 +218,6 @@
   }
 }
 
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out forwards;
-  opacity: 0;
-}
-
-.animate-slide-in-left {
-  animation: slideInLeft 0.8s ease-out forwards;
-  opacity: 0;
-}
-
-.animate-slide-in-right {
-  animation: slideInRight 0.8s ease-out forwards;
-  opacity: 0;
-}
-
-.animate-pulse-slow {
-  animation: pulse 2s infinite;
-}
-
-/* Animation delays */
-.animation-delay-150ms { animation-delay: 150ms; }
-.animation-delay-200ms { animation-delay: 200ms; }
-.animation-delay-300ms { animation-delay: 300ms; }
-.animation-delay-400ms { animation-delay: 400ms; }
-.animation-delay-450ms { animation-delay: 450ms; }
-.animation-delay-500ms { animation-delay: 500ms; }
-.animation-delay-600ms { animation-delay: 600ms; }
-.animation-delay-700ms { animation-delay: 700ms; }
-.animation-delay-800ms { animation-delay: 800ms; }
-.animation-delay-900ms { animation-delay: 900ms; }
-.animation-delay-1s { animation-delay: 1s; }
-.animation-delay-1100ms { animation-delay: 1100ms; }
-.animation-delay-1200ms { animation-delay: 1200ms; }
-.animation-delay-1300ms { animation-delay: 1300ms; }
-.animation-delay-1400ms { animation-delay: 1400ms; }
-.animation-delay-1500ms { animation-delay: 1500ms; }
-.animation-delay-1600ms { animation-delay: 1600ms; }
-.animation-delay-1700ms { animation-delay: 1700ms; }
-.animation-delay-1800ms { animation-delay: 1800ms; }
-
-/* Mobile optimizations for animations */
-@media (max-width: 768px) {
-  .animate-fade-in-up {
-    animation-duration: 0.5s;
-  }
-  
-  .animate-slide-in-left,
-  .animate-slide-in-right {
-    animation-duration: 0.5s;
-  }
-  
-  /* Reduce animation delays on mobile */
-  .animation-delay-600ms { animation-delay: 300ms; }
-  .animation-delay-700ms { animation-delay: 350ms; }
-  .animation-delay-800ms { animation-delay: 400ms; }
-  .animation-delay-900ms { animation-delay: 450ms; }
-  .animation-delay-1s { animation-delay: 500ms; }
-  .animation-delay-1100ms { animation-delay: 550ms; }
-  .animation-delay-1200ms { animation-delay: 600ms; }
-  .animation-delay-1300ms { animation-delay: 650ms; }
-  .animation-delay-1400ms { animation-delay: 700ms; }
-  .animation-delay-1500ms { animation-delay: 750ms; }
-  .animation-delay-1600ms { animation-delay: 800ms; }
-  .animation-delay-1700ms { animation-delay: 850ms; }
-  .animation-delay-1800ms { animation-delay: 900ms; }
-  
-  /* Reduce transform distances on mobile */
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes slideInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-}
-
-/* Prefers reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .animate-fade-in-up,
-  .animate-slide-in-left,
-  .animate-slide-in-right {
-    animation: none;
-    opacity: 1;
-  }
-}
-
-/* Retro utilities */
-.retro-shadow {
-  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
-}
-
-.retro-shadow-hover:hover {
-  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px) translateX(-2px);
-}
-
-.text-shadow-retro {
-  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
-}
-
-/* Scroll indicator pulse animation */
-@keyframes scroll-pulse {
-  0%, 100% {
-    opacity: 0.6;
-    transform: translateY(0);
-  }
-  50% {
-    opacity: 1;
-    transform: translateY(4px);
-  }
-}
-
-.scroll-pulse {
-  animation: scroll-pulse 2s infinite;
-}
-
 /* Glow effects */
 .glow {
   box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
@@ -384,7 +232,7 @@
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Performance optimizations for animations */
+/* Performance optimizations */
 .will-change-transform {
   will-change: transform;
 }
@@ -393,21 +241,10 @@
   will-change: opacity;
 }
 
-/* GPU acceleration for smoother animations */
 .gpu-accelerated {
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000px;
-}
-
-/* Reduce animation complexity on slower devices */
-@media (prefers-reduced-motion: no-preference) {
-  .animate-fade-in-up,
-  .animate-slide-in-left,
-  .animate-slide-in-right {
-    transform: translateZ(0);
-    will-change: transform, opacity;
-  }
 }
 
 /* Modern input styles */
@@ -434,16 +271,6 @@
   background-clip: text;
 }
 
-.code-text {
-  font-family: 'Fira Code', 'Monaco', 'Courier New', monospace;
-  color: #60a5fa;
-}
-
-.code-comment {
-  color: #6b7280;
-  font-style: italic;
-}
-
 /* Animated border gradient */
 .border-gradient {
   position: relative;
@@ -468,4 +295,12 @@
 
 @keyframes borderRotate {
   100% { transform: rotate(360deg); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .gradient-bg-dark,
+  .border-gradient::before {
+    animation: none;
+  }
 }
