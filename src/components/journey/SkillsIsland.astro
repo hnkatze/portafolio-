@@ -1,0 +1,183 @@
+---
+import type { Skill, SkillCategory } from '@/lib/types';
+import ParallaxLayer from './ParallaxLayer.astro';
+
+interface Props {
+  skills: Skill[];
+}
+
+const { skills } = Astro.props;
+
+const categories: { key: SkillCategory; label: string }[] = [
+  { key: 'frontend', label: 'Frontend' },
+  { key: 'backend', label: 'Backend' },
+  { key: 'tools', label: 'Tools' },
+];
+---
+
+<section id="skills" class="relative min-h-screen flex items-center py-24 overflow-hidden">
+  <ParallaxLayer speed={-0.2} class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-10 right-20 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-10 left-20 w-60 h-60 bg-blue-500/5 rounded-full blur-3xl"></div>
+  </ParallaxLayer>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6 w-full">
+    <div class="text-center mb-12" data-skills-heading>
+      <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Skills & Technologies</h2>
+      <p class="text-gray-400 max-w-xl mx-auto">Technologies I work with to build modern web applications</p>
+    </div>
+
+    <!-- Category tabs -->
+    <div class="flex justify-center gap-2 mb-12" data-skills-tabs>
+      {categories.map(({ key, label }) => (
+        <button
+          data-tab={key}
+          class:list={[
+            'px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300',
+            key === 'frontend'
+              ? 'bg-blue-500/20 text-blue-400 border border-blue-400/30'
+              : 'bg-white/5 text-gray-400 border border-white/5 hover:text-white hover:border-white/10'
+          ]}
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+
+    <!-- Pre-rendered grids for each category -->
+    {categories.map(({ key }) => (
+      <div
+        data-category={key}
+        class:list={[
+          'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4',
+          key !== 'frontend' && 'hidden'
+        ]}
+      >
+        {skills.filter(s => s.category === key).map((skill, i) => (
+          <div class="group relative" data-skill-card data-index={i}>
+            <div
+              class="relative p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-blue-400/30 transition-all duration-300 cursor-default"
+              data-tilt-card
+              style="transition: transform 0.15s ease-out;"
+            >
+              <div class="flex items-center gap-3 mb-3">
+                <img
+                  src={skill.icon}
+                  alt={skill.name}
+                  class="w-8 h-8 object-contain"
+                  loading="lazy"
+                />
+                <span class="text-sm font-medium text-white">{skill.name}</span>
+                {skill.favorite && (
+                  <span class="ml-auto text-xs text-yellow-400">&#9733;</span>
+                )}
+              </div>
+              <div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+                <div
+                  class="h-full rounded-full bg-gradient-to-r from-blue-400 to-purple-500"
+                  data-progress-bar
+                  data-value={skill.value}
+                  style="width: 0%;"
+                ></div>
+              </div>
+              <span class="text-xs text-gray-500 mt-1 block text-right">{skill.value}%</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  import { gsap, scrollReveal, prefersReducedMotion } from '@/lib/gsap';
+
+  // --- Scroll reveal for heading and tabs ---
+  scrollReveal('[data-skills-heading]');
+  scrollReveal('[data-skills-tabs]', { delay: 0.1 });
+
+  // --- Tab switching ---
+  const tabs = document.querySelectorAll<HTMLButtonElement>('[data-tab]');
+  const grids = document.querySelectorAll<HTMLDivElement>('[data-category]');
+  const activeClasses = ['bg-blue-500/20', 'text-blue-400', 'border-blue-400/30'];
+  const inactiveClasses = ['bg-white/5', 'text-gray-400', 'border-white/5'];
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const category = tab.dataset.tab!;
+
+      // Update tab styling
+      tabs.forEach(t => {
+        t.classList.remove(...activeClasses);
+        t.classList.add(...inactiveClasses);
+      });
+      tab.classList.remove(...inactiveClasses);
+      tab.classList.add(...activeClasses);
+
+      // Show/hide grids
+      grids.forEach(g => {
+        if (g.dataset.category === category) {
+          g.classList.remove('hidden');
+          // Re-trigger entrance animations
+          const cards = g.querySelectorAll('[data-skill-card]');
+          gsap.from(cards, {
+            opacity: 0, y: 30,
+            duration: prefersReducedMotion ? 0 : 0.5,
+            stagger: 0.05,
+            ease: 'power2.out',
+          });
+          // Re-trigger progress bars
+          g.querySelectorAll<HTMLDivElement>('[data-progress-bar]').forEach((bar, i) => {
+            const value = bar.dataset.value || '0';
+            gsap.fromTo(bar,
+              { width: '0%' },
+              { width: `${value}%`, duration: prefersReducedMotion ? 0 : 1, delay: 0.2 + i * 0.05, ease: 'power2.out' }
+            );
+          });
+        } else {
+          g.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // --- 3D Tilt effect ---
+  if (!prefersReducedMotion) {
+    document.querySelectorAll<HTMLDivElement>('[data-tilt-card]').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `perspective(1000px) rotateX(${y * -10}deg) rotateY(${x * 10}deg)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+      });
+    });
+  }
+
+  // --- Progress bar animation (initial category) ---
+  const visibleGrid = document.querySelector('[data-category="frontend"]');
+  if (visibleGrid) {
+    visibleGrid.querySelectorAll<HTMLDivElement>('[data-progress-bar]').forEach((bar, i) => {
+      const value = bar.dataset.value || '0';
+      gsap.fromTo(bar,
+        { width: '0%' },
+        {
+          width: `${value}%`,
+          duration: prefersReducedMotion ? 0 : 1,
+          delay: 0.2 + i * 0.05,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: bar,
+            start: 'top 90%',
+            once: true,
+          },
+        }
+      );
+    });
+  }
+
+  // --- Card entrance animation ---
+  scrollReveal('[data-category="frontend"] [data-skill-card]', { stagger: 0.05, duration: 0.5 });
+</script>

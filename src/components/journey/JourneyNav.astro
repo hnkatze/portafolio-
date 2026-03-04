@@ -1,0 +1,130 @@
+---
+const islands = [
+  { id: 'hero', label: 'Home' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'integrations', label: 'Integrations' },
+  { id: 'contact', label: 'Contact' },
+];
+---
+
+<!-- Floating top bar -->
+<header id="journey-header" class="fixed top-0 left-0 right-0 z-50 bg-transparent transition-all duration-300" style="transform: translateY(-100px);">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <button id="nav-logo" class="text-lg font-bold text-white hover:text-blue-400 transition-colors">
+      CH<span class="text-blue-400">.</span>
+    </button>
+    <button id="nav-cv-btn" class="px-4 py-2 text-sm font-medium text-gray-300 rounded-lg border border-white/10 hover:border-blue-400/50 hover:text-blue-400 transition-all duration-300">
+      View CV
+    </button>
+  </div>
+</header>
+
+<!-- Side dot navigation -->
+<nav class="hidden md:flex fixed right-6 top-1/2 -translate-y-1/2 z-50 flex-col gap-4">
+  {islands.map(({ id, label }) => (
+    <div class="group relative flex items-center">
+      <span
+        class="absolute right-8 text-xs text-blue-400 font-medium whitespace-nowrap opacity-0"
+        data-nav-label={id}
+      >
+        {label}
+      </span>
+      <button
+        data-nav-dot={id}
+        aria-label={`Navigate to ${label}`}
+        class="w-3 h-3 rounded-full border-2 border-white/30 hover:border-blue-400/80 hover:scale-110 transition-all duration-300"
+      />
+    </div>
+  ))}
+</nav>
+
+<script>
+  import { gsap, prefersReducedMotion } from '@/lib/gsap';
+
+  const header = document.getElementById('journey-header')!;
+  const sections = ['hero', 'skills', 'experience', 'projects', 'integrations', 'contact'];
+  let currentActive = 'hero';
+
+  // --- Header entrance animation ---
+  gsap.to(header, {
+    y: 0,
+    duration: prefersReducedMotion ? 0 : 0.5,
+    ease: 'power2.out',
+  });
+
+  // --- Scroll state ---
+  function updateScrollState() {
+    // Header background
+    if (window.scrollY > 50) {
+      header.classList.add('bg-[#0a0a0a]/80', 'backdrop-blur-md', 'border-b', 'border-white/5');
+      header.classList.remove('bg-transparent');
+    } else {
+      header.classList.remove('bg-[#0a0a0a]/80', 'backdrop-blur-md', 'border-b', 'border-white/5');
+      header.classList.add('bg-transparent');
+    }
+
+    // Active section detection
+    const viewportCenter = window.innerHeight / 2;
+    for (const id of sections) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      const rect = el.getBoundingClientRect();
+      if (rect.top <= viewportCenter && rect.bottom >= viewportCenter) {
+        if (currentActive !== id) {
+          setActiveDot(currentActive, false);
+          setActiveDot(id, true);
+          currentActive = id;
+        }
+        break;
+      }
+    }
+  }
+
+  function setActiveDot(id: string, active: boolean) {
+    const dot = document.querySelector(`[data-nav-dot="${id}"]`) as HTMLButtonElement;
+    const label = document.querySelector(`[data-nav-label="${id}"]`) as HTMLSpanElement;
+    if (!dot || !label) return;
+
+    const dur = prefersReducedMotion ? 0 : 0.2;
+
+    if (active) {
+      dot.classList.add('bg-blue-400', 'border-blue-400', 'shadow-[0_0_12px_rgba(96,165,250,0.5)]', 'scale-125');
+      dot.classList.remove('border-white/30');
+      gsap.fromTo(label, { opacity: 0, x: 10 }, { opacity: 1, x: 0, duration: dur });
+    } else {
+      dot.classList.remove('bg-blue-400', 'border-blue-400', 'shadow-[0_0_12px_rgba(96,165,250,0.5)]', 'scale-125');
+      dot.classList.add('border-white/30');
+      gsap.to(label, { opacity: 0, x: 10, duration: dur });
+    }
+  }
+
+  // Set initial active dot
+  setActiveDot('hero', true);
+
+  window.addEventListener('scroll', updateScrollState, { passive: true });
+  updateScrollState();
+
+  // --- Dot click navigation ---
+  document.querySelectorAll<HTMLButtonElement>('[data-nav-dot]').forEach(dot => {
+    dot.addEventListener('click', () => {
+      const id = dot.dataset.navDot!;
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // --- Logo click ---
+  document.getElementById('nav-logo')?.addEventListener('click', () => {
+    document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // --- CV button ---
+  document.getElementById('nav-cv-btn')?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('open-cv-modal'));
+  });
+
+  // --- Cleanup ---
+  const cleanup = () => window.removeEventListener('scroll', updateScrollState);
+  document.addEventListener('astro:before-swap', cleanup);
+</script>

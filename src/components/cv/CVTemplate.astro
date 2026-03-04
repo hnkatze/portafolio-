@@ -1,0 +1,364 @@
+---
+import type { PersonalInfo, Skill, Experience, Education, Certification, Language, Lang } from '@/lib/types';
+import { t } from '@/lib/i18n';
+
+interface Props {
+  personalInfo: PersonalInfo;
+  skills: Skill[];
+  experience: Experience[];
+  education: Education[];
+  certifications: Certification[];
+  languages: Language[];
+  initialLang: Lang;
+}
+
+const { personalInfo, skills, experience, education, certifications, languages, initialLang } = Astro.props;
+
+const frontendSkills = skills.filter(s => s.category === 'frontend');
+const backendSkills = skills.filter(s => s.category === 'backend');
+const toolsSkills = skills.filter(s => s.category === 'tools');
+
+const labels = {
+  experience: { es: 'Experiencia Profesional', en: 'Professional Experience' },
+  education: { es: 'Educacion', en: 'Education' },
+  skills: { es: 'Habilidades Tecnicas', en: 'Technical Skills' },
+  languages: { es: 'Idiomas', en: 'Languages' },
+  frontend: { es: 'Frontend', en: 'Frontend' },
+  backend: { es: 'Backend', en: 'Backend' },
+  tools: { es: 'Herramientas', en: 'Tools' },
+  present: { es: 'Presente', en: 'Present' },
+  inProgress: { es: 'En curso', en: 'In Progress' },
+  completed: { es: 'Completado', en: 'Completed' },
+  aiWorkflow: { es: 'Flujo de Trabajo con IA', en: 'AI-Augmented Workflow' },
+  certifications: { es: 'Certificaciones', en: 'Certifications' },
+  downloadPdf: { es: 'Descargar PDF', en: 'Download PDF' },
+  generating: { es: 'Generando...', en: 'Generating...' },
+};
+
+const cvPaperStyle = "width:210mm;height:297mm;padding:10mm 12mm;font-family:'Inter',system-ui,sans-serif;font-size:8.5pt;line-height:1.35;background-color:#ffffff;color:#111827;overflow:hidden;";
+const sectionHeadingStyle = "font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;border-bottom:1px solid #e5e7eb;padding-bottom:1.5px;margin-bottom:2mm;color:#111827;";
+---
+
+<!-- Hidden A4 for PDF generation (always in DOM) -->
+<div id="cv-pdf-source" class="absolute -left-[9999px] top-0" aria-hidden="true">
+  <div id="cv-paper" style={cvPaperStyle}>
+    <!-- Header -->
+    <header style="text-align:center;margin-bottom:4mm;padding-bottom:3mm;border-bottom:1.5px solid #e5e7eb;">
+      <h1 style="font-size:18pt;font-weight:700;color:#111827;margin-bottom:1px;">{personalInfo.name}</h1>
+      <p style="font-size:10pt;color:#2563eb;font-weight:500;margin-bottom:3px;" data-i18n-en={t(personalInfo.title, 'en')} data-i18n-es={t(personalInfo.title, 'es')}>{t(personalInfo.title, initialLang)}</p>
+      <p style="font-size:7.5pt;color:#6b7280;max-width:450px;margin:0 auto 4px;line-height:1.4;" data-i18n-en={t(personalInfo.summary, 'en')} data-i18n-es={t(personalInfo.summary, 'es')}>{t(personalInfo.summary, initialLang)}</p>
+      <div style="font-size:7.5pt;color:#6b7280;display:flex;justify-content:center;gap:6px;flex-wrap:wrap;">
+        <span>{personalInfo.email}</span>
+        <span style="color:#d1d5db;">|</span>
+        <span>{personalInfo.location}</span>
+        <span style="color:#d1d5db;">|</span>
+        <span>github.com/{personalInfo.socials.github}</span>
+        <span style="color:#d1d5db;">|</span>
+        <span>linkedin.com/in/hnkatze</span>
+      </div>
+    </header>
+
+    <!-- Two-column layout -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 8mm;">
+      <!-- LEFT COLUMN -->
+      <div>
+        <!-- Experience -->
+        <section style="margin-bottom:3.5mm;">
+          <h2 style={sectionHeadingStyle} data-i18n-en={t(labels.experience, 'en')} data-i18n-es={t(labels.experience, 'es')}>{t(labels.experience, initialLang)}</h2>
+          {experience.map((exp, idx) => (
+            <div style={`margin-bottom:${idx < experience.length - 1 ? '3mm' : '0'};`}>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                <span style="font-weight:600;font-size:8.5pt;color:#111827;" data-i18n-en={t(exp.role, 'en')} data-i18n-es={t(exp.role, 'es')}>{t(exp.role, initialLang)}</span>
+                <span style="font-size:7pt;color:#9ca3af;">
+                  {exp.startDate} — {exp.endDate === 'Present' ? t(labels.present, initialLang) : exp.endDate}
+                </span>
+              </div>
+              <p style="font-size:7.5pt;color:#2563eb;margin-bottom:1px;">{exp.company}</p>
+              <p style="font-size:7.5pt;color:#4b5563;margin-bottom:1.5px;" data-i18n-en={t(exp.description, 'en')} data-i18n-es={t(exp.description, 'es')}>{t(exp.description, initialLang)}</p>
+              <ul style="margin:0;padding-left:12px;">
+                {exp.highlights.map((h) => (
+                  <li style="font-size:7.5pt;color:#6b7280;margin-bottom:0.5px;" data-i18n-en={t(h, 'en')} data-i18n-es={t(h, 'es')}>{t(h, initialLang)}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+
+        <!-- Education -->
+        <section>
+          <h2 style={sectionHeadingStyle} data-i18n-en={t(labels.education, 'en')} data-i18n-es={t(labels.education, 'es')}>{t(labels.education, initialLang)}</h2>
+          {education.map((edu, idx) => (
+            <div style={`margin-bottom:${idx < education.length - 1 ? '2mm' : '0'};`}>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                <span style="font-weight:600;font-size:8.5pt;color:#111827;" data-i18n-en={t(edu.degree, 'en')} data-i18n-es={t(edu.degree, 'es')}>{t(edu.degree, initialLang)}</span>
+                <span style={`font-size:6.5pt;padding:0.5px 4px;border-radius:9999px;background-color:${edu.status === 'in_progress' ? '#dbeafe' : '#f3f4f6'};color:${edu.status === 'in_progress' ? '#2563eb' : '#6b7280'};`} data-i18n-en={edu.status === 'in_progress' ? t(labels.inProgress, 'en') : t(labels.completed, 'en')} data-i18n-es={edu.status === 'in_progress' ? t(labels.inProgress, 'es') : t(labels.completed, 'es')}>{edu.status === 'in_progress' ? t(labels.inProgress, initialLang) : t(labels.completed, initialLang)}</span>
+              </div>
+              <p style="font-size:7.5pt;color:#2563eb;">{edu.institution}</p>
+              {edu.highlights && <p style="font-size:7pt;color:#6b7280;margin-top:0.5px;">{edu.highlights.join(' · ')}</p>}
+            </div>
+          ))}
+        </section>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div>
+        <!-- Skills -->
+        <section style="margin-bottom:3.5mm;">
+          <h2 style={sectionHeadingStyle} data-i18n-en={t(labels.skills, 'en')} data-i18n-es={t(labels.skills, 'es')}>{t(labels.skills, initialLang)}</h2>
+          <div style="margin-bottom:2mm;">
+            <h3 style="font-size:7pt;font-weight:600;color:#6b7280;text-transform:uppercase;margin-bottom:1.5mm;">{t(labels.frontend, initialLang)}</h3>
+            <div style="display:flex;flex-wrap:wrap;gap:2px;">
+              {frontendSkills.map(s => (
+                <span style="font-size:7pt;padding:0.5px 4px;border-radius:2px;background-color:#eff6ff;color:#1d4ed8;border:0.5px solid #dbeafe;">{s.name}</span>
+              ))}
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:2mm;">
+            <div>
+              <h3 style="font-size:7pt;font-weight:600;color:#6b7280;text-transform:uppercase;margin-bottom:1.5mm;">{t(labels.backend, initialLang)}</h3>
+              <div style="display:flex;flex-wrap:wrap;gap:2px;">
+                {backendSkills.map(s => (
+                  <span style="font-size:7pt;padding:0.5px 4px;border-radius:2px;background-color:#f0fdf4;color:#15803d;border:0.5px solid #dcfce7;">{s.name}</span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 style="font-size:7pt;font-weight:600;color:#6b7280;text-transform:uppercase;margin-bottom:1.5mm;">{t(labels.tools, initialLang)}</h3>
+              <div style="display:flex;flex-wrap:wrap;gap:2px;">
+                {toolsSkills.map(s => (
+                  <span style="font-size:7pt;padding:0.5px 4px;border-radius:2px;background-color:#faf5ff;color:#7e22ce;border:0.5px solid #f3e8ff;">{s.name}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- AI Workflow -->
+        <section style="margin-bottom:3.5mm;">
+          <h2 style={sectionHeadingStyle} data-i18n-en={t(labels.aiWorkflow, 'en')} data-i18n-es={t(labels.aiWorkflow, 'es')}>{t(labels.aiWorkflow, initialLang)}</h2>
+          <div style="display:flex;flex-direction:column;gap:1.5mm;">
+            <div>
+              <span style="font-size:7.5pt;font-weight:600;color:#111827;" data-i18n-en="AI Assistants: " data-i18n-es="Asistentes IA: ">{initialLang === 'es' ? 'Asistentes IA: ' : 'AI Assistants: '}</span>
+              <span style="font-size:7.5pt;color:#6b7280;" data-i18n-en="Claude Code, GitHub Copilot, Gemini, Codex — generation, refactoring, pair programming" data-i18n-es="Claude Code, GitHub Copilot, Gemini, Codex — generacion, refactoring, pair programming">{initialLang === 'es' ? 'Claude Code, GitHub Copilot, Gemini, Codex — generacion, refactoring, pair programming' : 'Claude Code, GitHub Copilot, Gemini, Codex — generation, refactoring, pair programming'}</span>
+            </div>
+            <div>
+              <span style="font-size:7.5pt;font-weight:600;color:#111827;">MCP Servers: </span>
+              <span style="font-size:7.5pt;color:#6b7280;" data-i18n-en="Model Context Protocol servers for enhanced development workflows" data-i18n-es="Servidores Model Context Protocol para flujos de desarrollo mejorados">{initialLang === 'es' ? 'Servidores Model Context Protocol para flujos de desarrollo mejorados' : 'Model Context Protocol servers for enhanced development workflows'}</span>
+            </div>
+            <div>
+              <span style="font-size:7.5pt;font-weight:600;color:#111827;">Review & Testing: </span>
+              <span style="font-size:7.5pt;color:#6b7280;" data-i18n-en="AI-accelerated test scaffolding and code review" data-i18n-es="Scaffolding de tests y revision de codigo acelerados con IA">{initialLang === 'es' ? 'Scaffolding de tests y revision de codigo acelerados con IA' : 'AI-accelerated test scaffolding and code review'}</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Languages + Certifications -->
+        <section>
+          <h2 style={sectionHeadingStyle} data-i18n-en={t(labels.languages, 'en')} data-i18n-es={t(labels.languages, 'es')}>{t(labels.languages, initialLang)}</h2>
+          <div style="display:flex;gap:12px;margin-bottom:3mm;">
+            {languages.map(l => (
+              <div>
+                <span style="font-weight:500;color:#111827;font-size:8pt;" data-i18n-en={t(l.name, 'en')} data-i18n-es={t(l.name, 'es')}>{t(l.name, initialLang)}</span>
+                <span style="color:#6b7280;font-size:8pt;" data-i18n-en={` — ${t(l.level, 'en')}`} data-i18n-es={` — ${t(l.level, 'es')}`}> — {t(l.level, initialLang)}</span>
+              </div>
+            ))}
+          </div>
+
+          <h2 style={sectionHeadingStyle} data-i18n-en={t(labels.certifications, 'en')} data-i18n-es={t(labels.certifications, 'es')}>{t(labels.certifications, initialLang)}</h2>
+          <div style="display:flex;flex-direction:column;gap:1mm;">
+            {certifications.map(cert => (
+              <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                <span style="font-size:7.5pt;color:#111827;">{cert.name}</span>
+                <span style="font-size:7pt;color:#9ca3af;">{cert.issuer} · {cert.year}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Native dialog modal -->
+<dialog id="cv-dialog" class="bg-transparent p-0 max-w-none backdrop:bg-black/70 backdrop:backdrop-blur-sm">
+  <!-- Desktop view -->
+  <div class="hidden md:flex flex-col items-center gap-4 max-h-[95vh]" data-cv-desktop>
+    <!-- Controls bar -->
+    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-xl px-4 py-2 border border-white/10">
+      <!-- Language toggle -->
+      <div class="flex items-center gap-1 rounded-lg bg-gray-100 p-1">
+        <button data-lang-btn="es" class="px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 text-gray-500 hover:text-gray-700">ES</button>
+        <button data-lang-btn="en" class="px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 bg-white text-blue-600 shadow-sm">EN</button>
+      </div>
+      <button id="cv-download" class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-500/20 rounded-lg border border-blue-400/30 hover:bg-blue-500/30 disabled:opacity-50 transition-all">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+        </svg>
+        Download PDF
+      </button>
+      <button id="cv-close" class="p-2 text-gray-400 hover:text-white transition-colors" aria-label="Close">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- A4 preview -->
+    <div class="overflow-auto rounded-lg shadow-2xl" style="max-height:calc(95vh - 60px);">
+      <div id="cv-preview" style={`${cvPaperStyle}transform:scale(0.85);transform-origin:top center;`}>
+        <!-- This mirrors the hidden A4 content - populated by JS on open -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile view -->
+  <div class="md:hidden" data-cv-mobile>
+    <div class="bg-gray-900 rounded-2xl p-6 mx-4 max-w-sm w-full text-center border border-white/10">
+      <h2 class="text-xl font-bold text-white mb-1">{personalInfo.name}</h2>
+      <p class="text-blue-400 text-sm font-medium mb-6" data-i18n-en={t(personalInfo.title, 'en')} data-i18n-es={t(personalInfo.title, 'es')}>{t(personalInfo.title, initialLang)}</p>
+
+      <div class="flex justify-center mb-6">
+        <div class="flex items-center gap-1 rounded-lg bg-gray-100 p-1">
+          <button data-lang-btn="es" class="px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 text-gray-500 hover:text-gray-700">ES</button>
+          <button data-lang-btn="en" class="px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 bg-white text-blue-600 shadow-sm">EN</button>
+        </div>
+      </div>
+
+      <button id="cv-download-mobile" class="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-500/20 text-blue-400 font-medium rounded-xl border border-blue-400/30 hover:bg-blue-500/30 disabled:opacity-50 transition-all">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+        </svg>
+        <span data-download-label>Download PDF (EN)</span>
+      </button>
+
+      <button id="cv-close-mobile" class="mt-4 text-sm text-gray-500 hover:text-white transition-colors">Close</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.getElementById('cv-dialog') as HTMLDialogElement;
+  const cvPaper = document.getElementById('cv-paper')!;
+  const cvPreview = document.getElementById('cv-preview')!;
+  let triggerElement: HTMLElement | null = null;
+  let currentLang = 'en';
+
+  // --- Sync preview with hidden A4 content ---
+  function syncPreview() {
+    cvPreview.innerHTML = cvPaper.innerHTML;
+  }
+
+  // --- Open modal ---
+  window.addEventListener('open-cv-modal', () => {
+    triggerElement = document.activeElement as HTMLElement;
+    syncPreview();
+    dialog.showModal();
+    document.body.style.overflow = 'hidden';
+
+    if (window.innerWidth < 768) {
+      setTimeout(() => downloadPdf(), 300);
+    }
+  });
+
+  // --- Close modal ---
+  dialog.addEventListener('close', () => {
+    document.body.style.overflow = '';
+    triggerElement?.focus();
+  });
+
+  // Backdrop click
+  dialog.addEventListener('click', (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+
+  document.getElementById('cv-close')?.addEventListener('click', () => dialog.close());
+  document.getElementById('cv-close-mobile')?.addEventListener('click', () => dialog.close());
+
+  // --- Language toggle ---
+  document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentLang = (btn as HTMLButtonElement).dataset.langBtn!;
+      updateLanguage(currentLang);
+    });
+  });
+
+  function updateLanguage(lang: string) {
+    // Update toggle button styles
+    document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+      const b = btn as HTMLButtonElement;
+      if (b.dataset.langBtn === lang) {
+        b.classList.add('bg-white', 'text-blue-600', 'shadow-sm');
+        b.classList.remove('text-gray-500');
+      } else {
+        b.classList.remove('bg-white', 'text-blue-600', 'shadow-sm');
+        b.classList.add('text-gray-500');
+      }
+    });
+
+    // Update all translatable text in hidden A4
+    const attr = lang === 'en' ? 'data-i18n-en' : 'data-i18n-es';
+    document.querySelectorAll(`[${attr}]`).forEach(el => {
+      const value = (el as HTMLElement).getAttribute(attr);
+      if (value !== null) {
+        el.textContent = value;
+      }
+    });
+
+    // Sync preview
+    syncPreview();
+
+    // Update download label
+    const downloadLabel = document.querySelector('[data-download-label]');
+    if (downloadLabel) {
+      downloadLabel.textContent = lang === 'es' ? `Descargar PDF (ES)` : `Download PDF (EN)`;
+    }
+  }
+
+  // --- PDF download ---
+  async function downloadPdf() {
+    const btns = [
+      document.getElementById('cv-download'),
+      document.getElementById('cv-download-mobile'),
+    ].filter(Boolean) as HTMLButtonElement[];
+
+    btns.forEach(b => {
+      b.disabled = true;
+      const label = b.querySelector('[data-download-label]');
+      if (label) {
+        label.textContent = currentLang === 'es' ? 'Generando...' : 'Generating...';
+      } else {
+        b.textContent = currentLang === 'es' ? 'Generando...' : 'Generating...';
+      }
+    });
+
+    try {
+      const html2pdf = (await import('html2pdf.js')).default;
+
+      await html2pdf()
+        .set({
+          margin: 0,
+          filename: `CV-Camilo-Henriquez-${currentLang.toUpperCase()}.pdf`,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        })
+        .from(cvPaper)
+        .save();
+    } catch {
+      window.print();
+    } finally {
+      btns.forEach(b => {
+        b.disabled = false;
+        const label = b.querySelector('[data-download-label]');
+        if (label) {
+          label.textContent = currentLang === 'es' ? `Descargar PDF (${currentLang.toUpperCase()})` : `Download PDF (${currentLang.toUpperCase()})`;
+        } else {
+          b.textContent = currentLang === 'es' ? 'Descargar PDF' : 'Download PDF';
+        }
+      });
+    }
+  }
+
+  document.getElementById('cv-download')?.addEventListener('click', downloadPdf);
+  document.getElementById('cv-download-mobile')?.addEventListener('click', downloadPdf);
+</script>
