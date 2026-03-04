@@ -14,92 +14,83 @@ npm run preview    # Preview production build locally
 ## Architecture Overview
 
 ### Tech Stack
-- **Framework**: Astro 4.15.9 with SSG (Static Site Generation) for optimal performance
-- **UI Framework**: React 18.3.1 for interactive components
+- **Framework**: Astro 5 with SSG (Static Site Generation) for optimal performance
 - **Styling**: TailwindCSS 3.4.13 with custom retro theme utilities
-- **Animations**: Framer Motion 11.9.0 + AOS for scroll-based animations
-- **Backend**: Firebase 10.14.0 for contact form submissions
+- **Animations**: GSAP 3 + ScrollTrigger for scroll-based and entrance animations
+- **Contact Form**: EmailJS for client-side email submissions
+- **PDF Export**: html2pdf.js (lazy-loaded) for CV downloads
 - **Language**: TypeScript 5.6.2 with strict mode
 
 ### Project Structure
 
 #### Key Directories
-- `src/components/` - Reusable Astro and React components
-  - `ui/` - Shadcn-style UI primitives (button, card, badge)
-  - Interactive components use React (.tsx)
-  - Static components use Astro (.astro)
+- `src/components/` - All Astro components with `<script>` blocks for interactivity
+  - `journey/` - Main page sections (Hero, Skills, Experience, Projects, etc.)
+  - `cv/` - CV modal with PDF export
+  - `integrations/` - GitHub stats, Discord presence
 - `src/libs/utils.ts` - Core data (skills, projects, constants)
 - `src/lib/` - Utilities and configuration
-  - `config.ts` - Firebase configuration
+  - `gsap.ts` - GSAP setup, ScrollTrigger, animation presets, reduced-motion handling
+  - `config.ts` - EmailJS configuration
   - `types.ts` - TypeScript type definitions
-  - `utils.ts` - cn() utility for className merging
-- `src/scripts/` - Client-side JavaScript for modals and interactions
+  - `i18n.ts` - Bilingual text helper
 - `src/styles/` - Global CSS with custom animations and retro theme
 
 ### Component Architecture
 
-#### Astro Islands Architecture
-- Static HTML by default with selective hydration
-- React components hydrated only when needed (Skills.tsx with client:load)
-- Optimal performance with minimal JavaScript
+#### Pure Astro Architecture (no React)
+- All HTML is server-rendered at build time
+- Interactivity via `<script>` blocks with vanilla JS + GSAP
+- No client hydration — zero framework JS overhead
+- Native `<dialog>` for CV modal
 
 #### Key Components
 - **Layout.astro**: Main layout with SEO meta tags
-- **Skills.tsx**: Interactive skill toggles with progress bars
-- **AnimatedProjectCard.astro**: Project cards with hover effects
-- **Modal System**: Enhanced modal in scripts/enhancedModal.js for contact form
+- **JourneyNav.astro**: Scroll spy navigation with dot indicators
+- **SkillsIsland.astro**: Tab switching + 3D tilt + progress bars
+- **CVTemplate.astro**: Native `<dialog>` modal with PDF export + bilingual toggle
+- **ContactIsland.astro**: Form with EmailJS submission
+
+### Animation System (`src/lib/gsap.ts`)
+- **GSAP ScrollTrigger** for scroll-triggered reveals (`scrollReveal()`)
+- **GSAP Timeline** for entrance animations (`entranceTimeline()`)
+- **Parallax** via ScrollTrigger scrub (`parallax()`)
+- **Reduced motion**: Centralized `prefers-reduced-motion` check — all animations duration=0
+- **Cleanup**: Auto-cleanup on `astro:before-swap` event (`killAll()`)
+- **Easing**: `power2.out` matching previous Framer Motion cubic-bezier
 
 ### Data Management
 All portfolio data is centralized in `src/libs/utils.ts`:
+- `personalInfo` - Name, title, summary, socials, photo
 - `skills[]` - All technical skills with proficiency percentages
-- `favo[]` - Favorite/featured skills subset
-- `projects[]` - Project showcase data with PropsProject type
+- `projects[]` - Project showcase data
+- `experience[]` - Professional experience with bilingual text
+- `education[]`, `certifications[]`, `languages[]` - CV data
 
 ### Styling Approach
-- **Utility-first**: TailwindCSS for rapid development
-- **Custom Theme**: Retro-futuristic design with:
-  - Gray-based color palette
-  - Custom animations (fade, slide, pulse effects)
-  - Retro patterns and shapes
-  - Text shadows and gradients
-- **Component Variants**: Using CVA (class-variance-authority) for UI components
+- **Utility-first**: TailwindCSS for all styling
+- **CSS only for**: Complex keyframe animations (`global.css`, `journey.css`)
+- **Hover/focus effects**: Pure Tailwind classes
+- **No CVA/Radix** — direct Tailwind classes everywhere
 
 ### Path Aliases
 TypeScript configured with `@/*` alias pointing to `src/*` for clean imports.
 
-### Firebase Integration
-Contact form submissions stored in Firestore. Configuration expected in environment variables (see README for setup).
-
 ## Development Guidelines
 
-### Adding New Projects
-Update `src/libs/utils.ts`:
-```typescript
-export const projects: PropsProject[] = [
-  {
-    title: "Project Name",
-    description: "Description with technologies",
-    images: "https://image-url.jpg",
-    technologies: ["Tech1", "Tech2"],
-    projectUrl: "https://demo.com",
-    repoUrl: "https://github.com/..."
-  }
-];
-```
-
-### Modifying Skills
-Edit arrays in `src/libs/utils.ts`:
-- `skills[]` for all skills display
-- `favo[]` for favorite skills toggle
-
 ### Component Creation
-- Use `.astro` for static components
-- Use `.tsx` with React for interactive features
-- Follow existing patterns in `src/components/ui/` for consistency
-- Maintain retro theme styling conventions
+- Use `.astro` for all components
+- Add `<script>` blocks for interactivity
+- Import `scrollReveal`, `parallax`, etc. from `@/lib/gsap`
+- Use `data-*` attributes for DOM queries in scripts
+- Follow existing patterns in `src/components/journey/`
 
-### Animation System
-- Framer Motion for React components
-- AOS for scroll-triggered animations
-- Custom CSS animations in `src/styles/global.css`
-- Use existing animation utilities for consistency
+### Animation Patterns
+```astro
+<div data-my-element>Content</div>
+
+<script>
+  import { scrollReveal } from '@/lib/gsap';
+  scrollReveal('[data-my-element]', { direction: 'fadeUp', stagger: 0.1 });
+</script>
+```

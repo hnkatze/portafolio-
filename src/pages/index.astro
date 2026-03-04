@@ -14,15 +14,15 @@ import {
   integrationConfig,
 } from "@/libs/utils";
 
-// Journey components
-import JourneyNav from "@/components/journey/JourneyNav";
-import HeroIsland from "@/components/journey/HeroIsland";
-import SkillsIsland from "@/components/journey/SkillsIsland";
-import ExperienceIsland from "@/components/journey/ExperienceIsland";
-import ProjectsIsland from "@/components/journey/ProjectsIsland";
-import IntegrationsIsland from "@/components/journey/IntegrationsIsland";
-import ContactIsland from "@/components/journey/ContactIsland";
-import CVTemplate from "@/components/cv/CVTemplate";
+// Journey components (Astro)
+import JourneyNav from "@/components/journey/JourneyNav.astro";
+import HeroIsland from "@/components/journey/HeroIsland.astro";
+import SkillsIsland from "@/components/journey/SkillsIsland.astro";
+import ExperienceIsland from "@/components/journey/ExperienceIsland.astro";
+import ProjectsIsland from "@/components/journey/ProjectsIsland.astro";
+import IntegrationsIsland from "@/components/journey/IntegrationsIsland.astro";
+import ContactIsland from "@/components/journey/ContactIsland.astro";
+import CVTemplate from "@/components/cv/CVTemplate.astro";
 
 // Integration components (Astro - static/build-time)
 import GitHubStats from "@/components/integrations/GitHubStats.astro";
@@ -33,23 +33,23 @@ const lang = "en" as const;
 ---
 
 <Layout title="Camilo Henriquez — Frontend Developer">
-  <JourneyNav client:load />
+  <JourneyNav />
 
-  <HeroIsland data={personalInfo} lang={lang} client:load />
+  <HeroIsland data={personalInfo} lang={lang} />
 
-  <SkillsIsland skills={skills} client:visible />
+  <SkillsIsland skills={skills} />
 
-  <ExperienceIsland experience={experience} lang={lang} client:visible />
+  <ExperienceIsland experience={experience} lang={lang} />
 
-  <ProjectsIsland projects={projects} lang={lang} client:visible />
+  <ProjectsIsland projects={projects} lang={lang} />
 
-  <IntegrationsIsland config={integrationConfig} client:visible>
+  <IntegrationsIsland config={integrationConfig}>
     <GitHubStats username={integrationConfig.github.username} theme={integrationConfig.github.statsTheme} />
     <GitHubContributions username={integrationConfig.github.username} />
     <GitHubRepos username={integrationConfig.github.username} />
   </IntegrationsIsland>
 
-  <ContactIsland data={personalInfo} client:visible />
+  <ContactIsland data={personalInfo} />
 
   <CVTemplate
     personalInfo={personalInfo}
@@ -59,6 +59,5 @@ const lang = "en" as const;
     certifications={certifications}
     languages={languages}
     initialLang={lang}
-    client:load
   />
 </Layout>
