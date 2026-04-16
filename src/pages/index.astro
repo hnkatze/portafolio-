@@ -12,6 +12,7 @@ import {
   certifications,
   languages,
   integrationConfig,
+  testimonials,
 } from "@/libs/utils";
 
 // Journey components (Astro)
@@ -21,18 +22,21 @@ import SkillsIsland from "@/components/journey/SkillsIsland.astro";
 import ExperienceIsland from "@/components/journey/ExperienceIsland.astro";
 import ProjectsIsland from "@/components/journey/ProjectsIsland.astro";
 import IntegrationsIsland from "@/components/journey/IntegrationsIsland.astro";
+import TestimonialsIsland from "@/components/journey/TestimonialsIsland.astro";
 import ContactIsland from "@/components/journey/ContactIsland.astro";
 import CVTemplate from "@/components/cv/CVTemplate.astro";
 
 // Integration components (Astro - static/build-time)
 import GitHubStats from "@/components/integrations/GitHubStats.astro";
+import GitHubTopLangs from "@/components/integrations/GitHubTopLangs.astro";
+import GitHubStreak from "@/components/integrations/GitHubStreak.astro";
 import GitHubContributions from "@/components/integrations/GitHubContributions.astro";
 import GitHubRepos from "@/components/integrations/GitHubRepos.astro";
 
 const lang = "en" as const;
 ---
 
-<Layout title="Camilo Henriquez — Frontend Developer">
+<Layout title="Camilo Henriquez — Full-Stack Engineer & AI Tooling">
   <JourneyNav />
 
   <HeroIsland data={personalInfo} lang={lang} />
@@ -43,13 +47,19 @@ const lang = "en" as const;
 
   <ProjectsIsland projects={projects} lang={lang} />
 
+  <TestimonialsIsland testimonials={testimonials} lang={lang} />
+
   <IntegrationsIsland config={integrationConfig}>
-    <GitHubStats username={integrationConfig.github.username} theme={integrationConfig.github.statsTheme} />
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <GitHubStats username={integrationConfig.github.username} theme={integrationConfig.github.statsTheme} />
+      <GitHubTopLangs username={integrationConfig.github.username} theme={integrationConfig.github.statsTheme} />
+    </div>
+    <GitHubStreak username={integrationConfig.github.username} theme={integrationConfig.github.statsTheme} />
     <GitHubContributions username={integrationConfig.github.username} />
     <GitHubRepos username={integrationConfig.github.username} />
   </IntegrationsIsland>
 
-  <ContactIsland data={personalInfo} />
+  <ContactIsland data={personalInfo} lang={lang} />
 
   <CVTemplate
     personalInfo={personalInfo}
