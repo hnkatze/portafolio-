@@ -26,14 +26,40 @@ const labels = {
   frontend: { es: 'Frontend', en: 'Frontend' },
   backend: { es: 'Backend', en: 'Backend' },
   tools: { es: 'Herramientas', en: 'Tools' },
+  devops: { es: 'DevOps & Cloud', en: 'DevOps & Cloud' },
   present: { es: 'Presente', en: 'Present' },
   inProgress: { es: 'En curso', en: 'In Progress' },
   completed: { es: 'Completado', en: 'Completed' },
   aiWorkflow: { es: 'Flujo de Trabajo con IA', en: 'AI-Augmented Workflow' },
   certifications: { es: 'Certificaciones', en: 'Certifications' },
+  keyProjects: { es: 'Proyectos Destacados', en: 'Key Projects' },
   downloadPdf: { es: 'Descargar PDF', en: 'Download PDF' },
   generating: { es: 'Generando...', en: 'Generating...' },
 };
+
+// Split tools into testing and devops for better CV layout
+const testingSkills = toolsSkills.filter(s => ['Git', 'Jest / Vitest', 'Playwright'].includes(s.name));
+const devopsSkills = toolsSkills.filter(s => !['Git', 'Jest / Vitest', 'Playwright'].includes(s.name));
+
+// Key projects for the CV (open source + notable client work)
+const keyProjects = [
+  {
+    name: 'Swagger Extractor MCP',
+    desc: { es: 'Servidor MCP en Go para interaccion programatica de IA con specs OpenAPI', en: 'Go MCP server for programmatic AI interaction with OpenAPI specs' },
+  },
+  {
+    name: 'PrimeNG MCP Server',
+    desc: { es: 'Servidor MCP que expone documentacion de PrimeNG a asistentes de IA', en: 'MCP server exposing PrimeNG component docs to AI assistants' },
+  },
+  {
+    name: 'Municipal Government Platform',
+    desc: { es: 'Sistema integral: API NestJS 130+ endpoints, PostgreSQL + PostGIS, 5 frontends Angular/Astro', en: 'Full platform: NestJS API 130+ endpoints, PostgreSQL + PostGIS, 5 Angular/Astro frontends' },
+  },
+  {
+    name: 'hondurassocial.org',
+    desc: { es: 'Sitio web para ONG con integracion de donaciones (Every.org)', en: 'NGO website with donation integration (Every.org)' },
+  },
+];
 
 const cvPaperStyle = "width:210mm;height:297mm;padding:10mm 12mm;font-family:'Inter',system-ui,sans-serif;font-size:8.5pt;line-height:1.35;background-color:#ffffff;color:#111827;overflow:hidden;";
 const sectionHeadingStyle = "font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;border-bottom:1px solid #e5e7eb;padding-bottom:1.5px;margin-bottom:2mm;color:#111827;";
@@ -60,7 +86,7 @@ const sectionHeadingStyle = "font-size:8pt;font-weight:700;text-transform:upperc
 
     <!-- Two-column layout -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 8mm;">
-      <!-- LEFT COLUMN -->
+      <!-- LEFT COLUMN: Experience + Key Projects -->
       <div>
         <!-- Experience -->
         <section style="margin-bottom:3.5mm;">
@@ -84,6 +110,19 @@ const sectionHeadingStyle = "font-size:8pt;font-weight:700;text-transform:upperc
           ))}
         </section>
 
+        <!-- Key Projects -->
+        <section style="margin-bottom:3.5mm;">
+          <h2 style={sectionHeadingStyle} data-i18n-en={t(labels.keyProjects, 'en')} data-i18n-es={t(labels.keyProjects, 'es')}>{t(labels.keyProjects, initialLang)}</h2>
+          <div style="display:flex;flex-direction:column;gap:1.5mm;">
+            {keyProjects.map(p => (
+              <div>
+                <span style="font-weight:600;font-size:7.5pt;color:#111827;">{p.name}</span>
+                <span style="font-size:7.5pt;color:#6b7280;" data-i18n-en={` — ${t(p.desc, 'en')}`} data-i18n-es={` — ${t(p.desc, 'es')}`}> — {t(p.desc, initialLang)}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <!-- Education -->
         <section>
           <h2 style={sectionHeadingStyle} data-i18n-en={t(labels.education, 'en')} data-i18n-es={t(labels.education, 'es')}>{t(labels.education, initialLang)}</h2>
@@ -100,7 +139,7 @@ const sectionHeadingStyle = "font-size:8pt;font-weight:700;text-transform:upperc
         </section>
       </div>
 
-      <!-- RIGHT COLUMN -->
+      <!-- RIGHT COLUMN: Skills + AI + Languages + Certs -->
       <div>
         <!-- Skills -->
         <section style="margin-bottom:3.5mm;">
@@ -113,7 +152,7 @@ const sectionHeadingStyle = "font-size:8pt;font-weight:700;text-transform:upperc
               ))}
             </div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:2mm;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:2mm;margin-bottom:2mm;">
             <div>
               <h3 style="font-size:7pt;font-weight:600;color:#6b7280;text-transform:uppercase;margin-bottom:1.5mm;">{t(labels.backend, initialLang)}</h3>
               <div style="display:flex;flex-wrap:wrap;gap:2px;">
@@ -123,12 +162,20 @@ const sectionHeadingStyle = "font-size:8pt;font-weight:700;text-transform:upperc
               </div>
             </div>
             <div>
-              <h3 style="font-size:7pt;font-weight:600;color:#6b7280;text-transform:uppercase;margin-bottom:1.5mm;">{t(labels.tools, initialLang)}</h3>
+              <h3 style="font-size:7pt;font-weight:600;color:#6b7280;text-transform:uppercase;margin-bottom:1.5mm;">Testing</h3>
               <div style="display:flex;flex-wrap:wrap;gap:2px;">
-                {toolsSkills.map(s => (
+                {testingSkills.map(s => (
                   <span style="font-size:7pt;padding:0.5px 4px;border-radius:2px;background-color:#faf5ff;color:#7e22ce;border:0.5px solid #f3e8ff;">{s.name}</span>
                 ))}
               </div>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-size:7pt;font-weight:600;color:#6b7280;text-transform:uppercase;margin-bottom:1.5mm;" data-i18n-en={t(labels.devops, 'en')} data-i18n-es={t(labels.devops, 'es')}>{t(labels.devops, initialLang)}</h3>
+            <div style="display:flex;flex-wrap:wrap;gap:2px;">
+              {devopsSkills.map(s => (
+                <span style="font-size:7pt;padding:0.5px 4px;border-radius:2px;background-color:#fef3c7;color:#92400e;border:0.5px solid #fde68a;">{s.name}</span>
+              ))}
             </div>
           </div>
         </section>
@@ -143,19 +190,19 @@ const sectionHeadingStyle = "font-size:8pt;font-weight:700;text-transform:upperc
             </div>
             <div>
               <span style="font-size:7.5pt;font-weight:600;color:#111827;">MCP Servers: </span>
-              <span style="font-size:7.5pt;color:#6b7280;" data-i18n-en="Model Context Protocol servers for enhanced development workflows" data-i18n-es="Servidores Model Context Protocol para flujos de desarrollo mejorados">{initialLang === 'es' ? 'Servidores Model Context Protocol para flujos de desarrollo mejorados' : 'Model Context Protocol servers for enhanced development workflows'}</span>
+              <span style="font-size:7.5pt;color:#6b7280;" data-i18n-en="Author of 3 open source MCP servers (Go, TypeScript) for OpenAPI and component docs" data-i18n-es="Autor de 3 servidores MCP open source (Go, TypeScript) para OpenAPI y docs de componentes">{initialLang === 'es' ? 'Autor de 3 servidores MCP open source (Go, TypeScript) para OpenAPI y docs de componentes' : 'Author of 3 open source MCP servers (Go, TypeScript) for OpenAPI and component docs'}</span>
             </div>
             <div>
-              <span style="font-size:7.5pt;font-weight:600;color:#111827;">Review & Testing: </span>
-              <span style="font-size:7.5pt;color:#6b7280;" data-i18n-en="AI-accelerated test scaffolding and code review" data-i18n-es="Scaffolding de tests y revision de codigo acelerados con IA">{initialLang === 'es' ? 'Scaffolding de tests y revision de codigo acelerados con IA' : 'AI-accelerated test scaffolding and code review'}</span>
+              <span style="font-size:7.5pt;font-weight:600;color:#111827;" data-i18n-en="Platforms: " data-i18n-es="Plataformas: ">{initialLang === 'es' ? 'Plataformas: ' : 'Platforms: '}</span>
+              <span style="font-size:7.5pt;color:#6b7280;">DigitalOcean, Railway, Render, Vercel, Netlify, Firebase</span>
             </div>
           </div>
         </section>
 
-        <!-- Languages + Certifications -->
-        <section>
+        <!-- Languages -->
+        <section style="margin-bottom:3.5mm;">
           <h2 style={sectionHeadingStyle} data-i18n-en={t(labels.languages, 'en')} data-i18n-es={t(labels.languages, 'es')}>{t(labels.languages, initialLang)}</h2>
-          <div style="display:flex;gap:12px;margin-bottom:3mm;">
+          <div style="display:flex;gap:12px;">
             {languages.map(l => (
               <div>
                 <span style="font-weight:500;color:#111827;font-size:8pt;" data-i18n-en={t(l.name, 'en')} data-i18n-es={t(l.name, 'es')}>{t(l.name, initialLang)}</span>
@@ -163,7 +210,10 @@ const sectionHeadingStyle = "font-size:8pt;font-weight:700;text-transform:upperc
               </div>
             ))}
           </div>
+        </section>
 
+        <!-- Certifications -->
+        <section>
           <h2 style={sectionHeadingStyle} data-i18n-en={t(labels.certifications, 'en')} data-i18n-es={t(labels.certifications, 'es')}>{t(labels.certifications, initialLang)}</h2>
           <div style="display:flex;flex-direction:column;gap:1mm;">
             {certifications.map(cert => (
@@ -190,12 +240,15 @@ const sectionHeadingStyle = "font-size:8pt;font-weight:700;text-transform:upperc
         <button data-lang-btn="es" class="px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 text-gray-500 hover:text-gray-700">ES</button>
         <button data-lang-btn="en" class="px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 bg-white text-blue-600 shadow-sm">EN</button>
       </div>
+      <!-- PDF download disabled — will be replaced with a static PDF link -->
+      <!--
       <button id="cv-download" class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-500/20 rounded-lg border border-blue-400/30 hover:bg-blue-500/30 disabled:opacity-50 transition-all">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
         </svg>
         Download PDF
       </button>
+      -->
       <button id="cv-close" class="p-2 text-gray-400 hover:text-white transition-colors" aria-label="Close">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -224,12 +277,15 @@ const sectionHeadingStyle = "font-size:8pt;font-weight:700;text-transform:upperc
         </div>
       </div>
 
+      <!-- PDF download disabled — will be replaced with a static PDF link -->
+      <!--
       <button id="cv-download-mobile" class="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-500/20 text-blue-400 font-medium rounded-xl border border-blue-400/30 hover:bg-blue-500/30 disabled:opacity-50 transition-all">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
         </svg>
         <span data-download-label>Download PDF (EN)</span>
       </button>
+      -->
 
       <button id="cv-close-mobile" class="mt-4 text-sm text-gray-500 hover:text-white transition-colors">Close</button>
     </div>
@@ -255,9 +311,7 @@ const sectionHeadingStyle = "font-size:8pt;font-weight:700;text-transform:upperc
     dialog.showModal();
     document.body.style.overflow = 'hidden';
 
-    if (window.innerWidth < 768) {
-      setTimeout(() => downloadPdf(), 300);
-    }
+    // PDF auto-download disabled for now
   });
 
   // --- Close modal ---
@@ -307,58 +361,5 @@ const sectionHeadingStyle = "font-size:8pt;font-weight:700;text-transform:upperc
     // Sync preview
     syncPreview();
 
-    // Update download label
-    const downloadLabel = document.querySelector('[data-download-label]');
-    if (downloadLabel) {
-      downloadLabel.textContent = lang === 'es' ? `Descargar PDF (ES)` : `Download PDF (EN)`;
-    }
   }
-
-  // --- PDF download ---
-  async function downloadPdf() {
-    const btns = [
-      document.getElementById('cv-download'),
-      document.getElementById('cv-download-mobile'),
-    ].filter(Boolean) as HTMLButtonElement[];
-
-    btns.forEach(b => {
-      b.disabled = true;
-      const label = b.querySelector('[data-download-label]');
-      if (label) {
-        label.textContent = currentLang === 'es' ? 'Generando...' : 'Generating...';
-      } else {
-        b.textContent = currentLang === 'es' ? 'Generando...' : 'Generating...';
-      }
-    });
-
-    try {
-      const html2pdf = (await import('html2pdf.js')).default;
-
-      await html2pdf()
-        .set({
-          margin: 0,
-          filename: `CV-Camilo-Henriquez-${currentLang.toUpperCase()}.pdf`,
-          image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: { scale: 2, useCORS: true },
-          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-        })
-        .from(cvPaper)
-        .save();
-    } catch {
-      window.print();
-    } finally {
-      btns.forEach(b => {
-        b.disabled = false;
-        const label = b.querySelector('[data-download-label]');
-        if (label) {
-          label.textContent = currentLang === 'es' ? `Descargar PDF (${currentLang.toUpperCase()})` : `Download PDF (${currentLang.toUpperCase()})`;
-        } else {
-          b.textContent = currentLang === 'es' ? 'Descargar PDF' : 'Download PDF';
-        }
-      });
-    }
-  }
-
-  document.getElementById('cv-download')?.addEventListener('click', downloadPdf);
-  document.getElementById('cv-download-mobile')?.addEventListener('click', downloadPdf);
 </script>
