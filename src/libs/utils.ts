@@ -18,8 +18,8 @@ export const personalInfo: PersonalInfo = {
     en: "Full-Stack Engineer & AI Tooling",
   },
   summary: {
-    es: "Construyo sistemas completos — desde APIs REST con 130+ endpoints en NestJS/PostgreSQL hasta frontends en Angular y React. Manejo pipelines CI/CD, Docker y deploy en plataformas cloud. Autor de MCP servers open source para integrar IA en flujos de desarrollo. 4+ años enviando código a producción, remoto desde día uno.",
-    en: "I build complete systems — from REST APIs with 130+ endpoints in NestJS/PostgreSQL to frontends in Angular and React. I manage CI/CD pipelines, Docker, and cloud deployments. Author of open source MCP servers for integrating AI into dev workflows. 4+ years shipping production code, remote from day one.",
+    es: "Construyo sistemas completos — desde APIs REST con 130+ endpoints en NestJS/PostgreSQL hasta frontends en Angular y React. Manejo pipelines CI/CD, Docker y deploy en plataformas cloud. Autor de MCP servers open source para integrar IA en flujos de desarrollo. 4+ años enviando código a producción, con experiencia remota a través de trabajo freelance para clientes internacionales.",
+    en: "I build complete systems — from REST APIs with 130+ endpoints in NestJS/PostgreSQL to frontends in Angular and React. I manage CI/CD pipelines, Docker, and cloud deployments. Author of open source MCP servers for integrating AI into dev workflows. 4+ years shipping production code, with remote experience through freelance work for international clients.",
   },
   email: "contact@camilohenriquez.com",
   location: "Remote / Worldwide",
@@ -83,6 +83,12 @@ export const skills: Skill[] = [
     name: "JavaScript",
     level: "expert",
     icon: "https://icon.icepanel.io/Technology/svg/JavaScript.svg",
+    category: "frontend",
+  },
+  {
+    name: "Lit Element",
+    level: "proficient",
+    icon: "/icons/lit.svg",
     category: "frontend",
   },
   {
