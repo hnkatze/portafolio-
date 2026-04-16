@@ -19,8 +19,8 @@ const { experience, lang } = Astro.props;
 
   <div class="relative z-10 max-w-5xl mx-auto px-6 w-full">
     <div class="text-center mb-16" data-exp-heading>
-      <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Experience</h2>
-      <p class="text-gray-400 max-w-xl mx-auto">My professional journey building web applications</p>
+      <h2 class="text-3xl md:text-5xl font-bold text-white mb-4" data-i18n-en="Experience" data-i18n-es="Experiencia">Experience</h2>
+      <p class="text-gray-400 max-w-xl mx-auto" data-i18n-en="My professional journey building web applications" data-i18n-es="Mi trayectoria profesional construyendo aplicaciones web">My professional journey building web applications</p>
     </div>
 
     <div class="relative">
@@ -42,15 +42,15 @@ const { experience, lang } = Astro.props;
                     <span class="text-xs text-blue-400 font-medium mb-1">
                       {entry.startDate} — {entry.endDate}
                     </span>
-                    <h3 class="text-lg font-bold text-white mb-1">{t(entry.role, lang)}</h3>
+                    <h3 class="text-lg font-bold text-white mb-1" data-i18n-en={t(entry.role, 'en')} data-i18n-es={t(entry.role, 'es')}>{t(entry.role, lang)}</h3>
                     <span class="text-sm text-gray-400 mb-3">{entry.company}</span>
                   </div>
-                  <p class={`text-sm text-gray-400 leading-relaxed mb-3 ${isLeft ? 'md:text-right' : ''}`}>
+                  <p class={`text-sm text-gray-400 leading-relaxed mb-3 ${isLeft ? 'md:text-right' : ''}`} data-i18n-en={t(entry.description, 'en')} data-i18n-es={t(entry.description, 'es')}>
                     {t(entry.description, lang)}
                   </p>
                   <ul class={`space-y-1 ${isLeft ? 'md:text-right' : ''}`}>
                     {entry.highlights.map((h) => (
-                      <li class="text-xs text-gray-500">
+                      <li class="text-xs text-gray-500" data-i18n-en={`${isLeft ? '' : '- '}${t(h, 'en')}${isLeft ? ' -' : ''}`} data-i18n-es={`${isLeft ? '' : '- '}${t(h, 'es')}${isLeft ? ' -' : ''}`}>
                         {isLeft ? '' : '- '}
                         {t(h, lang)}
                         {isLeft ? ' -' : ''}

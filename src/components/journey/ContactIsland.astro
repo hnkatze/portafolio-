@@ -1,9 +1,10 @@
 ---
-import type { PersonalInfo } from '@/lib/types';
+import type { PersonalInfo, Lang } from '@/lib/types';
 import ParallaxLayer from './ParallaxLayer.astro';
 
 interface Props {
   data: PersonalInfo;
+  lang: Lang;
 }
 
 const { data } = Astro.props;
@@ -17,14 +18,22 @@ const { data } = Astro.props;
 
   <div class="relative z-10 max-w-3xl mx-auto px-6 w-full">
     <div class="text-center mb-12" data-contact-heading>
-      <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Get in Touch</h2>
-      <p class="text-gray-400 max-w-xl mx-auto">Have a project in mind? Let's work together</p>
+      <h2
+        class="text-3xl md:text-5xl font-bold text-white mb-4"
+        data-i18n-en="Get in Touch"
+        data-i18n-es="Contacto"
+      >Get in Touch</h2>
+      <p
+        class="text-gray-400 max-w-xl mx-auto"
+        data-i18n-en="Have a project in mind? Let's work together"
+        data-i18n-es="¿Tenés un proyecto en mente? Trabajemos juntos"
+      >Have a project in mind? Let's work together</p>
     </div>
 
     <div data-contact-form-wrapper>
       <form id="contact-form" class="space-y-5 p-8 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
         <div>
-          <label for="name" class="block text-sm text-gray-400 mb-1.5">Name</label>
+          <label for="name" class="block text-sm text-gray-400 mb-1.5" data-i18n-en="Name" data-i18n-es="Nombre">Name</label>
           <input
             id="name"
             name="name"
@@ -32,10 +41,12 @@ const { data } = Astro.props;
             required
             class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-400/50 transition-colors"
             placeholder="Your name"
+            data-placeholder-en="Your name"
+            data-placeholder-es="Tu nombre"
           />
         </div>
         <div>
-          <label for="title" class="block text-sm text-gray-400 mb-1.5">Subject</label>
+          <label for="title" class="block text-sm text-gray-400 mb-1.5" data-i18n-en="Subject" data-i18n-es="Asunto">Subject</label>
           <input
             id="title"
             name="title"
@@ -43,10 +54,12 @@ const { data } = Astro.props;
             required
             class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-400/50 transition-colors"
             placeholder="Project inquiry, collaboration, etc."
+            data-placeholder-en="Project inquiry, collaboration, etc."
+            data-placeholder-es="Consulta de proyecto, colaboración, etc."
           />
         </div>
         <div>
-          <label for="email" class="block text-sm text-gray-400 mb-1.5">Email</label>
+          <label for="email" class="block text-sm text-gray-400 mb-1.5" data-i18n-en="Email" data-i18n-es="Email">Email</label>
           <input
             id="email"
             name="email"
@@ -54,10 +67,12 @@ const { data } = Astro.props;
             required
             class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-400/50 transition-colors"
             placeholder="your@email.com"
+            data-placeholder-en="your@email.com"
+            data-placeholder-es="tu@email.com"
           />
         </div>
         <div>
-          <label for="message" class="block text-sm text-gray-400 mb-1.5">Message</label>
+          <label for="message" class="block text-sm text-gray-400 mb-1.5" data-i18n-en="Message" data-i18n-es="Mensaje">Message</label>
           <textarea
             id="message"
             name="message"
@@ -65,12 +80,16 @@ const { data } = Astro.props;
             rows="5"
             class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-400/50 transition-colors resize-none"
             placeholder="Tell me about your project..."
+            data-placeholder-en="Tell me about your project..."
+            data-placeholder-es="Contame sobre tu proyecto..."
           ></textarea>
         </div>
         <button
           type="submit"
           id="contact-submit"
           class="w-full py-3 rounded-xl bg-blue-500/20 text-blue-400 font-medium border border-blue-400/30 hover:bg-blue-500/30 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+          data-i18n-en="Send Message"
+          data-i18n-es="Enviar Mensaje"
         >
           Send Message
         </button>
@@ -115,6 +134,8 @@ const { data } = Astro.props;
       <button
         id="contact-cv-btn"
         class="inline-block text-sm text-gray-400 hover:text-blue-400 transition-colors"
+        data-i18n-en="View my CV →"
+        data-i18n-es="Ver mi CV →"
       >
         View my CV →
       </button>

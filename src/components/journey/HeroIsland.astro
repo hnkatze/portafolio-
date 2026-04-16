@@ -47,12 +47,12 @@ const { data, lang } = Astro.props;
     </h1>
 
     <!-- Title -->
-    <p class="text-xl md:text-2xl text-blue-400 font-medium mb-6" data-hero-item="text">
+    <p class="text-xl md:text-2xl text-blue-400 font-medium mb-6" data-hero-item="text" data-i18n-en={t(data.title, 'en')} data-i18n-es={t(data.title, 'es')}>
       {t(data.title, lang)}
     </p>
 
     <!-- Summary -->
-    <p class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed" data-hero-item="text">
+    <p class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed" data-hero-item="text" data-i18n-en={t(data.summary, 'en')} data-i18n-es={t(data.summary, 'es')}>
       {t(data.summary, lang)}
     </p>
 

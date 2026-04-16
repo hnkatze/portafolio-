@@ -19,8 +19,8 @@ const { projects, lang } = Astro.props;
 
   <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
     <div class="text-center mb-12" data-projects-heading>
-      <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Projects</h2>
-      <p class="text-gray-400 max-w-xl mx-auto">A selection of projects I've built</p>
+      <h2 class="text-3xl md:text-5xl font-bold text-white mb-4" data-i18n-en="Projects" data-i18n-es="Proyectos">Projects</h2>
+      <p class="text-gray-400 max-w-xl mx-auto" data-i18n-en="A selection of projects I've built" data-i18n-es="Una selección de proyectos que he construido">A selection of projects I've built</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -45,7 +45,7 @@ const { projects, lang } = Astro.props;
 
             <div class="p-5">
               <h3 class="text-lg font-bold text-white mb-2">{project.title}</h3>
-              <p class="text-sm text-gray-400 leading-relaxed mb-4 line-clamp-3">
+              <p class="text-sm text-gray-400 leading-relaxed mb-4 line-clamp-3" data-i18n-en={t(project.description, 'en')} data-i18n-es={t(project.description, 'es')}>
                 {t(project.description, lang)}
               </p>
 
