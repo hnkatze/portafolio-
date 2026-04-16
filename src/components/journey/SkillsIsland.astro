@@ -1,5 +1,5 @@
 ---
-import type { Skill, SkillCategory } from '@/lib/types';
+import type { Skill, SkillCategory, SkillLevel } from '@/lib/types';
 import ParallaxLayer from './ParallaxLayer.astro';
 
 interface Props {
@@ -13,6 +13,19 @@ const categories: { key: SkillCategory; label: string }[] = [
   { key: 'backend', label: 'Backend' },
   { key: 'tools', label: 'Tools' },
 ];
+
+const levelConfig = {
+  expert:     { label: 'Expert',     dots: 3, color: 'text-emerald-400', dotColor: 'bg-emerald-400', bg: 'bg-emerald-400/10', border: 'border-emerald-400/20' },
+  proficient: { label: 'Proficient', dots: 2, color: 'text-blue-400',    dotColor: 'bg-blue-400',    bg: 'bg-blue-400/10',    border: 'border-blue-400/20' },
+  familiar:   { label: 'Familiar',   dots: 1, color: 'text-gray-400',    dotColor: 'bg-gray-400',    bg: 'bg-white/5',        border: 'border-white/10' },
+} satisfies Record<SkillLevel, { label: string; dots: number; color: string; dotColor: string; bg: string; border: string }>;
+
+const levels: SkillLevel[] = ['expert', 'proficient', 'familiar'];
+
+// Pre-group skills by category + level in frontmatter (avoids template generics issues)
+type GroupedSkills = Record<SkillCategory, Record<SkillLevel, Skill[]>>;
+const grouped: GroupedSkills = { frontend: { expert: [], proficient: [], familiar: [] }, backend: { expert: [], proficient: [], familiar: [] }, tools: { expert: [], proficient: [], familiar: [] } };
+skills.forEach(s => grouped[s.category][s.level].push(s));
 ---
 
 <section id="skills" class="relative min-h-screen flex items-center py-24 overflow-hidden">
@@ -23,8 +36,25 @@ const categories: { key: SkillCategory; label: string }[] = [
 
   <div class="relative z-10 max-w-6xl mx-auto px-6 w-full">
     <div class="text-center mb-12" data-skills-heading>
-      <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Skills & Technologies</h2>
-      <p class="text-gray-400 max-w-xl mx-auto">Technologies I work with to build modern web applications</p>
+      <h2 class="text-3xl md:text-5xl font-bold text-white mb-4" data-i18n-en="Skills & Technologies" data-i18n-es="Habilidades y Tecnologías">Skills & Technologies</h2>
+      <p class="text-gray-400 max-w-xl mx-auto" data-i18n-en="Technologies I work with daily to build modern web applications" data-i18n-es="Tecnologías con las que trabajo a diario para construir aplicaciones web modernas">Technologies I work with daily to build modern web applications</p>
+
+      <!-- Level legend -->
+      <div class="flex items-center justify-center gap-6 mt-6 text-xs">
+        {levels.map(level => {
+          const cfg = levelConfig[level];
+          return (
+            <div class="flex items-center gap-1.5">
+              <div class="flex gap-0.5">
+                {[0, 1, 2].map(i => (
+                  <span class:list={['w-1.5 h-1.5 rounded-full', i < cfg.dots ? cfg.dotColor : 'bg-white/10']} />
+                ))}
+              </div>
+              <span class={cfg.color}>{cfg.label}</span>
+            </div>
+          );
+        })}
+      </div>
     </div>
 
     <!-- Category tabs -->
@@ -44,46 +74,58 @@ const categories: { key: SkillCategory; label: string }[] = [
       ))}
     </div>
 
-    <!-- Pre-rendered grids for each category -->
+    <!-- Skill grids per category -->
     {categories.map(({ key }) => (
       <div
         data-category={key}
-        class:list={[
-          'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4',
-          key !== 'frontend' && 'hidden'
-        ]}
+        class:list={['space-y-8', key !== 'frontend' && 'hidden']}
       >
-        {skills.filter(s => s.category === key).map((skill, i) => (
-          <div class="group relative" data-skill-card data-index={i}>
-            <div
-              class="relative p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-blue-400/30 transition-all duration-300 cursor-default"
-              data-tilt-card
-              style="transition: transform 0.15s ease-out;"
-            >
-              <div class="flex items-center gap-3 mb-3">
-                <img
-                  src={skill.icon}
-                  alt={skill.name}
-                  class="w-8 h-8 object-contain"
-                  loading="lazy"
-                />
-                <span class="text-sm font-medium text-white">{skill.name}</span>
-                {skill.favorite && (
-                  <span class="ml-auto text-xs text-yellow-400">&#9733;</span>
-                )}
+        {levels.map(level => {
+          const group = grouped[key][level];
+          if (group.length === 0) return null;
+          const cfg = levelConfig[level];
+
+          return (
+            <div data-skill-group>
+              <div class="flex items-center gap-3 mb-4">
+                <div class="flex gap-0.5">
+                  {[0, 1, 2].map(i => (
+                    <span class:list={['w-2 h-2 rounded-full', i < cfg.dots ? cfg.dotColor : 'bg-white/10']} />
+                  ))}
+                </div>
+                <span class:list={['text-sm font-medium', cfg.color]}>{cfg.label}</span>
+                <div class="flex-1 h-px bg-white/5"></div>
               </div>
-              <div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
-                <div
-                  class="h-full rounded-full bg-gradient-to-r from-blue-400 to-purple-500"
-                  data-progress-bar
-                  data-value={skill.value}
-                  style="width: 0%;"
-                ></div>
+
+              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                {group.map((skill, i) => (
+                  <div class="group" data-skill-card data-index={i}>
+                    <div
+                      class:list={[
+                        'relative flex items-center gap-3 p-4 rounded-2xl border transition-all duration-300 cursor-default',
+                        cfg.bg, cfg.border,
+                        'hover:border-blue-400/40 hover:bg-white/[0.06]'
+                      ]}
+                      data-tilt-card
+                      style="transition: transform 0.15s ease-out, background-color 0.3s, border-color 0.3s;"
+                    >
+                      <img
+                        src={skill.icon}
+                        alt={skill.name}
+                        class="w-8 h-8 object-contain shrink-0"
+                        loading="lazy"
+                      />
+                      <span class="text-sm font-medium text-white truncate">{skill.name}</span>
+                      {skill.favorite && (
+                        <span class="ml-auto text-xs text-yellow-400 shrink-0" aria-label="Favorite skill">&#9733;</span>
+                      )}
+                    </div>
+                  </div>
+                ))}
               </div>
-              <span class="text-xs text-gray-500 mt-1 block text-right">{skill.value}%</span>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     ))}
   </div>
@@ -106,7 +148,6 @@ const categories: { key: SkillCategory; label: string }[] = [
     tab.addEventListener('click', () => {
       const category = tab.dataset.tab!;
 
-      // Update tab styling
       tabs.forEach(t => {
         t.classList.remove(...activeClasses);
         t.classList.add(...inactiveClasses);
@@ -114,25 +155,15 @@ const categories: { key: SkillCategory; label: string }[] = [
       tab.classList.remove(...inactiveClasses);
       tab.classList.add(...activeClasses);
 
-      // Show/hide grids
       grids.forEach(g => {
         if (g.dataset.category === category) {
           g.classList.remove('hidden');
-          // Re-trigger entrance animations
           const cards = g.querySelectorAll('[data-skill-card]');
           gsap.from(cards, {
-            opacity: 0, y: 30,
-            duration: prefersReducedMotion ? 0 : 0.5,
-            stagger: 0.05,
+            opacity: 0, y: 20,
+            duration: prefersReducedMotion ? 0 : 0.4,
+            stagger: 0.03,
             ease: 'power2.out',
-          });
-          // Re-trigger progress bars
-          g.querySelectorAll<HTMLDivElement>('[data-progress-bar]').forEach((bar, i) => {
-            const value = bar.dataset.value || '0';
-            gsap.fromTo(bar,
-              { width: '0%' },
-              { width: `${value}%`, duration: prefersReducedMotion ? 0 : 1, delay: 0.2 + i * 0.05, ease: 'power2.out' }
-            );
           });
         } else {
           g.classList.add('hidden');
@@ -148,36 +179,14 @@ const categories: { key: SkillCategory; label: string }[] = [
         const rect = card.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
-        card.style.transform = `perspective(1000px) rotateX(${y * -10}deg) rotateY(${x * 10}deg)`;
+        card.style.transform = `perspective(1000px) rotateX(${y * -8}deg) rotateY(${x * 8}deg) scale(1.02)`;
       });
       card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
       });
-    });
-  }
-
-  // --- Progress bar animation (initial category) ---
-  const visibleGrid = document.querySelector('[data-category="frontend"]');
-  if (visibleGrid) {
-    visibleGrid.querySelectorAll<HTMLDivElement>('[data-progress-bar]').forEach((bar, i) => {
-      const value = bar.dataset.value || '0';
-      gsap.fromTo(bar,
-        { width: '0%' },
-        {
-          width: `${value}%`,
-          duration: prefersReducedMotion ? 0 : 1,
-          delay: 0.2 + i * 0.05,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: bar,
-            start: 'top 90%',
-            once: true,
-          },
-        }
-      );
     });
   }
 
   // --- Card entrance animation ---
-  scrollReveal('[data-category="frontend"] [data-skill-card]', { stagger: 0.05, duration: 0.5 });
+  scrollReveal('[data-category="frontend"] [data-skill-card]', { stagger: 0.03, duration: 0.4 });
 </script>

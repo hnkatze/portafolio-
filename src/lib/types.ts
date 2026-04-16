@@ -22,10 +22,11 @@ export interface PersonalInfo {
 
 // === Skills ===
 export type SkillCategory = 'frontend' | 'backend' | 'tools';
+export type SkillLevel = 'expert' | 'proficient' | 'familiar';
 
 export interface Skill {
   name: string;
-  value: number;
+  level: SkillLevel;
   icon: string;
   category: SkillCategory;
   favorite?: boolean;
@@ -86,6 +87,15 @@ export interface IntegrationConfig {
   linkedin: {
     profileUrl: string;
   };
+}
+
+// === Testimonials ===
+export interface Testimonial {
+  name: string;
+  role: BilingualText;
+  project: string;
+  quote: BilingualText;
+  avatar?: string;
 }
 
 // === Contact Form ===
