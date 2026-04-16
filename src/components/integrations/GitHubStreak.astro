@@ -1,0 +1,36 @@
+---
+interface Props {
+  username: string;
+  theme?: string;
+}
+
+const { username, theme = "tokyonight" } = Astro.props;
+---
+
+<div class="flex justify-center" data-github-streak>
+  <img
+    src={`https://github-readme-streak-stats.herokuapp.com/?user=${username}&theme=${theme}&hide_border=true&background=00000000`}
+    alt={`${username}'s GitHub Streak`}
+    loading="lazy"
+    class="max-w-full h-auto"
+  />
+  <div class="hidden p-4 text-center text-gray-500 text-sm" data-fallback>
+    <a
+      href={`https://github.com/${username}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-blue-400 hover:underline"
+    >
+      View GitHub Streak →
+    </a>
+  </div>
+</div>
+
+<script is:inline>
+  document.querySelectorAll('[data-github-streak] img').forEach(img => {
+    img.addEventListener('error', () => {
+      img.style.display = 'none';
+      img.parentElement.querySelector('[data-fallback]').classList.remove('hidden');
+    });
+  });
+</script>
