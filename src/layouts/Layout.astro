@@ -6,7 +6,12 @@ interface Props {
   description?: string;
 }
 
-const { title, description = "Frontend-Focused Developer passionate about creating innovative solutions" } = Astro.props;
+const SEO_DESCRIPTION = "Camilo Henriquez — Full-Stack Engineer & AI Tooling. I build web applications with React, Next.js, Angular, and TypeScript, and create open source MCP servers for AI developer workflows.";
+const SEO_TITLE = "Camilo Henriquez — Full-Stack Engineer & AI Tooling";
+const SEO_URL = "https://www.camilohenriquez.com";
+const SEO_IMAGE = "https://www.camilohenriquez.com/og-image.png";
+
+const { title, description = SEO_DESCRIPTION } = Astro.props;
 ---
 
 <!doctype html>
@@ -19,7 +24,7 @@ const { title, description = "Frontend-Focused Developer passionate about creati
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
-    <meta name="description" content={description} />
+    <meta name="description" content={SEO_DESCRIPTION} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -30,21 +35,24 @@ const { title, description = "Frontend-Focused Developer passionate about creati
     <meta name="author" content="Camilo Henriquez" />
     <meta
       name="keywords"
-      content="full stack developer, react, nextjs, astro, typescript, portfolio"
+      content="full stack developer, frontend engineer, react, nextjs, angular, astro, typescript, nestjs, postgresql, mcp server, model context protocol, ai tooling, developer tools, honduras, remote developer"
     />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={SEO_TITLE} />
+    <meta property="og:description" content={SEO_DESCRIPTION} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://camilohenriquez.com" />
-    <meta property="og:image" content="https://camilohenriquez.com/og-image.png" />
+    <meta property="og:url" content={SEO_URL} />
+    <meta property="og:image" content={SEO_IMAGE} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={SEO_TITLE} />
+    <meta name="twitter:description" content={SEO_DESCRIPTION} />
     <meta name="twitter:site" content="@camilohenriquez" />
     <meta name="twitter:creator" content="@camilohenriquez" />
-    <meta name="twitter:image" content="https://camilohenriquez.com/twitter-card.png" />
+    <meta name="twitter:image" content="https://www.camilohenriquez.com/twitter-card.png" />
     <title>{title}</title>
-    <link rel="canonical" href="https://camilohenriquez.com" />
+    <link rel="canonical" href={SEO_URL} />
     <link rel="sitemap" href="/sitemap.xml" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
