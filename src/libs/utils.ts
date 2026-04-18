@@ -18,8 +18,8 @@ export const personalInfo: PersonalInfo = {
     en: "Full-Stack Engineer & AI Tooling",
   },
   summary: {
-    es: "Construyo sistemas completos — desde APIs REST con 130+ endpoints en NestJS/PostgreSQL hasta frontends en Angular y React. Manejo pipelines CI/CD, Docker y deploy en plataformas cloud. Autor de MCP servers open source para integrar IA en flujos de desarrollo. 4+ años enviando código a producción, con experiencia remota a través de trabajo freelance para clientes internacionales.",
-    en: "I build complete systems — from REST APIs with 130+ endpoints in NestJS/PostgreSQL to frontends in Angular and React. I manage CI/CD pipelines, Docker, and cloud deployments. Author of open source MCP servers for integrating AI into dev workflows. 4+ years shipping production code, with remote experience through freelance work for international clients.",
+    es: "Desarrollador Full-Stack con 4+ años de experiencia. En mi trabajo actual (CIT) me enfoco en frontend y mobile con Angular (v17–v21), Next.js, Astro, Lit Element y Flutter. En paralelo, como freelance, construyo sistemas completos — incluyendo una plataforma gubernamental con API NestJS de 130+ endpoints sobre PostgreSQL. Autor de MCP servers open source para integrar IA en flujos de desarrollo.",
+    en: "Full-Stack developer with 4+ years of experience. In my current role (CIT) I focus on frontend and mobile with Angular (v17–v21), Next.js, Astro, Lit Element, and Flutter. In parallel, as a freelancer, I build complete systems — including a government platform with a 130+ endpoint NestJS API on PostgreSQL. Author of open source MCP servers for integrating AI into dev workflows.",
   },
   email: "contact@camilohenriquez.com",
   location: "Remote / Worldwide",
@@ -89,6 +89,12 @@ export const skills: Skill[] = [
     name: "Lit Element",
     level: "proficient",
     icon: "/icons/lit.svg",
+    category: "frontend",
+  },
+  {
+    name: "Flutter",
+    level: "proficient",
+    icon: "https://icon.icepanel.io/Technology/svg/Flutter.svg",
     category: "frontend",
   },
   {
@@ -308,52 +314,56 @@ export const experience: Experience[] = [
     startDate: "July 2024",
     endDate: "Present",
     description: {
-      es: "Desarrollando aplicaciones web escalables usando frameworks modernos de JavaScript. Colaborando con equipos multifuncionales para entregar soluciones de software de alta calidad.",
-      en: "Developing scalable web applications using modern JavaScript frameworks. Collaborating with cross-functional teams to deliver high-quality software solutions.",
+      es: "Desarrollo frontend y mobile para proyectos enterprise de alto impacto. Stack: Angular (v17–v21), Next.js, Astro, Lit Element y Flutter. Proyectos bajo acuerdo de confidencialidad.",
+      en: "Frontend and mobile development for high-impact enterprise projects. Stack: Angular (v17–v21), Next.js, Astro, Lit Element, and Flutter. Projects under non-disclosure agreement.",
     },
     highlights: [
       {
-        es: "Arquitectura full-stack para sistema municipal: API REST NestJS con 130+ endpoints, PostgreSQL + PostGIS, sirviendo 5 frontends (4 Angular 21 + 1 Astro)",
-        en: "Full-stack architecture for municipal system: NestJS REST API with 130+ endpoints, PostgreSQL + PostGIS, serving 5 frontends (4 Angular 21 + 1 Astro)",
+        es: "Desarrollo web con Angular v17 a v21, aplicando signals, standalone components, deferrable views y OnPush en aplicaciones de producción",
+        en: "Web development with Angular v17 to v21, applying signals, standalone components, deferrable views, and OnPush in production applications",
       },
       {
-        es: "Reduje tiempos de carga un 40% con code splitting, lazy loading y optimización de bundles",
-        en: "Reduced page load times by 40% through code splitting, lazy loading, and bundle optimization",
+        es: "Desarrollo mobile con Flutter + Dart, clean architecture y Riverpod",
+        en: "Mobile development with Flutter + Dart, clean architecture, and Riverpod",
+      },
+      {
+        es: "Trabajo con equipos multifuncionales siguiendo prácticas ágiles y code review estricto en TypeScript",
+        en: "Collaboration with cross-functional teams following agile practices and strict TypeScript code review",
+      },
+      {
+        es: "Implementación de testing (unit + e2e) con Jest, Vitest y Playwright",
+        en: "Implementation of testing (unit + e2e) with Jest, Vitest, and Playwright",
+      },
+    ],
+  },
+  {
+    role: {
+      es: "Desarrollador Full-Stack Freelance",
+      en: "Freelance Full-Stack Developer",
+    },
+    company: "Freelance",
+    startDate: "2021",
+    endDate: "Present",
+    description: {
+      es: "Soluciones web end-to-end para clientes internacionales: frontend (React, Next.js, Astro, Angular), backend (Node.js, NestJS) y despliegue. Trabajo remoto con clientes en diferentes zonas horarias.",
+      en: "End-to-end web solutions for international clients: frontend (React, Next.js, Astro, Angular), backend (Node.js, NestJS), and deployment. Remote work with clients across different time zones.",
+    },
+    highlights: [
+      {
+        es: "Arquitectura full-stack para sistema de gobierno municipal: API REST NestJS con 130+ endpoints, PostgreSQL + PostGIS, sirviendo 5 frontends (4 Angular 21 + 1 Astro)",
+        en: "Full-stack architecture for municipal government system: NestJS REST API with 130+ endpoints, PostgreSQL + PostGIS, serving 5 frontends (4 Angular 21 + 1 Astro)",
+      },
+      {
+        es: "25+ proyectos entregados con 100% de satisfacción del cliente: ONG, ecommerce, talleres de servicios y herramientas para desarrolladores",
+        en: "25+ projects delivered with 100% client satisfaction: NGOs, e-commerce, service shops, and developer tools",
       },
       {
         es: "Pipelines CI/CD con GitHub Actions, Docker multi-stage y deploy en Railway, Vercel y Firebase",
         en: "CI/CD pipelines with GitHub Actions, multi-stage Docker builds, and deployments on Railway, Vercel, and Firebase",
       },
       {
-        es: "Implementé testing (unit + e2e) con Jest, Vitest y Playwright, y servidores MCP para automatizar flujos del equipo",
-        en: "Implemented testing (unit + e2e) with Jest, Vitest, and Playwright, plus MCP servers to automate team workflows",
-      },
-    ],
-  },
-  {
-    role: {
-      es: "Desarrollador Frontend Freelance",
-      en: "Freelance Frontend Developer",
-    },
-    company: "Freelance",
-    startDate: "2021",
-    endDate: "Present",
-    description: {
-      es: "Soluciones web personalizadas para clientes en múltiples industrias. Especializado en React, Next.js, Astro y Go. Trabajo remoto con clientes en diferentes zonas horarias.",
-      en: "Custom web solutions for clients across multiple industries. Specialized in React, Next.js, Astro, and Go. Remote work with clients across different time zones.",
-    },
-    highlights: [
-      {
-        es: "25+ proyectos entregados con 100% de satisfacción del cliente",
-        en: "25+ projects delivered with 100% client satisfaction rate",
-      },
-      {
-        es: "Creé herramientas open source: Swagger Extractor MCP (Go), PrimeNG MCP, FetchMate (TypeScript)",
-        en: "Built open source tools: Swagger Extractor MCP (Go), PrimeNG MCP, FetchMate (TypeScript)",
-      },
-      {
-        es: "Testing con Vitest, Jest y Playwright en proyectos Next.js, Angular y Go",
-        en: "Testing with Vitest, Jest, and Playwright across Next.js, Angular, and Go projects",
+        es: "Autor de herramientas open source: Swagger Extractor MCP (Go), PrimeNG MCP Server (TypeScript), FetchMate (librería HTTP)",
+        en: "Author of open source tools: Swagger Extractor MCP (Go), PrimeNG MCP Server (TypeScript), FetchMate (HTTP library)",
       },
     ],
   },
