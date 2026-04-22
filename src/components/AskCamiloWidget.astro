@@ -1,0 +1,309 @@
+---
+const WEBHOOK_URL = import.meta.env.PUBLIC_ASK_CAMILO_WEBHOOK ?? '';
+---
+
+{WEBHOOK_URL && (
+<div
+  id="ask-camilo-widget"
+  class="fixed bottom-6 right-6 z-50"
+>
+  <!-- Floating trigger button -->
+  <button
+    id="ask-camilo-trigger"
+    class="group flex items-center gap-2 px-5 py-3 rounded-full bg-blue-500/20 backdrop-blur-xl border border-blue-400/30 text-blue-400 font-medium shadow-lg shadow-blue-500/20 hover:bg-blue-500/30 hover:scale-[1.03] active:scale-[0.97] transition-all duration-300"
+    aria-label="Open chat with Camilo"
+  >
+    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+    <span
+      data-i18n-en="Ask Camilo"
+      data-i18n-es="Preguntale a Camilo"
+      class="hidden sm:inline"
+    >Ask Camilo</span>
+    <span class="flex h-2 w-2">
+      <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-emerald-400 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+    </span>
+  </button>
+
+  <!-- Chat panel (hidden by default) -->
+  <div
+    id="ask-camilo-panel"
+    class="hidden fixed bottom-6 right-6 sm:right-6 w-[calc(100vw-3rem)] sm:w-[380px] max-h-[min(600px,calc(100vh-3rem))] flex flex-col rounded-2xl bg-[#0a0a0f]/95 backdrop-blur-xl border border-white/[0.08] shadow-2xl shadow-blue-500/10 overflow-hidden"
+    role="dialog"
+    aria-label="Chat with Camilo"
+  >
+    <header class="flex items-center justify-between px-4 py-3 border-b border-white/[0.06] bg-white/[0.02]">
+      <div class="flex items-center gap-3">
+        <div class="relative">
+          <div class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500/40 to-purple-500/40 border border-white/10 flex items-center justify-center text-white font-bold text-sm">
+            C
+          </div>
+          <span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[#0a0a0f]"></span>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-sm font-semibold text-white">Camilo Henriquez</span>
+          <span
+            class="text-[11px] text-gray-400"
+            data-i18n-en="Usually replies instantly"
+            data-i18n-es="Responde al instante"
+          >Usually replies instantly</span>
+        </div>
+      </div>
+      <button
+        id="ask-camilo-close"
+        class="text-gray-400 hover:text-white transition-colors p-1"
+        aria-label="Close chat"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </header>
+
+    <div
+      id="ask-camilo-messages"
+      class="flex-1 overflow-y-auto px-4 py-4 space-y-3 scroll-smooth"
+    ></div>
+
+    <div id="ask-camilo-suggestions" class="px-4 pb-2 flex flex-wrap gap-2">
+      <button
+        class="ask-suggestion text-xs px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-gray-300 hover:bg-white/[0.08] hover:border-blue-400/30 transition-colors"
+        data-i18n-en="What's your stack?"
+        data-i18n-es="¿Qué stack manejás?"
+      >What's your stack?</button>
+      <button
+        class="ask-suggestion text-xs px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-gray-300 hover:bg-white/[0.08] hover:border-blue-400/30 transition-colors"
+        data-i18n-en="Best project?"
+        data-i18n-es="¿Mejor proyecto?"
+      >Best project?</button>
+      <button
+        class="ask-suggestion text-xs px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-gray-300 hover:bg-white/[0.08] hover:border-blue-400/30 transition-colors"
+        data-i18n-en="Are you available?"
+        data-i18n-es="¿Estás disponible?"
+      >Are you available?</button>
+    </div>
+
+    <form id="ask-camilo-form" class="p-3 border-t border-white/[0.06] bg-white/[0.02]">
+      <div class="flex items-end gap-2">
+        <textarea
+          id="ask-camilo-input"
+          rows="1"
+          maxlength="500"
+          class="flex-1 px-4 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-white placeholder-gray-500 text-sm focus:outline-none focus:border-blue-400/50 transition-colors resize-none max-h-24"
+          placeholder="Ask me anything..."
+          data-placeholder-en="Ask me anything..."
+          data-placeholder-es="Preguntame lo que quieras..."
+        ></textarea>
+        <button
+          type="submit"
+          id="ask-camilo-send"
+          disabled
+          class="p-2.5 rounded-xl bg-blue-500/20 border border-blue-400/30 text-blue-400 hover:bg-blue-500/30 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+          aria-label="Send"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
+      </div>
+      <p
+        class="text-[10px] text-gray-500 mt-2 text-center"
+        data-i18n-en="AI assistant trained on Camilo's portfolio"
+        data-i18n-es="Asistente IA entrenado con el portafolio de Camilo"
+      >AI assistant trained on Camilo's portfolio</p>
+    </form>
+  </div>
+</div>
+
+<script define:vars={{ WEBHOOK_URL }}>
+  const trigger = document.getElementById('ask-camilo-trigger');
+  const panel = document.getElementById('ask-camilo-panel');
+  const closeBtn = document.getElementById('ask-camilo-close');
+  const form = document.getElementById('ask-camilo-form');
+  const input = document.getElementById('ask-camilo-input');
+  const sendBtn = document.getElementById('ask-camilo-send');
+  const messagesEl = document.getElementById('ask-camilo-messages');
+  const suggestionsEl = document.getElementById('ask-camilo-suggestions');
+  const suggestionBtns = document.querySelectorAll('.ask-suggestion');
+
+  const getLang = () => {
+    return (localStorage.getItem('lang') || document.documentElement.lang || 'en').startsWith('es') ? 'es' : 'en';
+  };
+
+  const welcomeMessages = {
+    en: "Hey! I'm Camilo's AI assistant. Ask me about my skills, projects, experience, or availability — I answer in first person as him.",
+    es: "¡Hola! Soy el asistente IA de Camilo. Preguntame sobre mis skills, proyectos, experiencia o disponibilidad — te respondo en primera persona como él.",
+  };
+
+  const errorMessages = {
+    en: "Sorry, something went wrong. Try again or email contact@camilohenriquez.com",
+    es: "Algo salió mal. Probá de nuevo o escribime a contact@camilohenriquez.com",
+  };
+
+  let isOpen = false;
+  let isSending = false;
+
+  function scrollToBottom() {
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function appendMessage(text, role) {
+    const wrapper = document.createElement('div');
+    wrapper.className = role === 'user' ? 'flex justify-end' : 'flex justify-start';
+
+    const bubble = document.createElement('div');
+    bubble.className = role === 'user'
+      ? 'max-w-[85%] px-3.5 py-2 rounded-2xl rounded-br-md bg-blue-500/20 border border-blue-400/30 text-white text-sm leading-relaxed whitespace-pre-wrap'
+      : 'max-w-[85%] px-3.5 py-2 rounded-2xl rounded-bl-md bg-white/[0.04] border border-white/[0.08] text-gray-100 text-sm leading-relaxed whitespace-pre-wrap';
+
+    bubble.textContent = text;
+    wrapper.appendChild(bubble);
+    messagesEl.appendChild(wrapper);
+    scrollToBottom();
+    return bubble;
+  }
+
+  function appendTyping() {
+    const wrapper = document.createElement('div');
+    wrapper.id = 'ask-typing';
+    wrapper.className = 'flex justify-start';
+    wrapper.innerHTML = `
+      <div class="px-3.5 py-2.5 rounded-2xl rounded-bl-md bg-white/[0.04] border border-white/[0.08] flex gap-1.5 items-center">
+        <span class="w-1.5 h-1.5 rounded-full bg-gray-400 animate-bounce [animation-delay:-0.3s]"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-gray-400 animate-bounce [animation-delay:-0.15s]"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-gray-400 animate-bounce"></span>
+      </div>
+    `;
+    messagesEl.appendChild(wrapper);
+    scrollToBottom();
+  }
+
+  function removeTyping() {
+    document.getElementById('ask-typing')?.remove();
+  }
+
+  function showWelcome() {
+    if (messagesEl.children.length > 0) return;
+    appendMessage(welcomeMessages[getLang()], 'bot');
+  }
+
+  function openPanel() {
+    if (isOpen) return;
+    isOpen = true;
+    trigger.style.display = 'none';
+    panel.classList.remove('hidden');
+    showWelcome();
+    setTimeout(() => input.focus(), 100);
+  }
+
+  function closePanel() {
+    isOpen = false;
+    panel.classList.add('hidden');
+    trigger.style.display = '';
+  }
+
+  trigger.addEventListener('click', openPanel);
+  closeBtn.addEventListener('click', closePanel);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) closePanel();
+  });
+
+  input.addEventListener('input', () => {
+    sendBtn.disabled = input.value.trim().length === 0 || isSending;
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 96) + 'px';
+  });
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (!sendBtn.disabled) form.requestSubmit();
+    }
+  });
+
+  suggestionBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const lang = getLang();
+      input.value = btn.getAttribute(`data-i18n-${lang}`) || btn.textContent || '';
+      input.dispatchEvent(new Event('input'));
+      form.requestSubmit();
+    });
+  });
+
+  async function sendQuestion(question) {
+    appendMessage(question, 'user');
+    input.value = '';
+    input.style.height = 'auto';
+    sendBtn.disabled = true;
+    isSending = true;
+    suggestionsEl.style.display = 'none';
+    appendTyping();
+
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question }),
+      });
+      removeTyping();
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      const answer = data.answer || data.reply || errorMessages[getLang()];
+      appendMessage(answer, 'bot');
+    } catch (err) {
+      removeTyping();
+      appendMessage(errorMessages[getLang()], 'bot');
+    } finally {
+      isSending = false;
+      sendBtn.disabled = input.value.trim().length === 0;
+      input.focus();
+    }
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const q = input.value.trim();
+    if (!q || isSending) return;
+    sendQuestion(q);
+  });
+</script>
+
+<style>
+  #ask-camilo-panel {
+    animation: askCamiloIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes askCamiloIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  #ask-camilo-messages::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  #ask-camilo-messages::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  #ask-camilo-messages::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+  }
+
+  #ask-camilo-messages::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+</style>
+)}

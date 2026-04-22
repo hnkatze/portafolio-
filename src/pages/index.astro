@@ -25,6 +25,7 @@ import IntegrationsIsland from "@/components/journey/IntegrationsIsland.astro";
 import TestimonialsIsland from "@/components/journey/TestimonialsIsland.astro";
 import ContactIsland from "@/components/journey/ContactIsland.astro";
 import CVTemplate from "@/components/cv/CVTemplate.astro";
+import AskCamiloWidget from "@/components/AskCamiloWidget.astro";
 
 // Integration components (Astro - static/build-time)
 import GitHubStats from "@/components/integrations/GitHubStats.astro";
@@ -70,4 +71,6 @@ const lang = "en" as const;
     languages={languages}
     initialLang={lang}
   />
+
+  <AskCamiloWidget />
 </Layout>
