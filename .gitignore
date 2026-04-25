@@ -1,6 +1,9 @@
 # build output
 dist/
 
+# original (pre-optimization) images, kept locally as backup
+_image-backups/
+
 # generated types
 .astro/
 
@@ -23,3 +26,4 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 openspec/
+.vercel
