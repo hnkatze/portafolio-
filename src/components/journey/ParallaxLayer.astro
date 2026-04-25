@@ -12,7 +12,7 @@ const { speed, class: className } = Astro.props;
 </div>
 
 <script>
-  import { parallax } from '@/lib/gsap';
+  import { parallax } from '@/lib/anime';
 
   document.querySelectorAll<HTMLDivElement>('[data-parallax-layer]').forEach((layer) => {
     const speed = parseFloat(layer.dataset.speed || '0');

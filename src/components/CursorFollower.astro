@@ -1,0 +1,120 @@
+---
+// Custom cursor follower — desktop only. Hidden on touch devices via media
+// query in CSS (no JS execution waste on mobile beyond the early-return
+// guard in the inline script).
+---
+
+<div
+  data-cursor-follower
+  class="cursor-follower pointer-events-none fixed top-0 left-0 z-[100] hidden md:block"
+  aria-hidden="true"
+>
+  <div data-cursor-dot class="cursor-dot"></div>
+  <div data-cursor-ring class="cursor-ring"></div>
+</div>
+
+<style>
+  /* Hide entirely on touch / coarse pointer devices */
+  @media (hover: none), (pointer: coarse) {
+    .cursor-follower { display: none !important; }
+  }
+
+  .cursor-dot {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: rgb(96 165 250);
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+  }
+
+  .cursor-ring {
+    position: absolute;
+    top: -16px;
+    left: -16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 9999px;
+    border: 1.5px solid rgba(96, 165, 250, 0.5);
+    transform: translate3d(0, 0, 0) scale(1);
+    transition: transform 200ms ease, border-color 200ms ease, background-color 200ms ease;
+    will-change: transform;
+  }
+
+  /* Hide native cursor only on interactive elements when fine pointer is present */
+  @media (hover: hover) and (pointer: fine) {
+    body:has([data-cursor-follower]) a,
+    body:has([data-cursor-follower]) button,
+    body:has([data-cursor-follower]) [data-magnetic] {
+      cursor: none;
+    }
+  }
+</style>
+
+<script>
+  import { hasFinePointer, prefersReducedMotion } from '@/lib/anime';
+
+  // Bail completely on touch devices — no listeners, no work.
+  if (hasFinePointer && !prefersReducedMotion) {
+    const wrapper = document.querySelector<HTMLElement>('[data-cursor-follower]');
+    const dot = document.querySelector<HTMLElement>('[data-cursor-dot]');
+    const ring = document.querySelector<HTMLElement>('[data-cursor-ring]');
+
+    if (wrapper && dot && ring) {
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let ringX = mouseX;
+      let ringY = mouseY;
+
+      // Dot follows cursor instantly (1:1).
+      // Ring lags behind with smooth easing for that "trailing" feel.
+      const onMove = (e: MouseEvent) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        wrapper.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+      };
+
+      const tick = () => {
+        // Lerp the ring toward the mouse position
+        ringX += (mouseX - ringX) * 0.15;
+        ringY += (mouseY - ringY) * 0.15;
+        const dx = ringX - mouseX;
+        const dy = ringY - mouseY;
+        ring.style.transform = `translate3d(${dx}px, ${dy}px, 0)`;
+        requestAnimationFrame(tick);
+      };
+
+      // Hover state on interactive targets — ring grows + tints
+      const interactiveSelector = 'a, button, [data-magnetic], input, textarea';
+
+      const onPointerOver = (e: Event) => {
+        const target = e.target as HTMLElement;
+        if (target.closest(interactiveSelector)) {
+          ring.classList.add('cursor-ring-hover');
+        }
+      };
+      const onPointerOut = (e: Event) => {
+        const target = e.target as HTMLElement;
+        if (target.closest(interactiveSelector)) {
+          ring.classList.remove('cursor-ring-hover');
+        }
+      };
+
+      window.addEventListener('mousemove', onMove, { passive: true });
+      document.addEventListener('pointerover', onPointerOver, { passive: true });
+      document.addEventListener('pointerout', onPointerOut, { passive: true });
+      requestAnimationFrame(tick);
+    }
+  }
+</script>
+
+<style is:global>
+  .cursor-ring-hover {
+    transform: translate3d(var(--ring-dx, 0), var(--ring-dy, 0), 0) scale(1.6) !important;
+    background-color: rgba(96, 165, 250, 0.1);
+    border-color: rgba(96, 165, 250, 0.8);
+  }
+</style>

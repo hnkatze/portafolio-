@@ -23,9 +23,13 @@ const { experience, lang } = Astro.props;
       <p class="text-gray-400 max-w-xl mx-auto" data-i18n-en="My professional journey building web applications" data-i18n-es="Mi trayectoria profesional construyendo aplicaciones web">My professional journey building web applications</p>
     </div>
 
-    <div class="relative">
-      <!-- Vertical timeline line -->
-      <div class="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-400/30 via-purple-500/20 to-transparent"></div>
+    <div class="relative" data-exp-timeline>
+      <!-- Vertical timeline line (drawn on scroll) -->
+      <div
+        data-exp-line
+        class="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-400/30 via-purple-500/20 to-transparent"
+        style="transform-origin: top; transform: scaleY(0);"
+      ></div>
 
       <div class="space-y-12">
         {experience.map((entry, index) => {
@@ -68,8 +72,30 @@ const { experience, lang } = Astro.props;
 </section>
 
 <script>
-  import { scrollReveal } from '@/lib/gsap';
+  import { scrollReveal, animate, prefersReducedMotion } from '@/lib/anime';
+  import { onScroll, utils } from 'animejs';
 
-  scrollReveal('[data-exp-heading]');
-  scrollReveal('[data-exp-entry]', { stagger: 0.15, start: 'top 80%' });
+  scrollReveal('[data-exp-heading]', { repeat: true });
+  scrollReveal('[data-exp-entry]', { stagger: 0.15, repeat: true });
+
+  // --- Timeline drawing on scroll (desktop only) ---
+  const line = document.querySelector<HTMLElement>('[data-exp-line]');
+  const timeline = document.querySelector<HTMLElement>('[data-exp-timeline]');
+
+  if (line && timeline) {
+    if (prefersReducedMotion || window.innerWidth < 768) {
+      utils.set(line, { scaleY: 1 });
+    } else {
+      animate(line, {
+        scaleY: [0, 1],
+        ease: 'linear',
+        autoplay: onScroll({
+          target: timeline,
+          enter: 'top bottom',
+          leave: 'bottom top',
+          sync: true,
+        }),
+      });
+    }
+  }
 </script>

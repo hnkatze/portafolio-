@@ -94,8 +94,8 @@ const { projects, lang } = Astro.props;
 </section>
 
 <script>
-  import { scrollReveal } from '@/lib/gsap';
+  import { scrollReveal } from '@/lib/anime';
 
-  scrollReveal('[data-projects-heading]');
-  scrollReveal('[data-project-card]', { stagger: 0.06, duration: 0.5 });
+  scrollReveal('[data-projects-heading]', { repeat: true });
+  scrollReveal('[data-project-card]', { stagger: 0.06, duration: 0.5, repeat: true });
 </script>

@@ -67,8 +67,8 @@ const { testimonials, lang } = Astro.props;
 </section>
 
 <script>
-  import { scrollReveal } from '@/lib/gsap';
+  import { scrollReveal } from '@/lib/anime';
 
-  scrollReveal('[data-testimonials-heading]');
-  scrollReveal('[data-testimonial-card]', { stagger: 0.1, duration: 0.5 });
+  scrollReveal('[data-testimonials-heading]', { repeat: true });
+  scrollReveal('[data-testimonial-card]', { stagger: 0.1, duration: 0.5, repeat: true });
 </script>

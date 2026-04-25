@@ -45,8 +45,8 @@ const { config } = Astro.props;
 </section>
 
 <script>
-  import { scrollReveal } from '@/lib/gsap';
+  import { scrollReveal } from '@/lib/anime';
 
-  scrollReveal('[data-integrations-heading]');
-  scrollReveal('[data-integrations-content]', { delay: 0.1 });
+  scrollReveal('[data-integrations-heading]', { repeat: true });
+  scrollReveal('[data-integrations-content]', { delay: 0.1, repeat: true });
 </script>

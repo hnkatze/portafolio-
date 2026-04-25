@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import CursorFollower from '../components/CursorFollower.astro';
 
 interface Props {
   title: string;
@@ -9,7 +10,7 @@ interface Props {
 const SEO_DESCRIPTION = "Camilo Henriquez — Full-Stack Engineer & AI Tooling. I build web applications with React, Next.js, Angular, and TypeScript, and create open source MCP servers for AI developer workflows.";
 const SEO_TITLE = "Camilo Henriquez — Full-Stack Engineer & AI Tooling";
 const SEO_URL = "https://www.camilohenriquez.com";
-const SEO_IMAGE = "https://www.camilohenriquez.com/og-image.png";
+const SEO_IMAGE = "https://www.camilohenriquez.com/og-image.jpg";
 
 const { title, description = SEO_DESCRIPTION } = Astro.props;
 ---
@@ -50,7 +51,7 @@ const { title, description = SEO_DESCRIPTION } = Astro.props;
     <meta name="twitter:description" content={SEO_DESCRIPTION} />
     <meta name="twitter:site" content="@camilohenriquez" />
     <meta name="twitter:creator" content="@camilohenriquez" />
-    <meta name="twitter:image" content="https://www.camilohenriquez.com/twitter-card.png" />
+    <meta name="twitter:image" content="https://www.camilohenriquez.com/twitter-card.jpg" />
     <title>{title}</title>
     <link rel="canonical" href={SEO_URL} />
     <link rel="sitemap" href="/sitemap.xml" />
@@ -61,6 +62,7 @@ const { title, description = SEO_DESCRIPTION } = Astro.props;
     <main>
       <slot />
     </main>
+    <CursorFollower />
   </body>
 </html>
 

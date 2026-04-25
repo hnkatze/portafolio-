@@ -97,9 +97,9 @@ skills.forEach(s => grouped[s.category][s.level].push(s));
                 <div class="flex-1 h-px bg-white/5"></div>
               </div>
 
-              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3" style="perspective: 1000px;">
                 {group.map((skill, i) => (
-                  <div class="group" data-skill-card data-index={i}>
+                  <div class="group" data-skill-card data-index={i} style="transform-style: preserve-3d;">
                     <div
                       class:list={[
                         'relative flex items-center gap-3 p-4 rounded-2xl border transition-all duration-300 cursor-default',
@@ -132,11 +132,12 @@ skills.forEach(s => grouped[s.category][s.level].push(s));
 </section>
 
 <script>
-  import { gsap, scrollReveal, prefersReducedMotion } from '@/lib/gsap';
+  import { animate, scrollReveal, prefersReducedMotion } from '@/lib/anime';
+  import { stagger, utils } from 'animejs';
 
   // --- Scroll reveal for heading and tabs ---
-  scrollReveal('[data-skills-heading]');
-  scrollReveal('[data-skills-tabs]', { delay: 0.1 });
+  scrollReveal('[data-skills-heading]', { repeat: true });
+  scrollReveal('[data-skills-tabs]', { delay: 0.1, repeat: true });
 
   // --- Tab switching ---
   const tabs = document.querySelectorAll<HTMLButtonElement>('[data-tab]');
@@ -158,19 +159,48 @@ skills.forEach(s => grouped[s.category][s.level].push(s));
       grids.forEach(g => {
         if (g.dataset.category === category) {
           g.classList.remove('hidden');
-          const cards = g.querySelectorAll('[data-skill-card]');
-          gsap.from(cards, {
-            opacity: 0, y: 20,
-            duration: prefersReducedMotion ? 0 : 0.4,
-            stagger: 0.03,
-            ease: 'power2.out',
-          });
+          const cards = Array.from(g.querySelectorAll<HTMLElement>('[data-skill-card]'));
+          if (cards.length > 0) {
+            utils.set(cards, { opacity: 0, rotateY: -90 });
+            animate(cards, {
+              opacity: [0, 1],
+              rotateY: [-90, 0],
+              duration: prefersReducedMotion ? 0 : 600,
+              delay: prefersReducedMotion ? 0 : stagger(40, { from: 'center' }),
+              ease: 'outQuad',
+            });
+          }
         } else {
           g.classList.add('hidden');
         }
       });
     });
   });
+
+  // --- Level dot pulse (header dots per skill group) ---
+  if (!prefersReducedMotion) {
+    type PulseCfg = { scale: number; duration: number };
+    const pulseMap: Record<string, PulseCfg> = {
+      'bg-emerald-400': { scale: 1.3,  duration: 1200 },
+      'bg-blue-400':    { scale: 1.15, duration: 1500 },
+      'bg-gray-400':    { scale: 1.05, duration: 1800 },
+    };
+
+    document.querySelectorAll<HTMLElement>('[data-skill-group] > div:first-child > div:first-child > span').forEach(dot => {
+      for (const cls of Object.keys(pulseMap)) {
+        if (dot.classList.contains(cls)) {
+          const { scale, duration } = pulseMap[cls];
+          animate(dot, {
+            scale: [1, scale, 1],
+            duration,
+            ease: 'inOutSine',
+            loop: true,
+          });
+          break;
+        }
+      }
+    });
+  }
 
   // --- 3D Tilt effect ---
   if (!prefersReducedMotion) {
@@ -188,5 +218,5 @@ skills.forEach(s => grouped[s.category][s.level].push(s));
   }
 
   // --- Card entrance animation ---
-  scrollReveal('[data-category="frontend"] [data-skill-card]', { stagger: 0.03, duration: 0.4 });
+  scrollReveal('[data-category="frontend"] [data-skill-card]', { stagger: 0.03, duration: 0.4, repeat: true });
 </script>
